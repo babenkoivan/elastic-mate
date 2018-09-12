@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  php:
+    build:
+      args:
+        version: ${PHP_VERSION}
+      context: docker/php
+      dockerfile: Dockerfile
+    depends_on:
+      - elastic
+    volumes:
+      - .:/app
+    stdin_open: true
+    tty: true
+  elastic:
+    build:
+      args:
+        version: ${ELASTIC_VERSION}
+      context: docker/elastic
+      dockerfile: Dockerfile
