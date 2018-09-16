@@ -8,9 +8,17 @@ RUN apt-get update -y && apt-get install -y \
     zlib1g-dev \
     git
 
+# Install Xdebug
+RUN pecl install \
+    xdebug
+
 # Install php extensions
 RUN docker-php-ext-install \
     zip
+
+# Enable php extentions
+RUN docker-php-ext-enable \
+    xdebug
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | \
