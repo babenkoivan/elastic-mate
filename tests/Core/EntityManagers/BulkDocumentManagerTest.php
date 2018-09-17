@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace BabenkoIvan\ElasticMate\Infrastructure\EntityManagers;
+namespace BabenkoIvan\ElasticMate\Core\EntityManagers;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\EntityManagers\DocumentManager;
 use BabenkoIvan\ElasticMate\Core\Entities\Document;
@@ -14,7 +14,7 @@ use BabenkoIvan\ElasticMate\Dependencies\Client;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \BabenkoIvan\ElasticMate\Infrastructure\EntityManagers\BulkDocumentManager
+ * @covers \BabenkoIvan\ElasticMate\Core\EntityManagers\BulkDocumentManager
  * @uses \BabenkoIvan\ElasticMate\Core\Entities\Document
  * @uses \BabenkoIvan\ElasticMate\Core\Entities\Index
  * @uses \BabenkoIvan\ElasticMate\Core\Search\Queries\MatchAllQuery

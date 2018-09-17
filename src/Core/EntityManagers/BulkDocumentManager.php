@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace BabenkoIvan\ElasticMate\Infrastructure\EntityManagers;
+namespace BabenkoIvan\ElasticMate\Core\EntityManagers;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Client\Client;
 use BabenkoIvan\ElasticMate\Core\Contracts\EntityManagers\DocumentManager;

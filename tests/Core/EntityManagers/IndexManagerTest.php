@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace BabenkoIvan\ElasticMate\Infrastructure\EntityManagers;
+namespace BabenkoIvan\ElasticMate\Core\EntityManagers;
 
 use BabenkoIvan\ElasticMate\Core\Entities\Index;
 use BabenkoIvan\ElasticMate\Core\Mapping\Mapping;
@@ -13,7 +13,7 @@ use BabenkoIvan\ElasticMate\Dependencies\Client;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \BabenkoIvan\ElasticMate\Infrastructure\EntityManagers\IndexManager
+ * @covers \BabenkoIvan\ElasticMate\Core\EntityManagers\IndexManager
  * @uses   \BabenkoIvan\ElasticMate\Core\Entities\Index
  * @uses   \BabenkoIvan\ElasticMate\Core\Mapping\Mapping
  * @uses   \BabenkoIvan\ElasticMate\Core\Mapping\Properties\AbstractProperty

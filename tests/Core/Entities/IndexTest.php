@@ -27,7 +27,7 @@ class IndexTest extends TestCase
 
     /**
      * @dataProvider dataProvider
-     * @testdox index with name "$name" can be created and properties can be received via getters
+     * @testdox Index with name "$name" can be created and properties can be received via getters
      * @param string $name
      * @param Mapping|null $mapping
      * @param Settings|null $settings

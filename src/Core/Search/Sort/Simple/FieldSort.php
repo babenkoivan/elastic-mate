@@ -27,9 +27,11 @@ final class FieldSort implements Arrayable
      */
     public function __construct(string $field, string $order = self::ORDER_ASC)
     {
+        $order = strtolower($order);
+
         if ($order != static::ORDER_ASC && $order != static::ORDER_DESC) {
             throw new InvalidArgumentException(sprintf(
-                'Unsupported order type %d',
+                'Unsupported order type %s',
                 $order
             ));
         }

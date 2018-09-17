@@ -10,39 +10,32 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \BabenkoIvan\ElasticMate\Core\Mapping\Properties\TextProperty
- * @uses \BabenkoIvan\ElasticMate\Core\Mapping\Properties\AbstractProperty
- * @uses \BabenkoIvan\ElasticMate\Core\Settings\Analyzers\AbstractAnalyzer
- * @uses \BabenkoIvan\ElasticMate\Core\Settings\Analyzers\WhitespaceAnalyzer
+ * @uses   \BabenkoIvan\ElasticMate\Core\Mapping\Properties\AbstractProperty
+ * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Analyzers\AbstractAnalyzer
+ * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Analyzers\WhitespaceAnalyzer
  */
 class TextPropertyTest extends TestCase
 {
-    /**
-     * @return array
-     */
-    public function dataProvider(): array
+    public function test_text_property_without_analyzer_can_be_created_and_converted_to_array(): void
     {
-        return [
-            ['foo', null],
-            ['bar', new WhitespaceAnalyzer('whitespace')],
-        ];
+        $this->assertSame(
+            [
+                'type' => 'text'
+            ],
+            (new TextProperty('foo'))->toArray()
+        );
     }
 
-    /**
-     * @dataProvider dataProvider
-     * @testdox property "$name" can be created and converted to array
-     * @param string $name
-     * @param Analyzer|null $analyzer
-     */
-    public function test_property_can_be_created_and_converted_to_array(
-        string $name,
-        ?Analyzer $analyzer
-    ): void {
-        $expected = ['type' => 'text'];
+    public function test_text_property_with_analyzer_can_be_created_and_converted_to_array(): void
+    {
+        $analyzer = new WhitespaceAnalyzer('whitespace');
 
-        if (isset($analyzer)) {
-            $expected['analyzer'] = $analyzer->getName();
-        }
-
-        $this->assertSame($expected, (new TextProperty($name, $analyzer))->toArray());
+        $this->assertSame(
+            [
+                'type' => 'text',
+                'analyzer' => $analyzer->getName()
+            ],
+            (new TextProperty('foo', $analyzer))->toArray()
+        );
     }
 }

@@ -24,7 +24,7 @@ class DocumentTest extends TestCase
 
     /**
      * @dataProvider dataProvider
-     * @testdox document with id $id can be created and properties can be received via getters
+     * @testdox Document with id $id can be created and properties can be received via getters
      * @param string $id
      * @param Collection $content
      */
