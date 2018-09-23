@@ -5,17 +5,14 @@ services:
     build:
       args:
         version: ${PHP_VERSION}
-      context: docker/php
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./docker/php/Dockerfile.test
     depends_on:
       - elastic
-    volumes:
-      - .:/app
     stdin_open: true
     tty: true
   elastic:
     build:
       args:
         version: ${ELASTIC_VERSION}
-      context: docker/elastic
-      dockerfile: Dockerfile
+      context: ./docker/elastic
