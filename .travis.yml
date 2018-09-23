@@ -5,6 +5,7 @@ services:
 
 before_install:
   - docker-compose -f docker-compose.yml up -d
+  - sh ./travis/elastic_connection_check.sh
 
 script:
   - docker-compose -f docker-compose.yml exec php vendor/bin/phpunit
