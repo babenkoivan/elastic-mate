@@ -2,7 +2,6 @@ version: '3'
 
 services:
   php:
-    build:
-      dockerfile: ./docker/php/Dockerfile.dev
     volumes:
       - .:/app
+    command: bash -c 'composer install --no-interaction --optimize-autoloader && php -a'

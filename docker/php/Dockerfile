@@ -27,5 +27,8 @@ RUN curl -sS https://getcomposer.org/installer | \
 # Set workdir
 WORKDIR /app
 
+# Copy project files to workdir
+COPY . .
+
 # Install dependencies
-CMD composer install --no-interaction --optimize-autoloader && php -a
+RUN composer install --no-interaction --optimize-autoloader

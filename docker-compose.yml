@@ -4,9 +4,9 @@ services:
   php:
     build:
       args:
-        version: ${PHP_VERSION}
+        version: $PHP_VERSION
       context: .
-      dockerfile: ./docker/php/Dockerfile.test
+      dockerfile: ./docker/php/Dockerfile
     depends_on:
       - elastic
     stdin_open: true
@@ -14,5 +14,5 @@ services:
   elastic:
     build:
       args:
-        version: ${ELASTIC_VERSION}
+        version: $ELASTIC_VERSION
       context: ./docker/elastic
