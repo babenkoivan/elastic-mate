@@ -11,16 +11,6 @@ interface Fuzziness
     public function isTransposable(): bool;
 
     /**
-     * @return int
-     */
-    public function getPrefixLength(): int;
-
-    /**
-     * @return int
-     */
-    public function getMaxExpansions(): int;
-
-    /**
      * @return string
      */
     public function getValue(): string;

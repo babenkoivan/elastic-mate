@@ -13,37 +13,11 @@ abstract class AbstractFuzziness implements Fuzziness
     protected $isTransposable;
 
     /**
-     * @var int
-     */
-    protected $prefixLength;
-
-    /**
-     * @var int
-     */
-    protected $maxExpansions;
-
-    /**
      * @return bool
      */
     public function isTransposable(): bool
     {
         return $this->isTransposable;
-    }
-
-    /**
-     * @return int
-     */
-    public function getPrefixLength(): int
-    {
-        return $this->prefixLength;
-    }
-
-    /**
-     * @return int
-     */
-    public function getMaxExpansions(): int
-    {
-        return $this->maxExpansions;
     }
 
     /**

@@ -31,7 +31,9 @@ final class MatchQueryTest extends TestCase
                 'field_1',
                 'foo',
                 Query::OPERATOR_AND,
-                new ExactFuzziness(2, true, 2, 10),
+                new ExactFuzziness(2, true),
+                2,
+                10,
                 new WhitespaceAnalyzer('whitespace'),
                 0.01,
                 true
@@ -40,7 +42,9 @@ final class MatchQueryTest extends TestCase
                 'field_2',
                 'bar',
                 Query::OPERATOR_OR,
-                new AutoFuzziness(5, 8, false, 0, 5),
+                new AutoFuzziness(5, 8, false),
+                0,
+                5,
                 new WhitespaceAnalyzer('whitespace'),
                 0.5,
                 false
@@ -55,6 +59,8 @@ final class MatchQueryTest extends TestCase
      * @param string $query
      * @param string $operator
      * @param Fuzziness $fuzziness
+     * @param int $prefixLength
+     * @param int $maxExpansions
      * @param Analyzer $analyzer
      * @param int $cutoffFrequency
      * @param bool $isLenient
@@ -64,6 +70,8 @@ final class MatchQueryTest extends TestCase
         string $query,
         string $operator,
         Fuzziness $fuzziness,
+        int $prefixLength,
+        int $maxExpansions,
         Analyzer $analyzer,
         int $cutoffFrequency,
         bool $isLenient
@@ -73,6 +81,8 @@ final class MatchQueryTest extends TestCase
             $query,
             $operator,
             $fuzziness,
+            $prefixLength,
+            $maxExpansions,
             $analyzer,
             $cutoffFrequency,
             $isLenient
@@ -86,8 +96,8 @@ final class MatchQueryTest extends TestCase
                         'operator' => $operator,
                         'fuzziness' => $fuzziness->getValue(),
                         'fuzzy_transpositions' => $fuzziness->isTransposable() ? 'true' : 'false',
-                        'prefix_length' => $fuzziness->getPrefixLength(),
-                        'max_expansions' => $fuzziness->getMaxExpansions(),
+                        'prefix_length' => $prefixLength,
+                        'max_expansions' => $maxExpansions,
                         'analyzer' => $analyzer->getName(),
                         'lenient' => $isLenient ? 'true' : 'false'
                     ]

@@ -13,11 +13,9 @@ final class AutoFuzzinessTest extends TestCase
 {
     public function test_auto_fuzziness_can_be_created_and_properties_can_be_received_via_getters(): void
     {
-        $autoFuzziness = new AutoFuzziness(5, 10, false, 2, 30);
+        $autoFuzziness = new AutoFuzziness(5, 10, false);
 
         $this->assertSame('AUTO:5,10', $autoFuzziness->getValue());
         $this->assertSame(false, $autoFuzziness->isTransposable());
-        $this->assertSame(2, $autoFuzziness->getPrefixLength());
-        $this->assertSame(30, $autoFuzziness->getMaxExpansions());
     }
 }

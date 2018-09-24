@@ -30,6 +30,16 @@ class MatchQuery implements Query
     private $fuzziness;
 
     /**
+     * @var int
+     */
+    private $prefixLength;
+
+    /**
+     * @var int
+     */
+    private $maxExpansions;
+
+    /**
      * @var Analyzer|null
      */
     private $analyzer;
@@ -49,6 +59,8 @@ class MatchQuery implements Query
      * @param string $query
      * @param string $operator
      * @param Fuzziness|null $fuzziness
+     * @param int $prefixLength
+     * @param int $maxExpansions
      * @param Analyzer|null $analyzer
      * @param int|null $cutoffFrequency
      * @param bool $isLenient
@@ -58,6 +70,8 @@ class MatchQuery implements Query
         string $query,
         string $operator = Query::OPERATOR_OR,
         ?Fuzziness $fuzziness = null,
+        int $prefixLength = 0,
+        int $maxExpansions = 50,
         ?Analyzer $analyzer = null,
         ?int $cutoffFrequency = null,
         bool $isLenient = false
@@ -66,6 +80,8 @@ class MatchQuery implements Query
         $this->query = $query;
         $this->operator = $operator;
         $this->fuzziness = $fuzziness;
+        $this->prefixLength = $prefixLength;
+        $this->maxExpansions = $maxExpansions;
         $this->analyzer = $analyzer;
         $this->cutoffFrequency = $cutoffFrequency;
         $this->isLenient = $isLenient;
@@ -79,14 +95,14 @@ class MatchQuery implements Query
         $query = [
             'query' => $this->query,
             'operator' => $this->operator,
-            'lenient' => $this->isLenient ? 'true' : 'false'
+            'lenient' => $this->isLenient ? 'true' : 'false',
+            'prefix_length' => $this->prefixLength,
+            'max_expansions' => $this->maxExpansions
         ];
 
         if (isset($this->fuzziness)) {
             $query['fuzziness'] = $this->fuzziness->getValue();
             $query['fuzzy_transpositions'] = $this->fuzziness->isTransposable() ? 'true' : 'false';
-            $query['prefix_length'] = $this->fuzziness->getPrefixLength();
-            $query['max_expansions'] = $this->fuzziness->getMaxExpansions();
         }
 
         if (isset($this->analyzer)) {

@@ -13,19 +13,13 @@ final class ExactFuzziness extends AbstractFuzziness
     /**
      * @param int $edits
      * @param bool $isTransposable
-     * @param int $prefixLength
-     * @param int $maxExpansions
      */
     public function __construct(
         int $edits,
-        bool $isTransposable = true,
-        int $prefixLength = 0,
-        int $maxExpansions = 50
+        bool $isTransposable = true
     ) {
         $this->edits = $edits;
         $this->isTransposable = $isTransposable;
-        $this->prefixLength = $prefixLength;
-        $this->maxExpansions = $maxExpansions;
     }
 
     /**

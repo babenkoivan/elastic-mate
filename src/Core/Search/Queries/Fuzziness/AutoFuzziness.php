@@ -19,21 +19,15 @@ final class AutoFuzziness extends AbstractFuzziness
      * @param int $low
      * @param int $high
      * @param bool $isTransposable
-     * @param int $prefixLength
-     * @param int $maxExpansions
      */
     public function __construct(
         int $low = 3,
         int $high = 6,
-        bool $isTransposable = true,
-        int $prefixLength = 0,
-        int $maxExpansions = 50
+        bool $isTransposable = true
     ) {
         $this->low = $low;
         $this->high = $high;
         $this->isTransposable = $isTransposable;
-        $this->prefixLength = $prefixLength;
-        $this->maxExpansions = $maxExpansions;
     }
 
     /**
