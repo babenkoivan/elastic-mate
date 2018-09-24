@@ -5,7 +5,7 @@ namespace BabenkoIvan\ElasticMate\Core\Search\Queries;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Search\Queries\Query;
 
-class TermQuery implements Query
+final class TermQuery implements Query
 {
     /**
      * @var string

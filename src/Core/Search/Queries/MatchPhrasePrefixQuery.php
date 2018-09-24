@@ -5,7 +5,7 @@ namespace BabenkoIvan\ElasticMate\Core\Search\Queries;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Search\Queries\Query;
 
-class MatchPhrasePrefixQuery implements Query
+final class MatchPhrasePrefixQuery implements Query
 {
     /**
      * @var string
