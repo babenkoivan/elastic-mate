@@ -9,7 +9,7 @@ use stdClass;
 /**
  * @covers \BabenkoIvan\ElasticMate\Core\Search\Queries\MatchAllQuery
  */
-class MatchAllQueryTest extends TestCase
+final class MatchAllQueryTest extends TestCase
 {
     public function test_match_all_query_can_be_converted_to_array(): void
     {
