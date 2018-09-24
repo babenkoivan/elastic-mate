@@ -62,7 +62,7 @@ final class MatchQueryTest extends TestCase
      * @param int $prefixLength
      * @param int $maxExpansions
      * @param Analyzer $analyzer
-     * @param int $cutoffFrequency
+     * @param float $cutoffFrequency
      * @param bool $isLenient
      */
     public function test_match_query_can_be_converted_to_array(
@@ -73,7 +73,7 @@ final class MatchQueryTest extends TestCase
         int $prefixLength,
         int $maxExpansions,
         Analyzer $analyzer,
-        int $cutoffFrequency,
+        float $cutoffFrequency,
         bool $isLenient
     ): void {
         $matchQuery = new MatchQuery(

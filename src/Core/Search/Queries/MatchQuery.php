@@ -62,7 +62,7 @@ class MatchQuery implements Query
      * @param int $prefixLength
      * @param int $maxExpansions
      * @param Analyzer|null $analyzer
-     * @param int|null $cutoffFrequency
+     * @param float|null $cutoffFrequency
      * @param bool $isLenient
      */
     public function __construct(
@@ -73,7 +73,7 @@ class MatchQuery implements Query
         int $prefixLength = 0,
         int $maxExpansions = 50,
         ?Analyzer $analyzer = null,
-        ?int $cutoffFrequency = null,
+        ?float $cutoffFrequency = null,
         bool $isLenient = false
     ) {
         $this->field = $field;
