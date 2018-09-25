@@ -8,17 +8,16 @@ use BabenkoIvan\ElasticMate\Core\Search\Queries\Range\LessThan;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \BabenkoIvan\ElasticMate\Core\Search\Queries\DateRangeQuery
- * @uses   \BabenkoIvan\ElasticMate\Core\Search\Queries\NumericRangeQuery
+ * @covers \BabenkoIvan\ElasticMate\Core\Search\Queries\RangeQuery
  * @uses   \BabenkoIvan\ElasticMate\Core\Search\Queries\Range\AbstractRange
  * @uses   \BabenkoIvan\ElasticMate\Core\Search\Queries\Range\GreaterThan
  * @uses   \BabenkoIvan\ElasticMate\Core\Search\Queries\Range\LessThan
  */
-final class DateRangeQueryTest extends TestCase
+final class RangeQueryTest extends TestCase
 {
     public function test_date_range_query_can_be_converted_to_array(): void
     {
-        $dateRangeQuery = new DateRangeQuery(
+        $rangeQuery = new RangeQuery(
             'foo',
             collect([
                 new GreaterThan('01/01/2012'),
@@ -35,13 +34,13 @@ final class DateRangeQueryTest extends TestCase
                     'foo' => [
                         'gt' => '01/01/2012',
                         'lt' => '01/01/2015',
-                        'boost' => 1.9,
                         'format' => 'dd/MM/yyyy',
-                        'time_zone' => '+01:00'
+                        'time_zone' => '+01:00',
+                        'boost' => 1.9,
                     ]
                 ]
             ],
-            $dateRangeQuery->toArray()
+            $rangeQuery->toArray()
         );
     }
 }

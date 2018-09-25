@@ -7,35 +7,51 @@ use BabenkoIvan\ElasticMate\Core\Contracts\Search\Queries\Query;
 use BabenkoIvan\ElasticMate\Core\Contracts\Search\Queries\Range;
 use Illuminate\Support\Collection;
 
-class NumericRangeQuery implements Query
+final class RangeQuery implements Query
 {
     /**
      * @var string
      */
-    protected $field;
+    private $field;
 
     /**
      * @var Collection
      */
-    protected $range;
+    private $range;
 
     /**
-     * @var float
+     * @var string|null
      */
-    protected $boost;
+    private $format;
+
+    /**
+     * @var string|null
+     */
+    private $timezone;
+
+    /**
+     * @var float|null
+     */
+    private $boost;
 
     /**
      * @param string $field
      * @param Collection $range
+     * @param string|null $format
+     * @param string|null $timezone
      * @param float|null $boost
      */
     public function __construct(
         string $field,
         Collection $range,
+        string $format = null,
+        string $timezone = null,
         float $boost = null
     ) {
         $this->field = $field;
         $this->range = $range;
+        $this->format = $format;
+        $this->timezone = $timezone;
         $this->boost = $boost;
     }
 
@@ -47,6 +63,14 @@ class NumericRangeQuery implements Query
         $query = $this->range->mapWithKeys(function (Range $range) {
             return [$range->getAbbreviation() => $range->getValue()];
         })->all();
+
+        if (isset($this->format)) {
+            $query['format'] = $this->format;
+        }
+
+        if (isset($this->timezone)) {
+            $query['time_zone'] = $this->timezone;
+        }
 
         if (isset($this->boost)) {
             $query['boost'] = $this->boost;
