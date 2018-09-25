@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace BabenkoIvan\ElasticMate\Core\Search\Queries;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Search\Queries\Query;
+use Illuminate\Support\Collection;
 
 final class TermsQuery implements Query
 {
@@ -13,15 +14,15 @@ final class TermsQuery implements Query
     private $field;
 
     /**
-     * @var array
+     * @var Collection
      */
     private $values;
 
     /**
      * @param string $field
-     * @param array $values
+     * @param Collection $values
      */
-    public function __construct(string $field, array $values)
+    public function __construct(string $field, Collection $values)
     {
         $this->field = $field;
         $this->values = $values;
@@ -34,7 +35,7 @@ final class TermsQuery implements Query
     {
         return [
             'terms' => [
-                $this->field => $this->values
+                $this->field => $this->values->values()->all()
             ]
         ];
     }
