@@ -44,8 +44,8 @@ final class RangeQuery implements Query
     public function __construct(
         string $field,
         Collection $range,
-        string $format = null,
-        string $timezone = null,
+        ?string $format = null,
+        ?string $timezone = null,
         float $boost = null
     ) {
         $this->field = $field;
