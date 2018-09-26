@@ -6,7 +6,7 @@ namespace BabenkoIvan\ElasticMate\Core\Search\Queries;
 use BabenkoIvan\ElasticMate\Core\Contracts\Search\Queries\Fuzziness;
 use BabenkoIvan\ElasticMate\Core\Contracts\Search\Queries\Query;
 
-class FuzzyQuery implements Query
+final class FuzzyQuery implements Query
 {
     /**
      * @var string
