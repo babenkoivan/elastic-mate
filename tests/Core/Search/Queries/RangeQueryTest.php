@@ -3,15 +3,12 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Search\Queries;
 
-use BabenkoIvan\ElasticMate\Core\Search\Queries\Range\GreaterThan;
-use BabenkoIvan\ElasticMate\Core\Search\Queries\Range\LessThan;
+use BabenkoIvan\ElasticMate\Core\Search\Support\Range;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \BabenkoIvan\ElasticMate\Core\Search\Queries\RangeQuery
- * @uses   \BabenkoIvan\ElasticMate\Core\Search\Queries\Range\AbstractRange
- * @uses   \BabenkoIvan\ElasticMate\Core\Search\Queries\Range\GreaterThan
- * @uses   \BabenkoIvan\ElasticMate\Core\Search\Queries\Range\LessThan
+ * @uses   \BabenkoIvan\ElasticMate\Core\Search\Support\Range
  */
 final class RangeQueryTest extends TestCase
 {
@@ -20,8 +17,8 @@ final class RangeQueryTest extends TestCase
         $rangeQuery = new RangeQuery(
             'foo',
             collect([
-                new GreaterThan('01/01/2012'),
-                new LessThan('01/01/2015')
+                new Range('01/01/2012', Range::TYPE_GREATER_THAN),
+                new Range('01/01/2015', Range::TYPE_LESS_THAN)
             ]),
             'dd/MM/yyyy',
             '+01:00',

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace BabenkoIvan\ElasticMate\Core\Search\Queries\Fuzziness;
+namespace BabenkoIvan\ElasticMate\Core\Search\Support\Fuzziness;
 
 final class AutoFuzziness extends AbstractFuzziness
 {
@@ -33,7 +33,7 @@ final class AutoFuzziness extends AbstractFuzziness
     /**
      * @inheritdoc
      */
-    public function getValue(): string
+    public function toString(): string
     {
         return sprintf(
             'AUTO:%d,%d',

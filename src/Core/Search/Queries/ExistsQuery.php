@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Search\Queries;
 
-use BabenkoIvan\ElasticMate\Core\Contracts\Search\Queries\Query;
+use BabenkoIvan\ElasticMate\Core\Contracts\Search\Query;
 
 final class ExistsQuery implements Query
 {

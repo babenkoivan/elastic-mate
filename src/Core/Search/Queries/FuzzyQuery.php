@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Search\Queries;
 
-use BabenkoIvan\ElasticMate\Core\Contracts\Search\Queries\Fuzziness;
-use BabenkoIvan\ElasticMate\Core\Contracts\Search\Queries\Query;
+use BabenkoIvan\ElasticMate\Core\Contracts\Search\Fuzziness;
+use BabenkoIvan\ElasticMate\Core\Contracts\Search\Query;
 
 final class FuzzyQuery implements Query
 {
@@ -74,7 +74,7 @@ final class FuzzyQuery implements Query
         ];
 
         if (isset($this->fuzziness)) {
-            $query['fuzziness'] = $this->fuzziness->getValue();
+            $query['fuzziness'] = $this->fuzziness->toString();
             $query['transpositions'] = $this->fuzziness->isTransposable() ? 'true' : 'false';
         }
 

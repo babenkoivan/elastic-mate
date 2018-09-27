@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace BabenkoIvan\ElasticMate\Core\Search\Queries\Fuzziness;
+namespace BabenkoIvan\ElasticMate\Core\Search\Support\Fuzziness;
 
-use BabenkoIvan\ElasticMate\Core\Contracts\Search\Queries\Fuzziness;
+use BabenkoIvan\ElasticMate\Core\Contracts\Search\Fuzziness;
 
 abstract class AbstractFuzziness implements Fuzziness
 {
@@ -23,5 +23,5 @@ abstract class AbstractFuzziness implements Fuzziness
     /**
      * @inheritdoc
      */
-    abstract public function getValue(): string;
+    abstract public function toString(): string;
 }

@@ -4,6 +4,7 @@ FROM php:${version}-cli
 
 # Install system libraries
 RUN apt-get update -y && apt-get install -y \
+    netcat \
     unzip \
     zlib1g-dev \
     git

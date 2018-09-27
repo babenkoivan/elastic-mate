@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace BabenkoIvan\ElasticMate\Core\Search;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Arrayable;
-use BabenkoIvan\ElasticMate\Core\Contracts\Search\Queries\Query;
+use BabenkoIvan\ElasticMate\Core\Contracts\Search\Query;
 use BabenkoIvan\ElasticMate\Core\Contracts\Search\Sort;
 
 final class Request implements Arrayable
