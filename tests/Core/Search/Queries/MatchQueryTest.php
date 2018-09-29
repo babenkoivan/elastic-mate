@@ -95,11 +95,11 @@ final class MatchQueryTest extends TestCase
                         'query' => $query,
                         'operator' => $operator,
                         'fuzziness' => $fuzziness->toString(),
-                        'fuzzy_transpositions' => $fuzziness->isTransposable() ? 'true' : 'false',
+                        'fuzzy_transpositions' => $fuzziness->isTransposable(),
                         'prefix_length' => $prefixLength,
                         'max_expansions' => $maxExpansions,
                         'analyzer' => $analyzer->getName(),
-                        'lenient' => $isLenient ? 'true' : 'false'
+                        'lenient' => $isLenient
                     ]
                 ]
             ],

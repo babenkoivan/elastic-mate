@@ -95,14 +95,14 @@ class MatchQuery implements Query
         $query = [
             'query' => $this->query,
             'operator' => $this->operator,
-            'lenient' => $this->isLenient ? 'true' : 'false',
+            'lenient' => $this->isLenient,
             'prefix_length' => $this->prefixLength,
             'max_expansions' => $this->maxExpansions
         ];
 
         if (isset($this->fuzziness)) {
             $query['fuzziness'] = $this->fuzziness->toString();
-            $query['fuzzy_transpositions'] = $this->fuzziness->isTransposable() ? 'true' : 'false';
+            $query['fuzzy_transpositions'] = $this->fuzziness->isTransposable();
         }
 
         if (isset($this->analyzer)) {

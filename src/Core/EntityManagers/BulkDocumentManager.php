@@ -48,7 +48,7 @@ class BulkDocumentManager implements DocumentManager
         });
 
         if ($force) {
-            $payload['refresh'] = 'true';
+            $payload['refresh'] = true;
         }
 
         $this->client
@@ -77,7 +77,7 @@ class BulkDocumentManager implements DocumentManager
         });
 
         if ($force) {
-            $payload['refresh'] = 'true';
+            $payload['refresh'] = true;
         }
 
         $this->client

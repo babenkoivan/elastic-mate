@@ -26,7 +26,7 @@ final class FuzzyQueryTest extends TestCase
                         'prefix_length' => 1,
                         'max_expansions' => 40,
                         'fuzziness' => 'AUTO:2,7',
-                        'transpositions' => 'true',
+                        'transpositions' => true,
                         'boost' => 1.2
                     ]
                 ]

@@ -75,7 +75,7 @@ final class FuzzyQuery implements Query
 
         if (isset($this->fuzziness)) {
             $query['fuzziness'] = $this->fuzziness->toString();
-            $query['transpositions'] = $this->fuzziness->isTransposable() ? 'true' : 'false';
+            $query['transpositions'] = $this->fuzziness->isTransposable();
         }
 
         if (isset($this->boost)) {
