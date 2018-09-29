@@ -15,16 +15,16 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \BabenkoIvan\ElasticMate\Core\EntityManagers\BulkDocumentManager
- * @uses \BabenkoIvan\ElasticMate\Core\Entities\Document
- * @uses \BabenkoIvan\ElasticMate\Core\Entities\Index
- * @uses \BabenkoIvan\ElasticMate\Core\Search\Queries\MatchAllQuery
- * @uses \BabenkoIvan\ElasticMate\Core\Search\Request
- * @uses \BabenkoIvan\ElasticMate\Core\Search\Response
- * @uses \BabenkoIvan\ElasticMate\Core\Search\Sort\Simple\FieldSort
- * @uses \BabenkoIvan\ElasticMate\Core\Search\Sort\Simple\SimpleSort
- * @uses \BabenkoIvan\ElasticMate\Infrastructure\Client\ClientFactory
- * @uses \BabenkoIvan\ElasticMate\Infrastructure\Client\Client
- * @uses \BabenkoIvan\ElasticMate\Infrastructure\Client\Namespaces\IndicesNamespace
+ * @uses   \BabenkoIvan\ElasticMate\Core\Entities\Document
+ * @uses   \BabenkoIvan\ElasticMate\Core\Entities\Index
+ * @uses   \BabenkoIvan\ElasticMate\Core\Search\Queries\MatchAllQuery
+ * @uses   \BabenkoIvan\ElasticMate\Core\Search\Request
+ * @uses   \BabenkoIvan\ElasticMate\Core\Search\Response
+ * @uses   \BabenkoIvan\ElasticMate\Core\Search\Sort\Simple\FieldSort
+ * @uses   \BabenkoIvan\ElasticMate\Core\Search\Sort\Simple\SimpleSort
+ * @uses   \BabenkoIvan\ElasticMate\Infrastructure\Client\ClientFactory
+ * @uses   \BabenkoIvan\ElasticMate\Infrastructure\Client\Client
+ * @uses   \BabenkoIvan\ElasticMate\Infrastructure\Client\Namespaces\IndicesNamespace
  */
 class BulkDocumentManagerTest extends TestCase
 {
