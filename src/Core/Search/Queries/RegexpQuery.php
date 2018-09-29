@@ -46,7 +46,7 @@ final class RegexpQuery implements Query
      * @param string $value
      * @param Collection|null $flags
      * @param int|null $maxDeterminizedStates
-     * @param float|null $boost
+     * @param float $boost
      */
     public function __construct(
         string $field,

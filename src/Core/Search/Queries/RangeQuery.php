@@ -39,7 +39,7 @@ final class RangeQuery implements Query
      * @param Collection $range
      * @param string|null $format
      * @param string|null $timezone
-     * @param float|null $boost
+     * @param float $boost
      */
     public function __construct(
         string $field,

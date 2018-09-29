@@ -25,7 +25,7 @@ final class PrefixQuery implements Query
     /**
      * @param string $field
      * @param string $value
-     * @param float|null $boost
+     * @param float $boost
      */
     public function __construct(string $field, string $value, float $boost = null)
     {

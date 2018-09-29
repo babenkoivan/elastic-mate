@@ -25,7 +25,7 @@ final class WildcardQuery implements Query
     /**
      * @param string $field
      * @param string $wildcard
-     * @param float|null $boost
+     * @param float $boost
      */
     public function __construct(string $field, string $wildcard, float $boost = null)
     {

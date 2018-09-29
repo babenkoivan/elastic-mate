@@ -44,7 +44,7 @@ final class FuzzyQuery implements Query
      * @param Fuzziness|null $fuzziness
      * @param int $prefixLength
      * @param int $maxExpansions
-     * @param float|null $boost
+     * @param float $boost
      */
     public function __construct(
         string $field,
