@@ -14,19 +14,12 @@ class Mapping implements Arrayable
      */
     private $properties;
 
-    public function __construct()
-    {
-        $this->properties = collect();
-    }
-
     /**
-     * @param Property $property
-     * @return self
+     * @param Collection $properties
      */
-    public function addProperty(Property $property): self
+    public function __construct(Collection $properties)
     {
-        $this->properties->push($property);
-        return $this;
+        $this->properties = $properties;
     }
 
     /**

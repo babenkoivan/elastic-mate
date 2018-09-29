@@ -3,22 +3,20 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Mapping\Properties;
 
-use BabenkoIvan\ElasticMate\Core\Contracts\Settings\Analyzer;
-
 final class TextProperty extends AbstractProperty
 {
     /**
-     * @var Analyzer
+     * @var string
      */
     private $analyzer;
 
     /**
      * @param string $name
-     * @param Analyzer $analyzer
+     * @param string|null $analyzer
      */
-    public function __construct(string $name, ?Analyzer $analyzer = null)
+    public function __construct(string $name, string $analyzer = null)
     {
-        parent::__construct($name);
+        $this->name = $name;
         $this->analyzer = $analyzer;
     }
 
@@ -32,7 +30,7 @@ final class TextProperty extends AbstractProperty
         ];
 
         if (isset($this->analyzer)) {
-            $property['analyzer'] = $this->analyzer->getName();
+            $property['analyzer'] = $this->analyzer;
         }
 
         return $property;

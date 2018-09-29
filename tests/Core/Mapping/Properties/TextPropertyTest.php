@@ -28,14 +28,12 @@ class TextPropertyTest extends TestCase
 
     public function test_text_property_with_analyzer_can_be_created_and_converted_to_array(): void
     {
-        $analyzer = new WhitespaceAnalyzer('whitespace');
-
         $this->assertSame(
             [
                 'type' => 'text',
-                'analyzer' => $analyzer->getName()
+                'analyzer' => 'whitespace'
             ],
-            (new TextProperty('foo', $analyzer))->toArray()
+            (new TextProperty('foo', 'whitespace'))->toArray()
         );
     }
 }

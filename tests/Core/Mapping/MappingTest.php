@@ -15,9 +15,10 @@ class MappingTest extends TestCase
 {
     public function test_mapping_can_be_converted_to_array(): void
     {
-        $mapping = (new Mapping())
-            ->addProperty(new TextProperty('foo'))
-            ->addProperty(new TextProperty('bar'));
+        $mapping = new Mapping(collect([
+            new TextProperty('foo'),
+            new TextProperty('bar')
+        ]));
 
         $this->assertSame(
             [

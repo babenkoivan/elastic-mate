@@ -121,10 +121,11 @@ class IndexManagerTest extends TestCase
     {
         parent::setUp();
 
-        $analyzer = new WhitespaceAnalyzer('content');
-        $analysis = (new Analysis())->addAnalyzer($analyzer);
+        $properties = collect([new TextProperty('content', 'content')]);
+        $mapping = new Mapping($properties);
 
-        $mapping = (new Mapping())->addProperty(new TextProperty('content', $analyzer));
+        $analyzers = collect([new WhitespaceAnalyzer('content')]);
+        $analysis = new Analysis($analyzers);
         $settings = new Settings($analysis);
 
         $this->index = new Index('test', $mapping, $settings);

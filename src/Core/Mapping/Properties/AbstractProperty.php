@@ -10,15 +10,7 @@ abstract class AbstractProperty implements Property
     /**
      * @var string
      */
-    private $name;
-
-    /**
-     * @param string $name
-     */
-    public function __construct(string $name)
-    {
-        $this->name = $name;
-    }
+    protected $name;
 
     /**
      * @inheritdoc

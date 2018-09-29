@@ -4,6 +4,9 @@ declare(strict_types=1);
 namespace BabenkoIvan\ElasticMate\Core\Entities;
 
 use BabenkoIvan\ElasticMate\Core\Mapping\Mapping;
+use BabenkoIvan\ElasticMate\Core\Mapping\Properties\TextProperty;
+use BabenkoIvan\ElasticMate\Core\Settings\Analysis;
+use BabenkoIvan\ElasticMate\Core\Settings\Analyzers\WhitespaceAnalyzer;
 use BabenkoIvan\ElasticMate\Core\Settings\Settings;
 use PHPUnit\Framework\TestCase;
 
@@ -20,8 +23,16 @@ class IndexTest extends TestCase
     public function dataProvider(): array
     {
         return [
-            ['foo', null, null],
-            ['bar', new Mapping(), new Settings()],
+            [
+                'foo',
+                null,
+                null
+            ],
+            [
+                'bar',
+                new Mapping(collect([new TextProperty('foo')])),
+                new Settings(new Analysis(collect([new WhitespaceAnalyzer('bar')])))
+            ],
         ];
     }
 
