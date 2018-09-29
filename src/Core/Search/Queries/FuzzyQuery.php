@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Search\Queries;
 
-use BabenkoIvan\ElasticMate\Core\Contracts\Search\Fuzziness;
+use BabenkoIvan\ElasticMate\Core\Contracts\Support\Fuzziness;
 use BabenkoIvan\ElasticMate\Core\Contracts\Search\Query;
 
 final class FuzzyQuery implements Query

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace BabenkoIvan\ElasticMate\Core\Search\Support\Fuzziness;
+namespace BabenkoIvan\ElasticMate\Core\Support\Fuzziness;
 
 final class ExactFuzziness extends AbstractFuzziness
 {

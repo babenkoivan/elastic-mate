@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace BabenkoIvan\ElasticMate\Core\Search\Queries;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Search\Query;
-use BabenkoIvan\ElasticMate\Core\Search\Support\Range;
+use BabenkoIvan\ElasticMate\Core\Support\Range;
 use Illuminate\Support\Collection;
 
 final class RangeQuery implements Query

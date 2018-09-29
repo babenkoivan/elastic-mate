@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace BabenkoIvan\ElasticMate\Core\Contracts\Search;
+namespace BabenkoIvan\ElasticMate\Core\Contracts\Support;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Stringable;
 

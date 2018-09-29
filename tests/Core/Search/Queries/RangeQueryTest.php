@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Search\Queries;
 
-use BabenkoIvan\ElasticMate\Core\Search\Support\Range;
+use BabenkoIvan\ElasticMate\Core\Support\Range;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \BabenkoIvan\ElasticMate\Core\Search\Queries\RangeQuery
- * @uses   \BabenkoIvan\ElasticMate\Core\Search\Support\Range
+ * @uses   \BabenkoIvan\ElasticMate\Core\Support\Range
  */
 final class RangeQueryTest extends TestCase
 {

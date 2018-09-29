@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace BabenkoIvan\ElasticMate\Core\Search\Support\Fuzziness;
+namespace BabenkoIvan\ElasticMate\Core\Support\Fuzziness;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \BabenkoIvan\ElasticMate\Core\Search\Support\Fuzziness\AutoFuzziness
- * @uses   \BabenkoIvan\ElasticMate\Core\Search\Support\Fuzziness\AbstractFuzziness
+ * @covers \BabenkoIvan\ElasticMate\Core\Support\Fuzziness\AutoFuzziness
+ * @uses   \BabenkoIvan\ElasticMate\Core\Support\Fuzziness\AbstractFuzziness
  */
 final class AutoFuzzinessTest extends TestCase
 {

@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace BabenkoIvan\ElasticMate\Core\Search\Support\Fuzziness;
+namespace BabenkoIvan\ElasticMate\Core\Support\Fuzziness;
 
-use BabenkoIvan\ElasticMate\Core\Contracts\Search\Fuzziness;
+use BabenkoIvan\ElasticMate\Core\Contracts\Support\Fuzziness;
 
 abstract class AbstractFuzziness implements Fuzziness
 {
