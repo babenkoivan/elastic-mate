@@ -9,7 +9,7 @@ use BabenkoIvan\ElasticMate\Core\Entities\Document;
 use BabenkoIvan\ElasticMate\Core\Entities\Index;
 use BabenkoIvan\ElasticMate\Core\Search\Request;
 use BabenkoIvan\ElasticMate\Core\Search\Response;
-use Illuminate\Support\Collection as BaseCollection;
+use Illuminate\Support\Collection;
 
 class BulkDocumentManager implements DocumentManager
 {
@@ -29,7 +29,7 @@ class BulkDocumentManager implements DocumentManager
     /**
      * @inheritdoc
      */
-    public function index(Index $index, BaseCollection $collection, bool $force = false): DocumentManager
+    public function index(Index $index, Collection $collection, bool $force = false): DocumentManager
     {
         $payload = [
             'index' => $index->getName(),
@@ -60,7 +60,7 @@ class BulkDocumentManager implements DocumentManager
     /**
      * @inheritdoc
      */
-    public function delete(Index $index, BaseCollection $collection, bool $force = false): DocumentManager
+    public function delete(Index $index, Collection $collection, bool $force = false): DocumentManager
     {
         $payload = [
             'index' => $index->getName(),

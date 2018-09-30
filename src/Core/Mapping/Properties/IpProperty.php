@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Mapping\Properties;
 
-final class BooleanProperty extends AbstractProperty
+final class IpProperty extends AbstractProperty
 {
     /**
      * @var bool
@@ -35,7 +35,7 @@ final class BooleanProperty extends AbstractProperty
      * @param bool $isDocValuesEnabled
      * @param bool $isStored
      * @param bool $isIndexed
-     * @param mixed|null $nullValue
+     * @param null $nullValue
      * @param float $boost
      */
     public function __construct(
@@ -60,7 +60,7 @@ final class BooleanProperty extends AbstractProperty
     public function toArray(): array
     {
         return [
-            'type' => 'boolean',
+            'type' => 'ip',
             'doc_values' => $this->isDocValuesEnabled,
             'store' => $this->isStored,
             'index' => $this->isIndexed,

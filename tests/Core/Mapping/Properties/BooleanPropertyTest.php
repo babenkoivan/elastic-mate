@@ -12,16 +12,16 @@ final class BooleanPropertyTest extends TestCase
 {
     public function test_boolean_property_can_be_converted_to_array(): void
     {
-        $booleanProperty = new BooleanProperty('foo', 1.1, true, false, 'NULL', true);
+        $booleanProperty = new BooleanProperty('foo', true, true, false, 'NULL', 1.1);
 
         $this->assertSame(
             [
                 'type' => 'boolean',
-                'boost' => 1.1,
                 'doc_values' => true,
+                'store' => true,
                 'index' => false,
                 'null_value' => 'NULL',
-                'store' => true
+                'boost' => 1.1
             ],
             $booleanProperty->toArray()
         );
