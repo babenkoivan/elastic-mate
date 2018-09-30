@@ -8,26 +8,26 @@ final class BinaryProperty extends AbstractProperty
     /**
      * @var bool
      */
-    private $isDocValuesEnabled;
+    private $docValues;
 
     /**
      * @var bool
      */
-    private $isStored;
+    private $store;
 
     /**
      * @param string $name
-     * @param bool $isDocValuesEnabled
-     * @param bool $isStored
+     * @param bool $docValues
+     * @param bool $store
      */
     public function __construct(
         string $name,
-        bool $isDocValuesEnabled = false,
-        bool $isStored = false
+        bool $docValues = false,
+        bool $store = false
     ) {
         $this->name = $name;
-        $this->isDocValuesEnabled = $isDocValuesEnabled;
-        $this->isStored = $isStored;
+        $this->docValues = $docValues;
+        $this->store = $store;
     }
 
     /**
@@ -37,8 +37,8 @@ final class BinaryProperty extends AbstractProperty
     {
         return [
             'type' => 'binary',
-            'doc_values' => $this->isDocValuesEnabled,
-            'store' => $this->isStored
+            'doc_values' => $this->docValues,
+            'store' => $this->store
         ];
     }
 }

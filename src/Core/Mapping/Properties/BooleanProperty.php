@@ -8,17 +8,17 @@ final class BooleanProperty extends AbstractProperty
     /**
      * @var bool
      */
-    private $isDocValuesEnabled;
+    private $docValues;
 
     /**
      * @var bool
      */
-    private $isStored;
+    private $store;
 
     /**
      * @var bool
      */
-    private $isIndexed;
+    private $index;
 
     /**
      * @var null
@@ -32,24 +32,24 @@ final class BooleanProperty extends AbstractProperty
 
     /**
      * @param string $name
-     * @param bool $isDocValuesEnabled
-     * @param bool $isStored
-     * @param bool $isIndexed
+     * @param bool $docValues
+     * @param bool $store
+     * @param bool $index
      * @param mixed|null $nullValue
      * @param float $boost
      */
     public function __construct(
         string $name,
-        bool $isDocValuesEnabled = true,
-        bool $isStored = false,
-        bool $isIndexed = true,
+        bool $docValues = true,
+        bool $store = false,
+        bool $index = true,
         $nullValue = null,
         float $boost = 1.0
     ) {
         $this->name = $name;
-        $this->isDocValuesEnabled = $isDocValuesEnabled;
-        $this->isStored = $isStored;
-        $this->isIndexed = $isIndexed;
+        $this->docValues = $docValues;
+        $this->store = $store;
+        $this->index = $index;
         $this->nullValue = $nullValue;
         $this->boost = $boost;
     }
@@ -61,9 +61,9 @@ final class BooleanProperty extends AbstractProperty
     {
         return [
             'type' => 'boolean',
-            'doc_values' => $this->isDocValuesEnabled,
-            'store' => $this->isStored,
-            'index' => $this->isIndexed,
+            'doc_values' => $this->docValues,
+            'store' => $this->store,
+            'index' => $this->index,
             'null_value' => $this->nullValue,
             'boost' => $this->boost
         ];
