@@ -15,25 +15,23 @@ use PHPUnit\Framework\TestCase;
  */
 final class BoolQueryTest extends TestCase
 {
-    public function test_bool_query_creation_without_boolean_clauses_causes_error(): void
-    {
-        $this->expectExceptionMessage(
-            'At least one of the boolean clauses must be used: must, filter, must not, should'
-        );
-
-        new BoolQuery();
-    }
-
     public function test_bool_query_can_be_converted_to_array(): void
     {
         $must = new TermQuery('field1', 'foo');
-        $filter = new BoolQuery(null, null, new ExistsQuery('field2'));
+        $filter = (new BoolQuery())->setMustNot(new ExistsQuery('field2'));
         $mustNot = new TermQuery('field3', 'bar');
         $should = collect([new RegexpQuery('field4', 't.*t'), new WildcardQuery('field4', 't***t')]);
         $minimumShouldMatch = 2;
         $boost = 1.9;
 
-        $boolQuery = new BoolQuery($must, $filter, $mustNot, $should, $minimumShouldMatch, $boost);
+        $boolQuery = (new BoolQuery())
+            ->setMust($must)
+            ->setFilter($filter)
+            ->setMustNot($mustNot)
+            ->addShould($should->get(0))
+            ->addShould($should->get(1))
+            ->setMinimumShouldMatch($minimumShouldMatch)
+            ->setBoost($boost);
 
         $this->assertSame(
             [

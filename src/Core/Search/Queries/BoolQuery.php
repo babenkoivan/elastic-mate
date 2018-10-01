@@ -4,11 +4,14 @@ declare(strict_types=1);
 namespace BabenkoIvan\ElasticMate\Core\Search\Queries;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Search\Query;
+use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasBoost;
 use Illuminate\Support\Collection;
 use InvalidArgumentException;
 
 final class BoolQuery implements Query
 {
+    use HasBoost;
+
     /**
      * @var Query|null
      */
@@ -25,7 +28,7 @@ final class BoolQuery implements Query
     private $mustNot;
 
     /**
-     * @var Collection|null
+     * @var Collection
      */
     private $should;
 
@@ -34,39 +37,59 @@ final class BoolQuery implements Query
      */
     private $minimumShouldMatch;
 
-    /**
-     * @var float|null
-     */
-    private $boost;
+    public function __construct()
+    {
+        $this->should = collect();
+    }
 
     /**
-     * @param Query|null $must
-     * @param Query|null $filter
-     * @param Query|null $mustNot
-     * @param Collection|null $should
-     * @param int|null $minimumShouldMatch
-     * @param float $boost
+     * @param Query $must
+     * @return self
      */
-    public function __construct(
-        ?Query $must = null,
-        ?Query $filter = null,
-        ?Query $mustNot = null,
-        ?Collection $should = null,
-        ?int $minimumShouldMatch = null,
-        float $boost = null
-    ) {
-        if (!isset($must) && !isset($filter) && !isset($mustNot) && !isset($should)) {
-            throw new InvalidArgumentException(
-                'At least one of the boolean clauses must be used: must, filter, must not, should'
-            );
-        }
-
+    public function setMust(Query $must): self
+    {
         $this->must = $must;
+        return $this;
+    }
+
+    /**
+     * @param Query $filter
+     * @return BoolQuery
+     */
+    public function setFilter(Query $filter): self
+    {
         $this->filter = $filter;
+        return $this;
+    }
+
+    /**
+     * @param Query $mustNot
+     * @return BoolQuery
+     */
+    public function setMustNot(Query $mustNot): self
+    {
         $this->mustNot = $mustNot;
-        $this->should = $should;
+        return $this;
+    }
+
+    /**
+     * @param Query $should
+     * @return BoolQuery
+     */
+    public function addShould(Query $should): self
+    {
+        $this->should->push($should);
+        return $this;
+    }
+
+    /**
+     * @param int $minimumShouldMatch
+     * @return BoolQuery
+     */
+    public function setMinimumShouldMatch(int $minimumShouldMatch): self
+    {
         $this->minimumShouldMatch = $minimumShouldMatch;
-        $this->boost = $boost;
+        return $this;
     }
 
     /**
@@ -88,7 +111,7 @@ final class BoolQuery implements Query
             $query['must_not'] = $this->mustNot->toArray();
         }
 
-        if (isset($this->should)) {
+        if ($this->should->count() > 0) {
             $query['should'] = $this->should->map(function (Query $query) {
                 return $query->toArray();
             })->values()->all();
