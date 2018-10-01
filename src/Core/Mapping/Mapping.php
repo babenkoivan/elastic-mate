@@ -10,16 +10,37 @@ use Illuminate\Support\Collection;
 class Mapping implements Arrayable
 {
     /**
+     * @var bool
+     */
+    private $isSourceEnabled = true;
+
+    /**
      * @var Collection
      */
     private $properties;
 
-    /**
-     * @param Collection $properties
-     */
-    public function __construct(Collection $properties)
+    public function __construct()
     {
-        $this->properties = $properties;
+        $this->properties = collect();
+    }
+
+    /**
+     * @return self
+     */
+    public function disableSource(): self
+    {
+        $this->isSourceEnabled = false;
+        return $this;
+    }
+
+    /**
+     * @param Property $property
+     * @return Mapping
+     */
+    public function addProperty(Property $property): self
+    {
+        $this->properties->push($property);
+        return $this;
     }
 
     /**
@@ -27,16 +48,20 @@ class Mapping implements Arrayable
      */
     public function toArray(): array
     {
-        $mapping = [];
+        $mapping = [
+            '_source' => [
+                'enabled' => $this->isSourceEnabled
+            ]
+        ];
 
         $properties = $this->properties->mapWithKeys(function (Property $property) {
             return [
                 $property->getName() => $property->toArray()
             ];
-        })->all();
+        });
 
-        if (!empty($properties)) {
-            $mapping['properties'] = $properties;
+        if ($properties->count() > 0) {
+            $mapping['properties'] = $properties->all();
         }
 
         return $mapping;

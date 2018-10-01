@@ -10,22 +10,23 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \BabenkoIvan\ElasticMate\Core\Search\Request
- * @uses \BabenkoIvan\ElasticMate\Core\Search\Queries\MatchAllQuery
- * @uses \BabenkoIvan\ElasticMate\Core\Search\Sort\Simple\FieldSort
- * @uses \BabenkoIvan\ElasticMate\Core\Search\Sort\Simple\SimpleSort
- * @uses \BabenkoIvan\ElasticMate\Core\Search\Pagination
+ * @uses   \BabenkoIvan\ElasticMate\Core\Search\Queries\MatchAllQuery
+ * @uses   \BabenkoIvan\ElasticMate\Core\Search\Sort\Simple\FieldSort
+ * @uses   \BabenkoIvan\ElasticMate\Core\Search\Sort\Simple\SimpleSort
+ * @uses   \BabenkoIvan\ElasticMate\Core\Search\Pagination
  */
 class RequestTest extends TestCase
 {
     public function test_request_with_query_can_be_created_and_converted_to_array(): void
     {
         $query = new MatchAllQuery();
+        $request = new Request($query);
 
         $this->assertEquals(
             [
                 'query' => $query->toArray()
             ],
-            (new Request($query))->toArray()
+            $request->toArray()
         );
     }
 
@@ -37,12 +38,14 @@ class RequestTest extends TestCase
             ->addFieldSort(new FieldSort('foo', 'asc'))
             ->addFieldSort(new FieldSort('bar', 'desc'));
 
+        $request = (new Request($query))->setSort($sort);
+
         $this->assertEquals(
             [
                 'query' => $query->toArray(),
                 'sort' => $sort->toArray()
             ],
-            (new Request($query, $sort))->toArray()
+            $request->toArray()
         );
     }
 
@@ -59,6 +62,10 @@ class RequestTest extends TestCase
 
         $pagination = new Pagination(0, 100);
 
+        $request = (new Request($query))
+            ->setSort($sort)
+            ->setPagination($pagination);
+
         $this->assertEquals(
             [
                 'query' => $query->toArray(),
@@ -66,7 +73,7 @@ class RequestTest extends TestCase
                 'from' => $pagination->getFrom(),
                 'size' => $pagination->getSize()
             ],
-            (new Request($query, $sort, $pagination))->toArray()
+            $request->toArray()
         );
     }
 }

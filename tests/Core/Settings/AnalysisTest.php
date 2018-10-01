@@ -15,10 +15,9 @@ class AnalysisTest extends TestCase
 {
     public function test_analysis_can_be_converted_to_array(): void
     {
-        $analysis = new Analysis(collect([
-            new WhitespaceAnalyzer('foo'),
-            new WhitespaceAnalyzer('bar')
-        ]));
+        $analysis = (new Analysis())
+            ->addAnalyzer(new WhitespaceAnalyzer('foo'))
+            ->addAnalyzer(new WhitespaceAnalyzer('bar'));
 
         $this->assertSame(
             [

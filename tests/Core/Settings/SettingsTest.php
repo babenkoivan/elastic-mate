@@ -14,27 +14,22 @@ use PHPUnit\Framework\TestCase;
  */
 class SettingsTest extends TestCase
 {
-    public function test_settings_creation_causes_error_if_no_options_specified(): void
-    {
-        $this->expectExceptionMessage(
-            'At least one of the configurations must be used: analysis'
-        );
-
-        new Settings();
-    }
-
     public function test_settings_can_be_converted_to_array(): void
     {
-        $analysis = new Analysis(collect([
-            new WhitespaceAnalyzer('foo'),
-            new WhitespaceAnalyzer('bar')
-        ]));
+        $analysis = (new Analysis())
+            ->addAnalyzer(new WhitespaceAnalyzer('foo'))
+            ->addAnalyzer(new WhitespaceAnalyzer('bar'));
+
+        $settings = (new Settings())
+            ->setNumberOfShards(10)
+            ->setAnalysis($analysis);
 
         $this->assertSame(
             [
+                'number_of_shards' => 10,
                 'analysis' => $analysis->toArray()
             ],
-            (new Settings($analysis))->toArray()
+            $settings->toArray()
         );
     }
 }

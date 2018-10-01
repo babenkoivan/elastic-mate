@@ -14,12 +14,19 @@ class Analysis implements Arrayable
      */
     private $analyzers;
 
-    /**
-     * @param Collection $analyzers
-     */
-    public function __construct(Collection $analyzers)
+    public function __construct()
     {
-        $this->analyzers = $analyzers;
+        $this->analyzers = collect();
+    }
+
+    /**
+     * @param Analyzer $analyzer
+     * @return self
+     */
+    public function addAnalyzer(Analyzer $analyzer): self
+    {
+        $this->analyzers->push($analyzer);
+        return $this;
     }
 
     /**

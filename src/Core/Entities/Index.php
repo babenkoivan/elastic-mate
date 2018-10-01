@@ -25,17 +25,11 @@ final class Index
 
     /**
      * @param string $name
-     * @param Mapping|null $mapping
-     * @param Settings|null $settings
      */
-    public function __construct(
-        string $name,
-        ?Mapping $mapping = null,
-        ?Settings $settings = null
-    ) {
+    public function __construct(string $name) {
         $this->name = $name;
-        $this->mapping = $mapping;
-        $this->settings = $settings;
+        $this->mapping = new Mapping();
+        $this->settings = new Settings();
     }
 
     /**
@@ -47,18 +41,38 @@ final class Index
     }
 
     /**
-     * @return Mapping|null
+     * @return Mapping
      */
-    public function getMapping(): ?Mapping
+    public function getMapping(): Mapping
     {
         return $this->mapping;
     }
 
     /**
-     * @return Settings|null
+     * @param Mapping $mapping
+     * @return self
      */
-    public function getSettings(): ?Settings
+    public function setMapping(Mapping $mapping): self
+    {
+        $this->mapping = $mapping;
+        return $this;
+    }
+
+    /**
+     * @return Settings
+     */
+    public function getSettings(): Settings
     {
         return $this->settings;
+    }
+
+    /**
+     * @param Settings $settings
+     * @return self
+     */
+    public function setSettings(Settings $settings): self
+    {
+        $this->settings = $settings;
+        return $this;
     }
 }

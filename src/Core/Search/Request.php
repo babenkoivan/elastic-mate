@@ -26,17 +26,29 @@ final class Request implements Arrayable
 
     /**
      * @param Query $query
-     * @param Sort|null $sort
-     * @param Pagination|null $pagination
      */
-    public function __construct(
-        Query $query,
-        ?Sort $sort = null,
-        ?Pagination $pagination = null
-    ) {
+    public function __construct(Query $query) {
         $this->query = $query;
+    }
+
+    /**
+     * @param Sort $sort
+     * @return self
+     */
+    public function setSort(Sort $sort): self
+    {
         $this->sort = $sort;
+        return $this;
+    }
+
+    /**
+     * @param Pagination $pagination
+     * @return self
+     */
+    public function setPagination(Pagination $pagination): self
+    {
         $this->pagination = $pagination;
+        return $this;
     }
 
     /**
@@ -48,7 +60,9 @@ final class Request implements Arrayable
             'query' => $this->query->toArray()
         ];
 
-        if (isset($this->sort)) {
+        $sort = isset($this->sort) ? $this->sort->toArray() : null;
+
+        if (!empty($sort)) {
             $request['sort'] = $this->sort->toArray();
         }
 

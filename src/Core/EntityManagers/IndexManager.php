@@ -43,26 +43,18 @@ class IndexManager implements IndexManagerContract
      */
     public function create(Index $index): IndexManagerContract
     {
-        $settings = $index->getSettings() ? $index->getSettings()->toArray() : [];
-        $mapping = $index->getMapping() ? $index->getMapping()->toArray() : [];
+        $settings = $index->getSettings();
+        $mapping = $index->getMapping();
 
         $payload = [
-            'index' => $index->getName()
+            'index' => $index->getName(),
+            'body' => [
+                'settings' => $settings->toArray(),
+                'mappings' => [
+                    DocumentManager::DEFAULT_TYPE => $mapping->toArray()
+                ]
+            ]
         ];
-
-        if (!empty($settings) || !empty($mapping)) {
-            $payload['body'] = [];
-        }
-
-        if (!empty($settings)) {
-            $payload['body']['settings'] = $settings;
-        }
-
-        if (!empty($mapping)) {
-            $payload['body']['mappings'] = [
-                DocumentManager::DEFAULT_TYPE => $mapping
-            ];
-        }
 
         $this->indices
             ->create($payload);
@@ -90,14 +82,7 @@ class IndexManager implements IndexManagerContract
      */
     public function updateSettings(Index $index, bool $force = false): IndexManagerContract
     {
-        $settings = $index->getSettings() ? $index->getSettings()->toArray() : [];
-
-        if (empty($settings)) {
-            throw new UnexpectedValueException(sprintf(
-                '%s settings are not specified',
-                $index->getName()
-            ));
-        }
+        $settings = $index->getSettings();
 
         $basePayload = [
             'index' => $index->getName()
@@ -105,7 +90,10 @@ class IndexManager implements IndexManagerContract
 
         $settingsPayload = array_merge($basePayload, [
             'body' => [
-                'settings' => $settings
+                'settings' => array_except(
+                    $settings->toArray(),
+                    $settings::IMMUTABLE_OPTIONS
+                )
             ]
         ]);
 
@@ -130,20 +118,13 @@ class IndexManager implements IndexManagerContract
      */
     public function updateMapping(Index $index): IndexManagerContract
     {
-        $mapping = $index->getMapping() ? $index->getMapping()->toArray() : [];
-
-        if (empty($mapping)) {
-            throw new UnexpectedValueException(sprintf(
-                '%s mapping is not specified',
-                $index->getName()
-            ));
-        }
+        $mapping = $index->getMapping();
 
         $payload = [
             'index' => $index->getName(),
             'type' => DocumentManager::DEFAULT_TYPE,
             'body' => [
-                DocumentManager::DEFAULT_TYPE => $mapping
+                DocumentManager::DEFAULT_TYPE => $mapping->toArray()
             ]
         ];
 

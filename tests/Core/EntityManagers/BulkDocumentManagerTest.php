@@ -17,6 +17,8 @@ use PHPUnit\Framework\TestCase;
  * @covers \BabenkoIvan\ElasticMate\Core\EntityManagers\BulkDocumentManager
  * @uses   \BabenkoIvan\ElasticMate\Core\Entities\Document
  * @uses   \BabenkoIvan\ElasticMate\Core\Entities\Index
+ * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Settings
+ * @uses   \BabenkoIvan\ElasticMate\Core\Mapping\Mapping
  * @uses   \BabenkoIvan\ElasticMate\Core\Search\Queries\MatchAllQuery
  * @uses   \BabenkoIvan\ElasticMate\Core\Search\Request
  * @uses   \BabenkoIvan\ElasticMate\Core\Search\Response
@@ -104,7 +106,7 @@ class BulkDocumentManagerTest extends TestCase
 
         $query = new MatchAllQuery();
         $sort = (new SimpleSort())->addFieldSort(new FieldSort('_id', 'asc'));
-        $request = new Request($query, $sort);
+        $request = (new Request($query))->setSort($sort);
 
         $response = $this->documentManager
             ->search($this->index, $request);

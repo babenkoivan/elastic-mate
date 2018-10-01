@@ -8,25 +8,38 @@ use InvalidArgumentException;
 
 class Settings implements Arrayable
 {
+    const IMMUTABLE_OPTIONS = [
+        'number_of_shards'
+    ];
+
+    /**
+     * @var int
+     */
+    private $numberOfShards = 5;
+
     /**
      * @var Analysis|null
      */
     private $analysis;
 
     /**
-     * @param Analysis $analysis
+     * @param int $numberOfShards
+     * @return self
      */
-    public function __construct(
-        Analysis $analysis = null
-    ) {
-        // todo check for another settings
-        if (!isset($analysis)) {
-            throw new InvalidArgumentException(
-                'At least one of the configurations must be used: analysis'
-            );
-        }
+    public function setNumberOfShards(int $numberOfShards): self
+    {
+        $this->numberOfShards = $numberOfShards;
+        return $this;
+    }
 
+    /**
+     * @param Analysis $analysis
+     * @return Settings
+     */
+    public function setAnalysis(Analysis $analysis): self
+    {
         $this->analysis = $analysis;
+        return $this;
     }
 
     /**
@@ -34,11 +47,13 @@ class Settings implements Arrayable
      */
     public function toArray(): array
     {
-        $settings = [];
+        $settings = [
+            'number_of_shards' => $this->numberOfShards
+        ];
 
-        $analysis = $this->analysis ? $this->analysis->toArray() : [];
+        $analysis = isset($this->analysis) ? $this->analysis->toArray() : null;
 
-        if (!empty($analysis)) {
+        if (!empty($this->analysis)) {
             $settings['analysis'] = $analysis;
         }
 

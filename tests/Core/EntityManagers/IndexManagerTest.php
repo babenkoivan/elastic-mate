@@ -53,13 +53,24 @@ class IndexManagerTest extends TestCase
 
         $this->assertTrue($this->isIndexExists($this->index->getName()));
 
-        $this->assertArraySubset(
-            $this->index->getSettings()->toArray(),
-            $this->getIndexSettings($this->index->getName())
+        $settings = $this->index
+            ->getSettings()
+            ->toArray();
+
+        $this->assertEquals(
+            $settings,
+            array_only(
+                $this->getIndexSettings($this->index->getName()),
+                array_keys($settings)
+            )
         );
 
+        $mapping = $this->index
+            ->getMapping()
+            ->toArray();
+
         $this->assertSame(
-            $this->index->getMapping()->toArray(),
+            $mapping,
             $this->getIndexMapping($this->index->getName())
         );
     }
@@ -91,9 +102,23 @@ class IndexManagerTest extends TestCase
         $this->indexManager
             ->updateSettings($this->index, true);
 
-        $this->assertArraySubset(
-            $this->index->getSettings()->toArray(),
-            $this->getIndexSettings($this->index->getName())
+        $settings = $this->index
+            ->getSettings();
+
+        $mutableOptions = array_keys(array_except(
+            $settings->toArray(),
+            $settings::IMMUTABLE_OPTIONS
+        ));
+
+        $this->assertSame(
+            array_only(
+                $settings->toArray(),
+                $mutableOptions
+            ),
+            array_only(
+                $this->getIndexSettings($this->index->getName()),
+                $mutableOptions
+            )
         );
     }
 
@@ -121,14 +146,21 @@ class IndexManagerTest extends TestCase
     {
         parent::setUp();
 
-        $properties = collect([new TextProperty('content', 'content')]);
-        $mapping = new Mapping($properties);
+        $mapping = (new Mapping())
+            ->disableSource()
+            ->addProperty(new TextProperty('content', 'content'));
 
-        $analyzers = collect([new WhitespaceAnalyzer('content')]);
-        $analysis = new Analysis($analyzers);
-        $settings = new Settings($analysis);
+        $analysis = (new Analysis())
+            ->addAnalyzer(new WhitespaceAnalyzer('content'));
 
-        $this->index = new Index('test', $mapping, $settings);
+        $settings = (new Settings())
+            ->setNumberOfShards(1)
+            ->setAnalysis($analysis);
+
+        $this->index = (new Index('test'))
+            ->setMapping($mapping)
+            ->setSettings($settings);
+
         $this->indexManager = new IndexManager($this->client);
     }
 }
