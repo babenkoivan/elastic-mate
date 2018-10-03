@@ -3,111 +3,39 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Mapping\Properties;
 
+use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanBeEagerGlobalOrdinals;
+use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanBeIndexed;
+use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanBeStored;
+use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanSplitQueriesOnWhitespace;
+use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasBoost;
+use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasDocValues;
+use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasIndexOptions;
+use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasNormalizer;
+use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasNorms;
+use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasNullValue;
+use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasSimilarity;
+use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\IgnoresAbove;
+
 final class KeywordProperty extends AbstractProperty
 {
-    /**
-     * @var bool
-     */
-    private $docValues;
-
-    /**
-     * @var bool
-     */
-    private $store;
-
-    /**
-     * @var bool
-     */
-    private $index;
-
-    /**
-     * @var null|string
-     */
-    private $normalizer;
-
-    /**
-     * @var bool
-     */
-    private $eagerGlobalOrdinals;
-
-    /**
-     * @var int
-     */
-    private $ignoreAbove;
-
-    /**
-     * @var string
-     */
-    private $indexOptions;
-
-    /**
-     * @var string
-     */
-    private $similarity;
-
-    /**
-     * @var bool
-     */
-    private $norms;
-
-    /**
-     * @var bool
-     */
-    private $splitQueriesOnWhitespace;
-
-    /**
-     * @var mixed|null
-     */
-    private $nullValue;
-
-    /**
-     * @var float
-     */
-    private $boost;
+    use HasDocValues,
+        CanBeStored,
+        CanBeIndexed,
+        HasNormalizer,
+        CanBeEagerGlobalOrdinals,
+        IgnoresAbove,
+        HasIndexOptions,
+        HasNorms,
+        HasSimilarity,
+        CanSplitQueriesOnWhitespace,
+        HasNullValue,
+        HasBoost;
 
     /**
      * @param string $name
-     * @param bool $docValues
-     * @param bool $store
-     * @param bool $index
-     * @param string|null $normalizer
-     * @param bool $eagerGlobalOrdinals
-     * @param int $ignoreAbove
-     * @param string $indexOptions
-     * @param string $similarity
-     * @param bool $norms
-     * @param bool $splitQueriesOnWhitespace
-     * @param mixed|null $nullValue
-     * @param float $boost
      */
-    public function __construct(
-        string $name,
-        bool $docValues = true,
-        bool $store = false,
-        bool $index = true,
-        ?string $normalizer = null,
-        bool $eagerGlobalOrdinals = false,
-        int $ignoreAbove = 2147483647,
-        string $indexOptions = self::INDEX_OPTIONS_DOCS,
-        string $similarity = self::SIMILARITY_BM25,
-        bool $norms = false,
-        bool $splitQueriesOnWhitespace = false,
-        $nullValue = null,
-        float $boost = 1.0
-    ) {
+    public function __construct(string $name) {
         $this->name = $name;
-        $this->docValues = $docValues;
-        $this->store = $store;
-        $this->index = $index;
-        $this->normalizer = $normalizer;
-        $this->eagerGlobalOrdinals = $eagerGlobalOrdinals;
-        $this->ignoreAbove = $ignoreAbove;
-        $this->indexOptions = $indexOptions;
-        $this->similarity = $similarity;
-        $this->norms = $norms;
-        $this->splitQueriesOnWhitespace = $splitQueriesOnWhitespace;
-        $this->nullValue = $nullValue;
-        $this->boost = $boost;
     }
 
     /**
@@ -118,8 +46,8 @@ final class KeywordProperty extends AbstractProperty
         return [
             'type' => 'keyword',
             'doc_values' => $this->docValues,
-            'store' => $this->store,
-            'index' => $this->index,
+            'store' => $this->isStored,
+            'index' => $this->isIndexed,
             'normalizer' => $this->normalizer,
             'eager_global_ordinals' => $this->eagerGlobalOrdinals,
             'ignore_above' => $this->ignoreAbove,

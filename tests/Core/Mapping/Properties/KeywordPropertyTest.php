@@ -13,21 +13,19 @@ final class KeywordPropertyTest extends TestCase
 {
     public function test_keyword_property_can_be_converted_to_array(): void
     {
-        $keywordProperty = new KeywordProperty(
-            'foo',
-            false,
-            true,
-            false,
-            'bar',
-            true,
-            1028,
-            Property::INDEX_OPTIONS_DOCS,
-            Property::SIMILARITY_CLASSIC,
-            false,
-            false,
-            'NULL',
-            1.6
-        );
+        $keywordProperty = (new KeywordProperty('foo'))
+            ->setDocValues(false)
+            ->setStored(true)
+            ->setIndexed(false)
+            ->setNormalizer('bar')
+            ->setEagerGlobalOrdinals(true)
+            ->setIgnoreAbove(1028)
+            ->setIndexOptions(Property::INDEX_OPTIONS_DOCS)
+            ->setSimilarity(Property::SIMILARITY_CLASSIC)
+            ->setNorms(false)
+            ->setSplitQueriesOnWhitespace(false)
+            ->setNullValue('NULL')
+            ->setBoost(1.6);
 
         $this->assertSame(
             [
