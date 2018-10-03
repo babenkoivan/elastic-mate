@@ -13,9 +13,10 @@ class SimpleSortTest extends TestCase
 {
     public function test_simple_sort_can_be_converted_to_array(): void
     {
-        $simpleSort = (new SimpleSort())
-            ->addFieldSort(new FieldSort('foo', 'asc'))
-            ->addFieldSort(new FieldSort('bar', 'desc'));
+        $simpleSort = new SimpleSort(collect([
+            new FieldSort('foo', 'asc'),
+            new FieldSort('bar', 'desc')
+        ]));
 
         $this->assertSame(
             [

@@ -105,7 +105,7 @@ class BulkDocumentManagerTest extends TestCase
         ]);
 
         $query = new MatchAllQuery();
-        $sort = (new SimpleSort())->addFieldSort(new FieldSort('_id', 'asc'));
+        $sort = new SimpleSort(collect([new FieldSort('_id', 'asc')]));
         $request = (new Request($query))->setSort($sort);
 
         $response = $this->documentManager

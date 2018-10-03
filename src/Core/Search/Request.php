@@ -60,9 +60,7 @@ final class Request implements Arrayable
             'query' => $this->query->toArray()
         ];
 
-        $sort = isset($this->sort) ? $this->sort->toArray() : null;
-
-        if (!empty($sort)) {
+        if (isset($this->sort)) {
             $request['sort'] = $this->sort->toArray();
         }
 

@@ -34,9 +34,10 @@ class RequestTest extends TestCase
     {
         $query = new MatchAllQuery();
 
-        $sort = (new SimpleSort())
-            ->addFieldSort(new FieldSort('foo', 'asc'))
-            ->addFieldSort(new FieldSort('bar', 'desc'));
+        $sort = new SimpleSort(collect([
+            new FieldSort('foo', 'asc'),
+            new FieldSort('bar', 'desc')
+        ]));
 
         $request = (new Request($query))->setSort($sort);
 
@@ -56,9 +57,10 @@ class RequestTest extends TestCase
     {
         $query = new MatchAllQuery();
 
-        $sort = (new SimpleSort())
-            ->addFieldSort(new FieldSort('foo', 'asc'))
-            ->addFieldSort(new FieldSort('bar', 'desc'));
+        $sort = new SimpleSort(collect([
+            new FieldSort('foo', 'asc'),
+            new FieldSort('bar', 'desc')
+        ]));
 
         $pagination = new Pagination(0, 100);
 

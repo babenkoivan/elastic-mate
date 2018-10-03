@@ -11,21 +11,14 @@ final class SimpleSort implements Sort
     /**
      * @var Collection
      */
-    private $fieldSort;
-
-    public function __construct()
-    {
-        $this->fieldSort = new Collection();
-    }
+    private $fieldSorts;
 
     /**
-     * @param FieldSort $fieldSort
-     * @return SimpleSort
+     * @param Collection $fieldSorts
      */
-    public function addFieldSort(FieldSort $fieldSort): self
+    public function __construct(Collection $fieldSorts)
     {
-        $this->fieldSort->push($fieldSort);
-        return $this;
+        $this->fieldSorts = $fieldSorts;
     }
 
     /**
@@ -33,7 +26,7 @@ final class SimpleSort implements Sort
      */
     public function toArray(): array
     {
-        return $this->fieldSort->map(function (FieldSort $fieldSort) {
+        return $this->fieldSorts->map(function (FieldSort $fieldSort) {
             return $fieldSort->toArray();
         })->all();
     }
