@@ -4,9 +4,12 @@ declare(strict_types=1);
 namespace BabenkoIvan\ElasticMate\Core\Search\Queries;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Search\Query;
+use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasMaxExpansions;
 
 final class MatchPhrasePrefixQuery implements Query
 {
+    use HasMaxExpansions;
+
     /**
      * @var string
      */
@@ -18,20 +21,13 @@ final class MatchPhrasePrefixQuery implements Query
     private $query;
 
     /**
-     * @var int
-     */
-    private $maxExpansions;
-
-    /**
      * @param string $field
      * @param string $query
-     * @param int $maxExpansions
      */
-    public function __construct(string $field, string $query, int $maxExpansions = 50)
+    public function __construct(string $field, string $query)
     {
         $this->field = $field;
         $this->query = $query;
-        $this->maxExpansions = $maxExpansions;
     }
 
     /**

@@ -12,7 +12,7 @@ final class MatchPhrasePrefixQueryTest extends TestCase
 {
     public function test_match_phrase_prefix_query_can_be_converted_to_array(): void
     {
-        $matchPhrasePrefixQuery = new MatchPhrasePrefixQuery('foo', 'bar', 20);
+        $matchPhrasePrefixQuery = (new MatchPhrasePrefixQuery('foo', 'bar'))->setMaxExpansions(20);
 
         $this->assertSame(
             [
