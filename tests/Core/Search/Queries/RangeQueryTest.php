@@ -14,16 +14,15 @@ final class RangeQueryTest extends TestCase
 {
     public function test_date_range_query_can_be_converted_to_array(): void
     {
-        $rangeQuery = new RangeQuery(
-            'foo',
-            collect([
-                new Range('01/01/2012', Range::TYPE_GREATER_THAN),
-                new Range('01/01/2015', Range::TYPE_LESS_THAN)
-            ]),
-            'dd/MM/yyyy',
-            '+01:00',
-            1.9
-        );
+        $range = collect([
+            new Range('01/01/2012', Range::TYPE_GREATER_THAN),
+            new Range('01/01/2015', Range::TYPE_LESS_THAN)
+        ]);
+
+        $rangeQuery = (new RangeQuery('foo', $range))
+            ->setFormat('dd/MM/yyyy')
+            ->setTimezone('+01:00')
+            ->setBoost(1.9);
 
         $this->assertSame(
             [

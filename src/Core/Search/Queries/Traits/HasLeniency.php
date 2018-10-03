@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Search\Queries\Traits;
 
-trait HasLenience
+trait HasLeniency
 {
     /**
      * @var bool
@@ -14,7 +14,7 @@ trait HasLenience
      * @param bool $isLenient
      * @return self
      */
-    public function setLenience(bool $isLenient): self
+    public function setLenient(bool $isLenient): self
     {
         $this->isLenient = $isLenient;
         return $this;

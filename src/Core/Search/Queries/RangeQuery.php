@@ -4,11 +4,16 @@ declare(strict_types=1);
 namespace BabenkoIvan\ElasticMate\Core\Search\Queries;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Search\Query;
+use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasBoost;
+use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasFormat;
+use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasTimezone;
 use BabenkoIvan\ElasticMate\Core\Support\Range;
 use Illuminate\Support\Collection;
 
 final class RangeQuery implements Query
 {
+    use HasFormat, HasTimezone, HasBoost;
+
     /**
      * @var string
      */
@@ -20,39 +25,13 @@ final class RangeQuery implements Query
     private $range;
 
     /**
-     * @var string|null
-     */
-    private $format;
-
-    /**
-     * @var string|null
-     */
-    private $timezone;
-
-    /**
-     * @var float|null
-     */
-    private $boost;
-
-    /**
      * @param string $field
      * @param Collection $range
-     * @param string|null $format
-     * @param string|null $timezone
-     * @param float $boost
      */
-    public function __construct(
-        string $field,
-        Collection $range,
-        ?string $format = null,
-        ?string $timezone = null,
-        float $boost = null
-    ) {
+    public function __construct(string $field, Collection $range)
+    {
         $this->field = $field;
         $this->range = $range;
-        $this->format = $format;
-        $this->timezone = $timezone;
-        $this->boost = $boost;
     }
 
     /**

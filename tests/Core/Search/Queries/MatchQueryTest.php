@@ -79,7 +79,7 @@ final class MatchQueryTest extends TestCase
             ->setMaxExpansions($maxExpansions)
             ->setAnalyzer($analyzer)
             ->setCutoffFrequency($cutoffFrequency)
-            ->setLenience($isLenient);
+            ->setLenient($isLenient);
 
         $this->assertEquals(
             [
