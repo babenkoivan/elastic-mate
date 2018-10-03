@@ -12,19 +12,14 @@ final class RegexpQueryTest extends TestCase
 {
     public function test_regexp_query_can_be_converted_to_array(): void
     {
-        $regexpQuery = new RegexpQuery(
-            'foo',
-            'b.*r',
-            collect([
-                RegexpQuery::FLAG_ANYSTRING,
-                RegexpQuery::FLAG_COMPLEMENT,
-                RegexpQuery::FLAG_EMPTY,
-                RegexpQuery::FLAG_INTERSECTION,
-                RegexpQuery::FLAG_INTERVAL
-            ]),
-            20000,
-            1.6
-        );
+        $regexpQuery = (new RegexpQuery('foo', 'b.*r'))
+            ->setMaxDeterminizedStates(20000)
+            ->setBoost(1.6)
+            ->addFlag(RegexpQuery::FLAG_ANYSTRING)
+            ->addFlag(RegexpQuery::FLAG_COMPLEMENT)
+            ->addFlag(RegexpQuery::FLAG_EMPTY)
+            ->addFlag(RegexpQuery::FLAG_INTERSECTION)
+            ->addFlag(RegexpQuery::FLAG_INTERVAL);
 
         $this->assertSame(
             [

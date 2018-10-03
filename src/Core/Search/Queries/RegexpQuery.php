@@ -4,10 +4,14 @@ declare(strict_types=1);
 namespace BabenkoIvan\ElasticMate\Core\Search\Queries;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Search\Query;
+use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasBoost;
+use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasMaxDeterminizedStates;
 use Illuminate\Support\Collection;
 
 final class RegexpQuery implements Query
 {
+    use HasBoost, HasMaxDeterminizedStates;
+
     const FLAG_ALL = 'ALL';
     const FLAG_ANYSTRING = 'ANYSTRING';
     const FLAG_COMPLEMENT = 'COMPLEMENT';
@@ -27,39 +31,29 @@ final class RegexpQuery implements Query
     private $value;
 
     /**
-     * @var Collection|null
+     * @var Collection
      */
     private $flags;
 
     /**
-     * @var int|null
-     */
-    private $maxDeterminizedStates;
-
-    /**
-     * @var float|null
-     */
-    private $boost;
-
-    /**
      * @param string $field
      * @param string $value
-     * @param Collection|null $flags
-     * @param int|null $maxDeterminizedStates
-     * @param float $boost
      */
-    public function __construct(
-        string $field,
-        string $value,
-        ?Collection $flags = null,
-        ?int $maxDeterminizedStates = null,
-        float $boost = null
-    ) {
+    public function __construct(string $field, string $value)
+    {
         $this->field = $field;
         $this->value = $value;
-        $this->flags = $flags;
-        $this->maxDeterminizedStates = $maxDeterminizedStates;
-        $this->boost = $boost;
+        $this->flags = collect();
+    }
+
+    /**
+     * @param string $flag
+     * @return self
+     */
+    public function addFlag(string $flag): self
+    {
+        $this->flags->push($flag);
+        return $this;
     }
 
     /**
@@ -71,7 +65,7 @@ final class RegexpQuery implements Query
             'value' => $this->value
         ];
 
-        if (isset($this->flags)) {
+        if ($this->flags->count() > 0) {
             $query['flags'] = $this->flags->implode('|');
         }
 
