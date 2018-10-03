@@ -4,9 +4,12 @@ declare(strict_types=1);
 namespace BabenkoIvan\ElasticMate\Core\Search\Queries;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Search\Query;
+use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasBoost;
 
 final class PrefixQuery implements Query
 {
+    use HasBoost;
+
     /**
      * @var string
      */
@@ -18,20 +21,13 @@ final class PrefixQuery implements Query
     private $value;
 
     /**
-     * @var float|null
-     */
-    private $boost;
-
-    /**
      * @param string $field
      * @param string $value
-     * @param float $boost
      */
-    public function __construct(string $field, string $value, float $boost = null)
+    public function __construct(string $field, string $value)
     {
         $this->field = $field;
         $this->value = $value;
-        $this->boost = $boost;
     }
 
     /**

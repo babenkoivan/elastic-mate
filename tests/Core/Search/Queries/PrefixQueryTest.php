@@ -12,7 +12,7 @@ final class PrefixQueryTest extends TestCase
 {
     public function test_prefix_query_can_be_converted_to_array(): void
     {
-        $prefixQuery = new PrefixQuery('foo', 'ba', 1.7);
+        $prefixQuery = (new PrefixQuery('foo', 'ba'))->setBoost(1.7);
 
         $this->assertSame(
             [
