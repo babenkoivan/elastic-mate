@@ -53,26 +53,37 @@ class IndexManagerTest extends TestCase
 
         $this->assertTrue($this->isIndexExists($this->index->getName()));
 
-        $settings = $this->index
+        $expectedSettings = $this->index
             ->getSettings()
             ->toArray();
 
+        $actualSettings = $this->getIndexSettings($this->index->getName());
+
         $this->assertEquals(
-            $settings,
+            $expectedSettings,
             array_only(
-                $this->getIndexSettings($this->index->getName()),
-                array_keys($settings)
+                $actualSettings,
+                array_keys($expectedSettings)
             )
         );
 
-        $mapping = $this->index
+        $expectedMapping = $this->index
             ->getMapping()
             ->toArray();
 
-        $this->assertSame(
-            $mapping,
-            $this->getIndexMapping($this->index->getName())
-        );
+        $actualMapping = $this->getIndexMapping($this->index->getName());
+
+        foreach ($expectedMapping['properties'] as $field => $expectedOptions) {
+            $actualOptions = $actualMapping['properties'][$field];
+
+            $this->assertEquals(
+                array_only(
+                    $expectedOptions,
+                    array_keys($actualOptions)
+                ),
+                $actualOptions
+            );
+        }
     }
 
     public function test_index_can_be_deleted(): void
@@ -102,21 +113,24 @@ class IndexManagerTest extends TestCase
         $this->indexManager
             ->updateSettings($this->index, true);
 
-        $settings = $this->index
-            ->getSettings();
+        $expectedSettings = $this->index
+            ->getSettings()
+            ->toArray();
+
+        $actualSettings = $this->getIndexSettings($this->index->getName());
 
         $mutableOptions = array_keys(array_except(
-            $settings->toArray(),
-            $settings::IMMUTABLE_OPTIONS
+            $expectedSettings,
+            Settings::IMMUTABLE_OPTIONS
         ));
 
         $this->assertSame(
             array_only(
-                $settings->toArray(),
+                $expectedSettings,
                 $mutableOptions
             ),
             array_only(
-                $this->getIndexSettings($this->index->getName()),
+                $actualSettings,
                 $mutableOptions
             )
         );
@@ -133,10 +147,23 @@ class IndexManagerTest extends TestCase
         $this->indexManager
             ->updateMapping($this->index);
 
-        $this->assertSame(
-            $this->index->getMapping()->toArray(),
-            $this->getIndexMapping($this->index->getName())
-        );
+        $expectedMapping = $this->index
+            ->getMapping()
+            ->toArray();
+
+        $actualMapping = $this->getIndexMapping($this->index->getName());
+
+        foreach ($expectedMapping['properties'] as $field => $expectedOptions) {
+            $actualOptions = $actualMapping['properties'][$field];
+
+            $this->assertEquals(
+                array_only(
+                    $expectedOptions,
+                    array_keys($actualOptions)
+                ),
+                $actualOptions
+            );
+        }
     }
 
     /**
@@ -148,7 +175,7 @@ class IndexManagerTest extends TestCase
 
         $mapping = (new Mapping())
             ->disableSource()
-            ->addProperty(new TextProperty('content', 'content'));
+            ->addProperty((new TextProperty('content'))->setAnalyzer('content'));
 
         $analysis = (new Analysis())
             ->addAnalyzer(new WhitespaceAnalyzer('content'));

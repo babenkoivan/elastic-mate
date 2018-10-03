@@ -3,37 +3,49 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Mapping;
 
-use BabenkoIvan\ElasticMate\Core\Contracts\Settings\Analyzer;
+use BabenkoIvan\ElasticMate\Core\Contracts\Mapping\Property;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\TextProperty;
-use BabenkoIvan\ElasticMate\Core\Settings\Analyzers\WhitespaceAnalyzer;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \BabenkoIvan\ElasticMate\Core\Mapping\Properties\TextProperty
  * @uses   \BabenkoIvan\ElasticMate\Core\Mapping\Properties\AbstractProperty
- * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Analyzers\AbstractAnalyzer
- * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Analyzers\WhitespaceAnalyzer
  */
 class TextPropertyTest extends TestCase
 {
-    public function test_text_property_without_analyzer_can_be_created_and_converted_to_array(): void
+    public function test_text_property_can_be_converted_to_array(): void
     {
-        $this->assertSame(
-            [
-                'type' => 'text'
-            ],
-            (new TextProperty('foo'))->toArray()
-        );
-    }
+        $textProperty = (new TextProperty('foo'))
+            ->setBoost(1.7)
+            ->setEagerGlobalOrdinals(false)
+            ->setFieldData(true)
+            ->setIndexed(false)
+            ->setIndexOptions(Property::INDEX_OPTIONS_DOCS)
+            ->setNorms(true)
+            ->setStored(true)
+            ->setSimilarity(Property::SIMILARITY_BOOLEAN)
+            ->setTermVector(Property::TERM_VECTOR_WITH_POSITIONS_AND_OFFSETS)
+            ->setAnalyzer('whitespace')
+            ->setSearchAnalyzer('standard')
+            ->setSearchQuoteAnalyzer('simple');
 
-    public function test_text_property_with_analyzer_can_be_created_and_converted_to_array(): void
-    {
         $this->assertSame(
             [
                 'type' => 'text',
-                'analyzer' => 'whitespace'
+                'boost' => 1.7,
+                'eager_global_ordinals' => false,
+                'fielddata' => true,
+                'index' => false,
+                'index_options' => Property::INDEX_OPTIONS_DOCS,
+                'norms' => true,
+                'store' => true,
+                'similarity' => Property::SIMILARITY_BOOLEAN,
+                'term_vector' => Property::TERM_VECTOR_WITH_POSITIONS_AND_OFFSETS,
+                'analyzer' => 'whitespace',
+                'search_analyzer' => 'standard',
+                'search_quote_analyzer' => 'simple'
             ],
-            (new TextProperty('foo', 'whitespace'))->toArray()
+            $textProperty->toArray()
         );
     }
 }

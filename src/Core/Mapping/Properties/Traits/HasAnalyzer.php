@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits;
 
-trait HasBoost
+trait HasAnalyzer
 {
     /**
-     * @var float
+     * @var string|null
      */
-    private $boost = 1;
+    private $analyzer;
 
     /**
-     * @param float $boost
+     * @param string $analyzer
      * @return self
      */
-    public function setBoost(float $boost): self
+    public function setAnalyzer(string $analyzer): self
     {
-        $this->boost = $boost;
+        $this->analyzer = $analyzer;
         return $this;
     }
 }
