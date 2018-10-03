@@ -15,7 +15,7 @@ final class BinaryPropertyTest extends TestCase
     {
         $binaryProperty = (new BinaryProperty('foo'))
             ->setDocValues(true)
-            ->setStore(true);
+            ->setStored(true);
 
         $this->assertSame(
             [

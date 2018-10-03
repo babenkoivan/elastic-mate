@@ -7,7 +7,7 @@ use BabenkoIvan\ElasticMate\Core\Contracts\Search\Query;
 use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasAnalyzer;
 use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasCutoffFrequency;
 use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasFuzziness;
-use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasLeniency;
+use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\CanBeLenient;
 use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasMaxExpansions;
 use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasOperator;
 use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasPrefixLength;
@@ -20,7 +20,7 @@ class MatchQuery implements Query
         HasMaxExpansions,
         HasAnalyzer,
         HasCutoffFrequency,
-        HasLeniency;
+        CanBeLenient;
 
     /**
      * @var string

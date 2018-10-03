@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Search\Queries\Traits;
 
-trait HasLeniency
+trait CanBeLenient
 {
     /**
      * @var bool

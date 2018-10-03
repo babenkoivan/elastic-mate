@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits;
 
-trait HasStore
+trait HasNullValue
 {
     /**
-     * @var bool
+     * @var mixed
      */
-    private $store;
+    private $nullValue = null;
 
     /**
-     * @param bool $store
+     * @param mixed $nullValue
      * @return self
      */
-    public function setStore(bool $store): self
+    public function setNullValue($nullValue): self
     {
-        $this->store = $store;
+        $this->nullValue = $nullValue;
         return $this;
     }
 }
