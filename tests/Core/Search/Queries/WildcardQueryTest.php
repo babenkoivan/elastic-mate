@@ -12,7 +12,7 @@ final class WildcardQueryTest extends TestCase
 {
     public function test_wildcard_query_can_be_converted_to_array(): void
     {
-        $wildcardQuery = new WildcardQuery('foo', 'b*r', 1.3);
+        $wildcardQuery = (new WildcardQuery('foo', 'b*r'))->setBoost(1.3);
 
         $this->assertSame(
             [
