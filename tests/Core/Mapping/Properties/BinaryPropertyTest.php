@@ -13,7 +13,9 @@ final class BinaryPropertyTest extends TestCase
 {
     public function test_binary_property_can_be_converted_to_array(): void
     {
-        $binaryProperty = new BinaryProperty('foo', true, true);
+        $binaryProperty = (new BinaryProperty('foo'))
+            ->setDocValues(true)
+            ->setStore(true);
 
         $this->assertSame(
             [

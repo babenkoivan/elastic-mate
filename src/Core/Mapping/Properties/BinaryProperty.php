@@ -3,31 +3,18 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Mapping\Properties;
 
+use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasDocValues;
+use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasStore;
+
 final class BinaryProperty extends AbstractProperty
 {
-    /**
-     * @var bool
-     */
-    private $docValues;
-
-    /**
-     * @var bool
-     */
-    private $store;
+    use HasDocValues, HasStore;
 
     /**
      * @param string $name
-     * @param bool $docValues
-     * @param bool $store
      */
-    public function __construct(
-        string $name,
-        bool $docValues = false,
-        bool $store = false
-    ) {
+    public function __construct(string $name) {
         $this->name = $name;
-        $this->docValues = $docValues;
-        $this->store = $store;
     }
 
     /**
