@@ -4,10 +4,13 @@ declare(strict_types=1);
 namespace BabenkoIvan\ElasticMate\Core\Search\Queries;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Search\Query;
-use BabenkoIvan\ElasticMate\Core\Contracts\Settings\Analyzer;
+use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasAnalyzer;
+use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasSlop;
 
 final class MatchPhraseQuery implements Query
 {
+    use HasSlop, HasAnalyzer;
+
     /**
      * @var string
      */
@@ -19,31 +22,12 @@ final class MatchPhraseQuery implements Query
     private $query;
 
     /**
-     * @var int
-     */
-    private $slop;
-
-    /**
-     * @var Analyzer|null
-     */
-    private $analyzer;
-
-    /**
      * @param string $field
      * @param string $query
-     * @param int $slop
-     * @param Analyzer|null $analyzer
      */
-    public function __construct(
-        string $field,
-        string $query,
-        int $slop = 0,
-        ?Analyzer $analyzer
-    ) {
+    public function __construct(string $field, string $query) {
         $this->field = $field;
         $this->query = $query;
-        $this->slop = $slop;
-        $this->analyzer = $analyzer;
     }
 
     /**
@@ -57,7 +41,7 @@ final class MatchPhraseQuery implements Query
         ];
 
         if (isset($this->analyzer)) {
-            $query['analyzer'] = $this->analyzer->getName();
+            $query['analyzer'] = $this->analyzer;
         }
 
         return [
