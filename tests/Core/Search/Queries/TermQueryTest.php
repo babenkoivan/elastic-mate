@@ -12,7 +12,7 @@ final class TermQueryTest extends TestCase
 {
     public function test_term_query_can_be_converted_to_array(): void
     {
-        $termQuery = new TermQuery('foo', 'bar', 1.5);
+        $termQuery = (new TermQuery('foo', 'bar'))->setBoost(1.5);
 
         $this->assertSame(
             [
