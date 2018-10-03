@@ -8,7 +8,7 @@ trait HasDocValues
     /**
      * @var bool
      */
-    private $docValues = false;
+    private $docValues = true;
 
     /**
      * @param bool $docValues

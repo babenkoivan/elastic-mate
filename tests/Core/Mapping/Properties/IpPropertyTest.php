@@ -12,7 +12,12 @@ final class IpPropertyTest extends TestCase
 {
     public function test_ip_property_can_be_converted_to_array(): void
     {
-        $ipProperty = new IpProperty('foo', false, false, true, 'NULL', 1.2);
+        $ipProperty = (new IpProperty('foo'))
+            ->setDocValues(false)
+            ->setStored(false)
+            ->setIndexed(true)
+            ->setNullValue('NULL')
+            ->setBoost(1.2);
 
         $this->assertSame(
             [

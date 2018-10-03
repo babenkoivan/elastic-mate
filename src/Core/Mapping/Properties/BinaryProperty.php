@@ -15,6 +15,7 @@ final class BinaryProperty extends AbstractProperty
      */
     public function __construct(string $name) {
         $this->name = $name;
+        $this->docValues = false;
     }
 
     /**
