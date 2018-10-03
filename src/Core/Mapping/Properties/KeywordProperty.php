@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Mapping\Properties;
 
+use BabenkoIvan\ElasticMate\Core\Contracts\Mapping\Property;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanBeEagerGlobalOrdinals;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanBeIndexed;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanBeStored;
@@ -18,18 +19,29 @@ use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\IgnoresAbove;
 
 final class KeywordProperty extends AbstractProperty
 {
-    use HasDocValues,
-        CanBeStored,
-        CanBeIndexed,
-        HasNormalizer,
+    use HasBoost,
+        HasDocValues,
         CanBeEagerGlobalOrdinals,
         IgnoresAbove,
+        CanBeIndexed,
         HasIndexOptions,
         HasNorms,
-        HasSimilarity,
-        CanSplitQueriesOnWhitespace,
         HasNullValue,
-        HasBoost;
+        CanBeStored,
+        HasSimilarity,
+        HasNormalizer,
+        CanSplitQueriesOnWhitespace;
+
+    /**
+     * @param string $name
+     */
+    public function __construct(string $name)
+    {
+        parent::__construct($name);
+
+        $this->norms = false;
+        $this->indexOptions = Property::INDEX_OPTIONS_DOCS;
+    }
 
     /**
      * @inheritdoc
@@ -38,18 +50,18 @@ final class KeywordProperty extends AbstractProperty
     {
         return [
             'type' => 'keyword',
+            'boost' => $this->boost,
             'doc_values' => $this->docValues,
-            'store' => $this->isStored,
-            'index' => $this->isIndexed,
-            'normalizer' => $this->normalizer,
             'eager_global_ordinals' => $this->eagerGlobalOrdinals,
             'ignore_above' => $this->ignoreAbove,
+            'index' => $this->isIndexed,
             'index_options' => $this->indexOptions,
-            'similarity' => $this->similarity,
             'norms' => $this->norms,
-            'split_queries_on_whitespace' => $this->splitQueriesOnWhitespace,
             'null_value' => $this->nullValue,
-            'boost' => $this->boost
+            'store' => $this->isStored,
+            'similarity' => $this->similarity,
+            'normalizer' => $this->normalizer,
+            'split_queries_on_whitespace' => $this->splitQueriesOnWhitespace
         ];
     }
 }

@@ -12,6 +12,30 @@ use PHPUnit\Framework\TestCase;
  */
 final class KeywordPropertyTest extends TestCase
 {
+    public function test_keyword_property_has_correct_default_values(): void
+    {
+        $keywordProperty = new KeywordProperty('foo');
+
+        $this->assertSame(
+            [
+                'type' => 'keyword',
+                'boost' => 1,
+                'doc_values' => true,
+                'eager_global_ordinals' => false,
+                'ignore_above' => 2147483647,
+                'index' => true,
+                'index_options' => Property::INDEX_OPTIONS_DOCS,
+                'norms' => false,
+                'null_value' => null,
+                'store' => false,
+                'similarity' => Property::SIMILARITY_BM25,
+                'normalizer' => null,
+                'split_queries_on_whitespace' => false
+            ],
+            $keywordProperty->toArray()
+        );
+    }
+
     public function test_keyword_property_can_be_converted_to_array(): void
     {
         $keywordProperty = (new KeywordProperty('foo'))
@@ -31,18 +55,18 @@ final class KeywordPropertyTest extends TestCase
         $this->assertSame(
             [
                 'type' => 'keyword',
+                'boost' => 1.6,
                 'doc_values' => false,
-                'store' => true,
-                'index' => false,
-                'normalizer' => 'bar',
                 'eager_global_ordinals' => true,
                 'ignore_above' => 1028,
+                'index' => false,
                 'index_options' => Property::INDEX_OPTIONS_DOCS,
-                'similarity' => Property::SIMILARITY_CLASSIC,
                 'norms' => false,
-                'split_queries_on_whitespace' => false,
                 'null_value' => 'NULL',
-                'boost' => 1.6
+                'store' => true,
+                'similarity' => Property::SIMILARITY_CLASSIC,
+                'normalizer' => 'bar',
+                'split_queries_on_whitespace' => false
             ],
             $keywordProperty->toArray()
         );

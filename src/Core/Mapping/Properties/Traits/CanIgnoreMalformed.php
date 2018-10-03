@@ -8,7 +8,7 @@ trait CanIgnoreMalformed
     /**
      * @var bool
      */
-    private $ignoreMalformed = true;
+    private $ignoreMalformed = false;
 
     /**
      * @param bool $ignoreMalformed

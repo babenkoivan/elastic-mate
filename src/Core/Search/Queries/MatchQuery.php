@@ -15,12 +15,12 @@ use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasPrefixLength;
 class MatchQuery implements Query
 {
     use HasOperator,
+        HasAnalyzer,
+        CanBeLenient,
         HasFuzziness,
         HasPrefixLength,
         HasMaxExpansions,
-        HasAnalyzer,
-        HasCutoffFrequency,
-        CanBeLenient;
+        HasCutoffFrequency;
 
     /**
      * @var string
@@ -55,13 +55,17 @@ class MatchQuery implements Query
             'max_expansions' => $this->maxExpansions
         ];
 
+        if (isset($this->analyzer)) {
+            $query['analyzer'] = $this->analyzer;
+        }
+
         if (isset($this->fuzziness)) {
             $query['fuzziness'] = $this->fuzziness->toString();
             $query['fuzzy_transpositions'] = $this->fuzziness->isTransposable();
         }
 
-        if (isset($this->analyzer)) {
-            $query['analyzer'] = $this->analyzer;
+        if (isset($this->cutoffFrequency)) {
+            $query['cutoff_frequency'] = $this->cutoffFrequency;
         }
 
         return [

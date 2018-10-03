@@ -11,6 +11,23 @@ use PHPUnit\Framework\TestCase;
  */
 final class BooleanPropertyTest extends TestCase
 {
+    public function test_boolean_property_has_correct_default_values(): void
+    {
+        $booleanProperty = new BooleanProperty('foo');
+
+        $this->assertSame(
+            [
+                'type' => 'boolean',
+                'boost' => 1,
+                'doc_values' => true,
+                'index' => true,
+                'null_value' => null,
+                'store' => false
+            ],
+            $booleanProperty->toArray()
+        );
+    }
+
     public function test_boolean_property_can_be_converted_to_array(): void
     {
         $booleanProperty = (new BooleanProperty('foo'))
@@ -23,11 +40,11 @@ final class BooleanPropertyTest extends TestCase
         $this->assertSame(
             [
                 'type' => 'boolean',
+                'boost' => 1.1,
                 'doc_values' => true,
-                'store' => true,
                 'index' => false,
                 'null_value' => 'NULL',
-                'boost' => 1.1
+                'store' => true
             ],
             $booleanProperty->toArray()
         );

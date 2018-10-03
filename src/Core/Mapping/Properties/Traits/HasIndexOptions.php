@@ -10,7 +10,7 @@ trait HasIndexOptions
     /**
      * @var string
      */
-    private $indexOptions = Property::INDEX_OPTIONS_DOCS;
+    private $indexOptions = Property::INDEX_OPTIONS_POSITIONS;
 
     /**
      * @param string $indexOptions

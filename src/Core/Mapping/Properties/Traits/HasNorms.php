@@ -8,7 +8,7 @@ trait HasNorms
     /**
      * @var bool
      */
-    private $norms = false;
+    private $norms = true;
 
     /**
      * @param bool $norms

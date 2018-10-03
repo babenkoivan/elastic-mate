@@ -10,7 +10,7 @@ use Illuminate\Support\Collection;
 
 final class RegexpQuery implements Query
 {
-    use HasBoost, HasMaxDeterminizedStates;
+    use HasMaxDeterminizedStates, HasBoost;
 
     const FLAG_ALL = 'ALL';
     const FLAG_ANYSTRING = 'ANYSTRING';

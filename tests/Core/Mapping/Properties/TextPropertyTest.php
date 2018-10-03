@@ -13,6 +13,27 @@ use PHPUnit\Framework\TestCase;
  */
 class TextPropertyTest extends TestCase
 {
+    public function test_text_property_has_correct_default_values(): void
+    {
+        $textProperty = new TextProperty('foo');
+
+        $this->assertSame(
+            [
+                'type' => 'text',
+                'boost' => 1,
+                'eager_global_ordinals' => false,
+                'fielddata' => false,
+                'index' => true,
+                'index_options' => Property::INDEX_OPTIONS_POSITIONS,
+                'norms' => true,
+                'store' => false,
+                'similarity' => Property::SIMILARITY_BM25,
+                'term_vector' => Property::TERM_VECTOR_NO
+            ],
+            $textProperty->toArray()
+        );
+    }
+
     public function test_text_property_can_be_converted_to_array(): void
     {
         $textProperty = (new TextProperty('foo'))

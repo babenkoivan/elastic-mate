@@ -81,18 +81,19 @@ final class MatchQueryTest extends TestCase
             ->setCutoffFrequency($cutoffFrequency)
             ->setLenient($isLenient);
 
-        $this->assertEquals(
+        $this->assertSame(
             [
                 'match' => [
                     $field => [
                         'query' => $query,
                         'operator' => $operator,
-                        'fuzziness' => $fuzziness->toString(),
-                        'fuzzy_transpositions' => $fuzziness->isTransposable(),
+                        'lenient' => $isLenient,
                         'prefix_length' => $prefixLength,
                         'max_expansions' => $maxExpansions,
                         'analyzer' => $analyzer,
-                        'lenient' => $isLenient
+                        'fuzziness' => $fuzziness->toString(),
+                        'fuzzy_transpositions' => $fuzziness->isTransposable(),
+                        'cutoff_frequency' => $cutoffFrequency
                     ]
                 ]
             ],

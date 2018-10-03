@@ -11,6 +11,20 @@ use PHPUnit\Framework\TestCase;
  */
 final class BinaryPropertyTest extends TestCase
 {
+    public function test_binary_property_has_correct_default_values(): void
+    {
+        $binaryProperty = new BinaryProperty('foo');
+
+        $this->assertSame(
+            [
+                'type' => 'binary',
+                'doc_values' => false,
+                'store' => false
+            ],
+            $binaryProperty->toArray()
+        );
+    }
+
     public function test_binary_property_can_be_converted_to_array(): void
     {
         $binaryProperty = (new BinaryProperty('foo'))

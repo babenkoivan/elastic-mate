@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Mapping\Properties;
 
+use BabenkoIvan\ElasticMate\Core\Contracts\Mapping\Property;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -11,6 +12,26 @@ use PHPUnit\Framework\TestCase;
  */
 final class DatePropertyTest extends TestCase
 {
+    public function test_date_property_has_correct_default_values(): void
+    {
+        $dateProperty = new DateProperty('foo');
+
+        $this->assertSame(
+            [
+                'type' => 'date',
+                'boost' => 1,
+                'doc_values' => true,
+                'format' => 'strict_date_optional_time||epoch_millis',
+                'locale' => Property::LOCALE_ROOT,
+                'ignore_malformed' => false,
+                'index' => true,
+                'null_value' => null,
+                'store' => false
+            ],
+            $dateProperty->toArray()
+        );
+    }
+
     public function test_date_property_can_be_converted_to_array(): void
     {
         $dateProperty = (new DateProperty('foo'))
@@ -18,7 +39,7 @@ final class DatePropertyTest extends TestCase
             ->setDocValues(false)
             ->setFormat('yyyy-MM-dd HH:mm:ss')
             ->setLocale('ENGLISH')
-            ->setIgnoreMalformed(false)
+            ->setIgnoreMalformed(true)
             ->setIndexed(false)
             ->setNullValue('NULL')
             ->setStored(true);
@@ -30,7 +51,7 @@ final class DatePropertyTest extends TestCase
                 'doc_values' => false,
                 'format' => 'yyyy-MM-dd HH:mm:ss',
                 'locale' => 'ENGLISH',
-                'ignore_malformed' => false,
+                'ignore_malformed' => true,
                 'index' => false,
                 'null_value' => 'NULL',
                 'store' => true

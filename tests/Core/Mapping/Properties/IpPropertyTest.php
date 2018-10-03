@@ -11,6 +11,23 @@ use PHPUnit\Framework\TestCase;
  */
 final class IpPropertyTest extends TestCase
 {
+    public function test_ip_property_has_correct_default_values(): void
+    {
+        $ipProperty = new IpProperty('foo');
+
+        $this->assertSame(
+            [
+                'type' => 'ip',
+                'boost' => 1,
+                'doc_values' => true,
+                'index' => true,
+                'null_value' => null,
+                'store' => false
+            ],
+            $ipProperty->toArray()
+        );
+    }
+
     public function test_ip_property_can_be_converted_to_array(): void
     {
         $ipProperty = (new IpProperty('foo'))
@@ -23,11 +40,11 @@ final class IpPropertyTest extends TestCase
         $this->assertSame(
             [
                 'type' => 'ip',
+                'boost' => 1.2,
                 'doc_values' => false,
-                'store' => false,
                 'index' => true,
                 'null_value' => 'NULL',
-                'boost' => 1.2
+                'store' => false
             ],
             $ipProperty->toArray()
         );

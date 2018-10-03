@@ -11,11 +11,11 @@ use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasNullValue;
 
 final class IpProperty extends AbstractProperty
 {
-    use HasDocValues,
-        CanBeStored,
+    use HasBoost,
+        HasDocValues,
         CanBeIndexed,
         HasNullValue,
-        HasBoost;
+        CanBeStored;
 
     /**
      * @inheritdoc
@@ -24,11 +24,11 @@ final class IpProperty extends AbstractProperty
     {
         return [
             'type' => 'ip',
+            'boost' => $this->boost,
             'doc_values' => $this->docValues,
-            'store' => $this->isStored,
             'index' => $this->isIndexed,
             'null_value' => $this->nullValue,
-            'boost' => $this->boost
+            'store' => $this->isStored
         ];
     }
 }

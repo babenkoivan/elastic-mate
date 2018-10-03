@@ -46,8 +46,8 @@ class MappingTest extends TestCase
                         'eager_global_ordinals' => false,
                         'fielddata' => false,
                         'index' => true,
-                        'index_options' => Property::INDEX_OPTIONS_DOCS,
-                        'norms' => false,
+                        'index_options' => Property::INDEX_OPTIONS_POSITIONS,
+                        'norms' => true,
                         'store' => false,
                         'similarity' => Property::SIMILARITY_BM25,
                         'term_vector' => Property::TERM_VECTOR_NO
@@ -58,8 +58,8 @@ class MappingTest extends TestCase
                         'eager_global_ordinals' => false,
                         'fielddata' => false,
                         'index' => true,
-                        'index_options' => Property::INDEX_OPTIONS_DOCS,
-                        'norms' => false,
+                        'index_options' => Property::INDEX_OPTIONS_POSITIONS,
+                        'norms' => true,
                         'store' => false,
                         'similarity' => Property::SIMILARITY_BM25,
                         'term_vector' => Property::TERM_VECTOR_NO
