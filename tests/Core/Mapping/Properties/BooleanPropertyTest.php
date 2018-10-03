@@ -7,6 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \BabenkoIvan\ElasticMate\Core\Mapping\Properties\BooleanProperty
+ * @uses   \BabenkoIvan\ElasticMate\Core\Mapping\Properties\AbstractProperty
  */
 final class BooleanPropertyTest extends TestCase
 {

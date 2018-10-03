@@ -16,7 +16,7 @@ final class TextProperty extends AbstractProperty
      */
     public function __construct(string $name, string $analyzer = null)
     {
-        $this->name = $name;
+        parent::__construct($name);
         $this->analyzer = $analyzer;
     }
 

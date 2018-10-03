@@ -16,7 +16,7 @@ final class AliasProperty extends AbstractProperty
      */
     public function __construct(string $name, string $path)
     {
-        $this->name = $name;
+        parent::__construct($name);
         $this->path = $path;
     }
 

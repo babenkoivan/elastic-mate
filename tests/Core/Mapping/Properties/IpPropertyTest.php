@@ -7,6 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \BabenkoIvan\ElasticMate\Core\Mapping\Properties\IpProperty
+ * @uses   \BabenkoIvan\ElasticMate\Core\Mapping\Properties\AbstractProperty
  */
 final class IpPropertyTest extends TestCase
 {

@@ -16,4 +16,6 @@ interface Property extends Nameable, Arrayable
     const SIMILARITY_BM25 = 'BM25';
     const SIMILARITY_CLASSIC = 'classic';
     const SIMILARITY_BOOLEAN = 'boolean';
+
+    const LOCALE_ROOT = 'ROOT';
 }

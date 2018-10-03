@@ -13,6 +13,14 @@ abstract class AbstractProperty implements Property
     protected $name;
 
     /**
+     * @param string $name
+     */
+    public function __construct(string $name)
+    {
+        $this->name = $name;
+    }
+
+    /**
      * @inheritdoc
      */
     public function getName(): string

@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \BabenkoIvan\ElasticMate\Core\Mapping\Properties\KeywordProperty
+ * @uses   \BabenkoIvan\ElasticMate\Core\Mapping\Properties\AbstractProperty
  */
 final class KeywordPropertyTest extends TestCase
 {

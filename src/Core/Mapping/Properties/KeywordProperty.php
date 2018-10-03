@@ -32,13 +32,6 @@ final class KeywordProperty extends AbstractProperty
         HasBoost;
 
     /**
-     * @param string $name
-     */
-    public function __construct(string $name) {
-        $this->name = $name;
-    }
-
-    /**
      * @inheritdoc
      */
     public function toArray(): array
