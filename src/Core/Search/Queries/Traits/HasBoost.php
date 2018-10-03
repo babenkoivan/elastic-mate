@@ -8,7 +8,7 @@ trait HasBoost
     /**
      * @var float|null
      */
-    protected $boost;
+    private $boost;
 
     /**
      * @param float $boost

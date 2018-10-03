@@ -3,12 +3,25 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Search\Queries;
 
-use BabenkoIvan\ElasticMate\Core\Contracts\Support\Fuzziness;
 use BabenkoIvan\ElasticMate\Core\Contracts\Search\Query;
-use BabenkoIvan\ElasticMate\Core\Contracts\Settings\Analyzer;
+use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasAnalyzer;
+use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasCutoffFrequency;
+use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasFuzziness;
+use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasLenience;
+use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasMaxExpansions;
+use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasOperator;
+use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasPrefixLength;
 
 class MatchQuery implements Query
 {
+    use HasOperator,
+        HasFuzziness,
+        HasPrefixLength,
+        HasMaxExpansions,
+        HasAnalyzer,
+        HasCutoffFrequency,
+        HasLenience;
+
     /**
      * @var string
      */
@@ -20,71 +33,13 @@ class MatchQuery implements Query
     private $query;
 
     /**
-     * @var string
-     */
-    private $operator;
-
-    /**
-     * @var Fuzziness|null
-     */
-    private $fuzziness;
-
-    /**
-     * @var int
-     */
-    private $prefixLength;
-
-    /**
-     * @var int
-     */
-    private $maxExpansions;
-
-    /**
-     * @var Analyzer|null
-     */
-    private $analyzer;
-
-    /**
-     * @var int|null
-     */
-    private $cutoffFrequency;
-
-    /**
-     * @var bool
-     */
-    private $isLenient;
-
-    /**
      * @param string $field
      * @param string $query
-     * @param string $operator
-     * @param Fuzziness|null $fuzziness
-     * @param int $prefixLength
-     * @param int $maxExpansions
-     * @param Analyzer|null $analyzer
-     * @param float|null $cutoffFrequency
-     * @param bool $isLenient
      */
-    public function __construct(
-        string $field,
-        string $query,
-        string $operator = Query::OPERATOR_OR,
-        ?Fuzziness $fuzziness = null,
-        int $prefixLength = 0,
-        int $maxExpansions = 50,
-        ?Analyzer $analyzer = null,
-        ?float $cutoffFrequency = null,
-        bool $isLenient = false
-    ) {
+    public function __construct(string $field, string $query)
+    {
         $this->field = $field;
         $this->query = $query;
-        $this->operator = $operator;
-        $this->fuzziness = $fuzziness;
-        $this->prefixLength = $prefixLength;
-        $this->maxExpansions = $maxExpansions;
-        $this->analyzer = $analyzer;
-        $this->cutoffFrequency = $cutoffFrequency;
-        $this->isLenient = $isLenient;
     }
 
     /**
@@ -106,7 +61,7 @@ class MatchQuery implements Query
         }
 
         if (isset($this->analyzer)) {
-            $query['analyzer'] = $this->analyzer->getName();
+            $query['analyzer'] = $this->analyzer;
         }
 
         return [

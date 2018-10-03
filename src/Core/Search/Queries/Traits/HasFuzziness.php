@@ -10,7 +10,7 @@ trait HasFuzziness
     /**
      * @var Fuzziness|null
      */
-    protected $fuzziness;
+    private $fuzziness;
 
     /**
      * @param Fuzziness $fuzziness

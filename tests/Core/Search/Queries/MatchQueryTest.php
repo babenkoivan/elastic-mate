@@ -5,10 +5,8 @@ namespace BabenkoIvan\ElasticMate\Core\Search\Queries;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Support\Fuzziness;
 use BabenkoIvan\ElasticMate\Core\Contracts\Search\Query;
-use BabenkoIvan\ElasticMate\Core\Contracts\Settings\Analyzer;
 use BabenkoIvan\ElasticMate\Core\Support\Fuzziness\AutoFuzziness;
 use BabenkoIvan\ElasticMate\Core\Support\Fuzziness\ExactFuzziness;
-use BabenkoIvan\ElasticMate\Core\Settings\Analyzers\WhitespaceAnalyzer;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -16,8 +14,6 @@ use PHPUnit\Framework\TestCase;
  * @uses   \BabenkoIvan\ElasticMate\Core\Support\Fuzziness\AbstractFuzziness
  * @uses   \BabenkoIvan\ElasticMate\Core\Support\Fuzziness\AutoFuzziness
  * @uses   \BabenkoIvan\ElasticMate\Core\Support\Fuzziness\ExactFuzziness
- * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Analyzers\AbstractAnalyzer
- * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Analyzers\WhitespaceAnalyzer
  */
 final class MatchQueryTest extends TestCase
 {
@@ -34,7 +30,7 @@ final class MatchQueryTest extends TestCase
                 new ExactFuzziness(2, true),
                 2,
                 10,
-                new WhitespaceAnalyzer('whitespace'),
+                'whitespace',
                 0.01,
                 true
             ],
@@ -45,7 +41,7 @@ final class MatchQueryTest extends TestCase
                 new AutoFuzziness(5, 8, false),
                 0,
                 5,
-                new WhitespaceAnalyzer('whitespace'),
+                'standard',
                 0.5,
                 false
             ],
@@ -61,7 +57,7 @@ final class MatchQueryTest extends TestCase
      * @param Fuzziness $fuzziness
      * @param int $prefixLength
      * @param int $maxExpansions
-     * @param Analyzer $analyzer
+     * @param string $analyzer
      * @param float $cutoffFrequency
      * @param bool $isLenient
      */
@@ -72,21 +68,18 @@ final class MatchQueryTest extends TestCase
         Fuzziness $fuzziness,
         int $prefixLength,
         int $maxExpansions,
-        Analyzer $analyzer,
+        string $analyzer,
         float $cutoffFrequency,
         bool $isLenient
     ): void {
-        $matchQuery = new MatchQuery(
-            $field,
-            $query,
-            $operator,
-            $fuzziness,
-            $prefixLength,
-            $maxExpansions,
-            $analyzer,
-            $cutoffFrequency,
-            $isLenient
-        );
+        $matchQuery = (new MatchQuery($field, $query))
+            ->setOperator($operator)
+            ->setFuzziness($fuzziness)
+            ->setPrefixLength($prefixLength)
+            ->setMaxExpansions($maxExpansions)
+            ->setAnalyzer($analyzer)
+            ->setCutoffFrequency($cutoffFrequency)
+            ->setLenience($isLenient);
 
         $this->assertEquals(
             [
@@ -98,7 +91,7 @@ final class MatchQueryTest extends TestCase
                         'fuzzy_transpositions' => $fuzziness->isTransposable(),
                         'prefix_length' => $prefixLength,
                         'max_expansions' => $maxExpansions,
-                        'analyzer' => $analyzer->getName(),
+                        'analyzer' => $analyzer,
                         'lenient' => $isLenient
                     ]
                 ]
