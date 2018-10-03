@@ -3,11 +3,16 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Search\Queries;
 
-use BabenkoIvan\ElasticMate\Core\Contracts\Support\Fuzziness;
 use BabenkoIvan\ElasticMate\Core\Contracts\Search\Query;
+use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasBoost;
+use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasFuzziness;
+use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasMaxExpansions;
+use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasPrefixLength;
 
 final class FuzzyQuery implements Query
 {
+    use HasFuzziness, HasPrefixLength, HasMaxExpansions, HasBoost;
+
     /**
      * @var string
      */
@@ -19,47 +24,13 @@ final class FuzzyQuery implements Query
     private $value;
 
     /**
-     * @var Fuzziness|null
-     */
-    private $fuzziness;
-
-    /**
-     * @var int
-     */
-    private $prefixLength;
-
-    /**
-     * @var int
-     */
-    private $maxExpansions;
-
-    /**
-     * @var float|null
-     */
-    private $boost;
-
-    /**
      * @param string $field
      * @param string $value
-     * @param Fuzziness|null $fuzziness
-     * @param int $prefixLength
-     * @param int $maxExpansions
-     * @param float $boost
      */
-    public function __construct(
-        string $field,
-        string $value,
-        ?Fuzziness $fuzziness = null,
-        int $prefixLength = 0,
-        int $maxExpansions = 50,
-        float $boost = null
-    ) {
+    public function __construct(string $field, string $value)
+    {
         $this->field = $field;
         $this->value = $value;
-        $this->fuzziness = $fuzziness;
-        $this->prefixLength = $prefixLength;
-        $this->maxExpansions = $maxExpansions;
-        $this->boost = $boost;
     }
 
     /**

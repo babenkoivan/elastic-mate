@@ -6,7 +6,6 @@ namespace BabenkoIvan\ElasticMate\Core\Search\Queries;
 use BabenkoIvan\ElasticMate\Core\Contracts\Search\Query;
 use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasBoost;
 use Illuminate\Support\Collection;
-use InvalidArgumentException;
 
 final class BoolQuery implements Query
 {
