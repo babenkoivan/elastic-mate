@@ -14,6 +14,20 @@ use PHPUnit\Framework\TestCase;
  */
 class StandardAnalyzerTest extends TestCase
 {
+    public function test_standard_analyzer_has_correct_default_values(): void
+    {
+        $analyzer = new StandardAnalyzer('foo');
+
+        $this->assertSame(
+            [
+                'type' => Analyzer::TYPE_STANDARD,
+                'max_token_length' => 255,
+                'stopwords' => Analysis::STOP_WORDS_NONE
+            ],
+            $analyzer->toArray()
+        );
+    }
+
     /**
      * @return array
      */
@@ -50,20 +64,6 @@ class StandardAnalyzerTest extends TestCase
                 'max_token_length' => $maxTokenLength,
                 'stopwords' => is_string($stopWords) ? $stopWords : $stopWords->values()->all(),
                 'stopwords_path' => $stopWordsPath
-            ],
-            $analyzer->toArray()
-        );
-    }
-
-    public function test_standard_analyzer_has_correct_default_values(): void
-    {
-        $analyzer = new StandardAnalyzer('foo');
-
-        $this->assertSame(
-            [
-                'type' => Analyzer::TYPE_STANDARD,
-                'max_token_length' => 255,
-                'stopwords' => Analysis::STOP_WORDS_NONE
             ],
             $analyzer->toArray()
         );

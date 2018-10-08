@@ -7,7 +7,7 @@ use BabenkoIvan\ElasticMate\Core\Entities\Index;
 use BabenkoIvan\ElasticMate\Core\Mapping\Mapping;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\TextProperty;
 use BabenkoIvan\ElasticMate\Core\Settings\Analysis;
-use BabenkoIvan\ElasticMate\Core\Settings\Analyzers\WhitespaceAnalyzer;
+use BabenkoIvan\ElasticMate\Core\Settings\Analyzers\StandardAnalyzer;
 use BabenkoIvan\ElasticMate\Core\Settings\Settings;
 use BabenkoIvan\ElasticMate\Dependencies\Client;
 use PHPUnit\Framework\TestCase;
@@ -20,7 +20,7 @@ use PHPUnit\Framework\TestCase;
  * @uses   \BabenkoIvan\ElasticMate\Core\Mapping\Properties\TextProperty
  * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Analysis
  * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Analyzers\AbstractAnalyzer
- * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Analyzers\WhitespaceAnalyzer
+ * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Analyzers\StandardAnalyzer
  * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Settings
  * @uses   \BabenkoIvan\ElasticMate\Infrastructure\Client\ClientFactory
  * @uses   \BabenkoIvan\ElasticMate\Infrastructure\Client\Client
@@ -124,7 +124,7 @@ class IndexManagerTest extends TestCase
             Settings::IMMUTABLE_OPTIONS
         ));
 
-        $this->assertSame(
+        $this->assertEquals(
             array_only(
                 $expectedSettings,
                 $mutableOptions
@@ -173,20 +173,25 @@ class IndexManagerTest extends TestCase
     {
         parent::setUp();
 
-        $mapping = (new Mapping())
-            ->disableSource()
-            ->addProperty((new TextProperty('content'))->setAnalyzer('content'));
+        $contentAnalyzer = new StandardAnalyzer('content');
+
+        $contentProperty = (new TextProperty('content'))
+            ->setAnalyzer($contentAnalyzer->getName());
 
         $analysis = (new Analysis())
-            ->addAnalyzer(new WhitespaceAnalyzer('content'));
+            ->addAnalyzer($contentAnalyzer);
 
         $settings = (new Settings())
             ->setNumberOfShards(1)
             ->setAnalysis($analysis);
 
+        $mapping = (new Mapping())
+            ->disableSource()
+            ->addProperty($contentProperty);
+
         $this->index = (new Index('test'))
-            ->setMapping($mapping)
-            ->setSettings($settings);
+            ->setSettings($settings)
+            ->setMapping($mapping);
 
         $this->indexManager = new IndexManager($this->client);
     }

@@ -9,4 +9,7 @@ use BabenkoIvan\ElasticMate\Core\Contracts\Nameable;
 interface Analyzer extends Arrayable, Nameable
 {
     const TYPE_STANDARD = 'standard';
+    const TYPE_SIMPLE = 'simple';
+    const TYPE_WHITESPACE = 'whitespace';
+    const TYPE_STOP = 'stop';
 }

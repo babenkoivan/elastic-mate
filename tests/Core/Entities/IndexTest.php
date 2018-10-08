@@ -6,60 +6,39 @@ namespace BabenkoIvan\ElasticMate\Core\Entities;
 use BabenkoIvan\ElasticMate\Core\Mapping\Mapping;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\TextProperty;
 use BabenkoIvan\ElasticMate\Core\Settings\Analysis;
-use BabenkoIvan\ElasticMate\Core\Settings\Analyzers\WhitespaceAnalyzer;
+use BabenkoIvan\ElasticMate\Core\Settings\Analyzers\StandardAnalyzer;
 use BabenkoIvan\ElasticMate\Core\Settings\Settings;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \BabenkoIvan\ElasticMate\Core\Entities\Index
- * @uses \BabenkoIvan\ElasticMate\Core\Mapping\Mapping
- * @uses \BabenkoIvan\ElasticMate\Core\Settings\Settings
+ * @uses   \BabenkoIvan\ElasticMate\Core\Mapping\Mapping
+ * @uses   \BabenkoIvan\ElasticMate\Core\Mapping\Properties\AbstractProperty
+ * @uses   \BabenkoIvan\ElasticMate\Core\Mapping\Properties\TextProperty
+ * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Analysis
+ * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Analyzers\AbstractAnalyzer
+ * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Analyzers\StandardAnalyzer
+ * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Settings
  */
 class IndexTest extends TestCase
 {
-    /**
-     * @return array
-     */
-    public function dataProvider(): array
+    public function test_index_can_be_created_and_properties_can_be_received_via_getters(): void
     {
-        return [
-            [
-                'foo',
-                null,
-                null
-            ],
-            [
-                'bar',
-                new Mapping(collect([new TextProperty('foo')])),
-                new Settings(new Analysis(collect([new WhitespaceAnalyzer('bar')])))
-            ],
-        ];
-    }
+        $mapping = (new Mapping())
+            ->addProperty(new TextProperty('foo'));
 
-    /**
-     * @dataProvider dataProvider
-     * @testdox Index with name "$name" can be created and properties can be received via getters
-     * @param string $name
-     * @param Mapping|null $mapping
-     * @param Settings|null $settings
-     */
-    public function test_index_can_be_created_and_properties_can_be_received_via_getters(
-        string $name,
-        ?Mapping $mapping,
-        ?Settings $settings
-    ): void {
-        $index = new Index($name, $mapping, $settings);
+        $analysis = (new Analysis())
+            ->addAnalyzer(new StandardAnalyzer('bar'));
 
-        $this->assertSame($name, $index->getName());
+        $settings = (new Settings())
+            ->setAnalysis($analysis);
 
-        $this->assertThat($index->getMapping(), $this->logicalOr(
-            $this->isNull(),
-            $this->isInstanceOf(Mapping::class)
-        ));
+        $index = (new Index('foo'))
+            ->setMapping($mapping)
+            ->setSettings($settings);
 
-        $this->assertThat($index->getSettings(), $this->logicalOr(
-            $this->isNull(),
-            $this->isInstanceOf(Settings::class)
-        ));
+        $this->assertSame('foo', $index->getName());
+        $this->assertSame($mapping, $index->getMapping());
+        $this->assertSame($settings, $index->getSettings());
     }
 }
