@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits;
 
-use BabenkoIvan\ElasticMate\Core\Contracts\Mapping\Property;
+use BabenkoIvan\ElasticMate\Core\Mapping\Mapping;
 
 trait HasSimilarity
 {
     /**
      * @var string
      */
-    private $similarity = Property::SIMILARITY_BM25;
+    private $similarity = Mapping::SIMILARITY_BM25;
 
     /**
      * @param string $similarity

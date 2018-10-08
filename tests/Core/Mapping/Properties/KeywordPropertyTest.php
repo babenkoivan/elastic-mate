@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Mapping\Properties;
 
-use BabenkoIvan\ElasticMate\Core\Contracts\Mapping\Property;
+use BabenkoIvan\ElasticMate\Core\Mapping\Mapping;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -24,11 +24,11 @@ final class KeywordPropertyTest extends TestCase
                 'eager_global_ordinals' => false,
                 'ignore_above' => 2147483647,
                 'index' => true,
-                'index_options' => Property::INDEX_OPTIONS_DOCS,
+                'index_options' => Mapping::INDEX_OPTIONS_DOCS,
                 'norms' => false,
                 'null_value' => null,
                 'store' => false,
-                'similarity' => Property::SIMILARITY_BM25,
+                'similarity' => Mapping::SIMILARITY_BM25,
                 'normalizer' => null,
                 'split_queries_on_whitespace' => false
             ],
@@ -45,8 +45,8 @@ final class KeywordPropertyTest extends TestCase
             ->setNormalizer('bar')
             ->setEagerGlobalOrdinals(true)
             ->setIgnoreAbove(1028)
-            ->setIndexOptions(Property::INDEX_OPTIONS_DOCS)
-            ->setSimilarity(Property::SIMILARITY_CLASSIC)
+            ->setIndexOptions(Mapping::INDEX_OPTIONS_DOCS)
+            ->setSimilarity(Mapping::SIMILARITY_CLASSIC)
             ->setNorms(false)
             ->setSplitQueriesOnWhitespace(false)
             ->setNullValue('NULL')
@@ -60,11 +60,11 @@ final class KeywordPropertyTest extends TestCase
                 'eager_global_ordinals' => true,
                 'ignore_above' => 1028,
                 'index' => false,
-                'index_options' => Property::INDEX_OPTIONS_DOCS,
+                'index_options' => Mapping::INDEX_OPTIONS_DOCS,
                 'norms' => false,
                 'null_value' => 'NULL',
                 'store' => true,
-                'similarity' => Property::SIMILARITY_CLASSIC,
+                'similarity' => Mapping::SIMILARITY_CLASSIC,
                 'normalizer' => 'bar',
                 'split_queries_on_whitespace' => false
             ],

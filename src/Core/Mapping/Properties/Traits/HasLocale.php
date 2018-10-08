@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits;
 
-use BabenkoIvan\ElasticMate\Core\Contracts\Mapping\Property;
+use BabenkoIvan\ElasticMate\Core\Mapping\Mapping;
 
 trait HasLocale
 {
     /**
      * @var string
      */
-    private $locale = Property::LOCALE_ROOT;
+    private $locale = Mapping::LOCALE_ROOT;
 
     /**
      * @param string $locale

@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Mapping;
 
-use BabenkoIvan\ElasticMate\Core\Contracts\Mapping\Property;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\TextProperty;
 use PHPUnit\Framework\TestCase;
 
@@ -46,11 +45,11 @@ class MappingTest extends TestCase
                         'eager_global_ordinals' => false,
                         'fielddata' => false,
                         'index' => true,
-                        'index_options' => Property::INDEX_OPTIONS_POSITIONS,
+                        'index_options' => Mapping::INDEX_OPTIONS_POSITIONS,
                         'norms' => true,
                         'store' => false,
-                        'similarity' => Property::SIMILARITY_BM25,
-                        'term_vector' => Property::TERM_VECTOR_NO
+                        'similarity' => Mapping::SIMILARITY_BM25,
+                        'term_vector' => Mapping::TERM_VECTOR_NO
                     ],
                     'bar' => [
                         'type' => 'text',
@@ -58,11 +57,11 @@ class MappingTest extends TestCase
                         'eager_global_ordinals' => false,
                         'fielddata' => false,
                         'index' => true,
-                        'index_options' => Property::INDEX_OPTIONS_POSITIONS,
+                        'index_options' => Mapping::INDEX_OPTIONS_POSITIONS,
                         'norms' => true,
                         'store' => false,
-                        'similarity' => Property::SIMILARITY_BM25,
-                        'term_vector' => Property::TERM_VECTOR_NO
+                        'similarity' => Mapping::SIMILARITY_BM25,
+                        'term_vector' => Mapping::TERM_VECTOR_NO
                     ],
                 ]
             ],

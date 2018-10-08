@@ -8,5 +8,5 @@ use BabenkoIvan\ElasticMate\Core\Contracts\Nameable;
 
 interface Analyzer extends Arrayable, Nameable
 {
-
+    const TYPE_STANDARD = 'standard';
 }

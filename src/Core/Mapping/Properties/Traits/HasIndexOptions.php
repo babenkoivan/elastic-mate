@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits;
 
-use BabenkoIvan\ElasticMate\Core\Contracts\Mapping\Property;
+use BabenkoIvan\ElasticMate\Core\Mapping\Mapping;
 
 trait HasIndexOptions
 {
     /**
      * @var string
      */
-    private $indexOptions = Property::INDEX_OPTIONS_POSITIONS;
+    private $indexOptions = Mapping::INDEX_OPTIONS_POSITIONS;
 
     /**
      * @param string $indexOptions

@@ -9,6 +9,40 @@ use Illuminate\Support\Collection;
 
 class Analysis implements Arrayable
 {
+    const STOP_WORDS_ARABIC = '_arabic_';
+    const STOP_WORDS_ARMENIAN = '_armenian_';
+    const STOP_WORDS_BASQUE = '_basque_';
+    const STOP_WORDS_BENGALI = '_bengali_';
+    const STOP_WORDS_BRAZILIAN = '_brazilian_';
+    const STOP_WORDS_BULGARIAN = '_bulgarian_';
+    const STOP_WORDS_CATALAN = '_catalan_';
+    const STOP_WORDS_CZECH = '_czech_';
+    const STOP_WORDS_DANISH = '_danish_';
+    const STOP_WORDS_DUTCH = '_dutch_';
+    const STOP_WORDS_ENGLISH = '_english_';
+    const STOP_WORDS_FINNISH = '_finnish_';
+    const STOP_WORDS_FRENCH = '_french_';
+    const STOP_WORDS_GALICIAN = '_galician_';
+    const STOP_WORDS_GERMAN = '_german_';
+    const STOP_WORDS_GREEK = '_greek_';
+    const STOP_WORDS_HINDI = '_hindi_';
+    const STOP_WORDS_HUNGARIAN = '_hungarian_';
+    const STOP_WORDS_INDONESIAN = '_indonesian_';
+    const STOP_WORDS_IRISH = '_irish_';
+    const STOP_WORDS_ITALIAN = '_italian_';
+    const STOP_WORDS_LATVIAN = '_latvian_';
+    const STOP_WORDS_NORWEGIAN = '_norwegian_';
+    const STOP_WORDS_PERSIAN = '_persian_';
+    const STOP_WORDS_PORTUGUESE = '_portuguese_';
+    const STOP_WORDS_ROMANIAN = '_romanian_';
+    const STOP_WORDS_RUSSIAN = '_russian_';
+    const STOP_WORDS_SORANI = '_sorani_';
+    const STOP_WORDS_SPANISH = '_spanish_';
+    const STOP_WORDS_SWEDISH = '_swedish_';
+    const STOP_WORDS_THAI = '_thai_';
+    const STOP_WORDS_TURKISH = '_turkish_';
+    const STOP_WORDS_NONE = '\_none_';
+
     /**
      * @var Collection
      */

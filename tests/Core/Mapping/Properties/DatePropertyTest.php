@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Mapping\Properties;
 
-use BabenkoIvan\ElasticMate\Core\Contracts\Mapping\Property;
+use BabenkoIvan\ElasticMate\Core\Mapping\Mapping;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -22,7 +22,7 @@ final class DatePropertyTest extends TestCase
                 'boost' => 1,
                 'doc_values' => true,
                 'format' => 'strict_date_optional_time||epoch_millis',
-                'locale' => Property::LOCALE_ROOT,
+                'locale' => Mapping::LOCALE_ROOT,
                 'ignore_malformed' => false,
                 'index' => true,
                 'null_value' => null,

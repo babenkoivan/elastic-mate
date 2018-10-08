@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits;
 
-use BabenkoIvan\ElasticMate\Core\Contracts\Mapping\Property;
+use BabenkoIvan\ElasticMate\Core\Mapping\Mapping;
 
 trait HasTermVector
 {
     /**
      * @var string
      */
-    private $termVector = Property::TERM_VECTOR_NO;
+    private $termVector = Mapping::TERM_VECTOR_NO;
 
     /**
      * @param string $termVector

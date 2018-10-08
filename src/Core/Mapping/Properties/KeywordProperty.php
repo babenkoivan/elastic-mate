@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Mapping\Properties;
 
-use BabenkoIvan\ElasticMate\Core\Contracts\Mapping\Property;
+use BabenkoIvan\ElasticMate\Core\Mapping\Mapping;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanBeEagerGlobalOrdinals;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanBeIndexed;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanBeStored;
@@ -40,7 +40,7 @@ final class KeywordProperty extends AbstractProperty
         parent::__construct($name);
 
         $this->norms = false;
-        $this->indexOptions = Property::INDEX_OPTIONS_DOCS;
+        $this->indexOptions = Mapping::INDEX_OPTIONS_DOCS;
     }
 
     /**
