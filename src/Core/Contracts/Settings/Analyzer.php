@@ -12,4 +12,6 @@ interface Analyzer extends Arrayable, Nameable
     const TYPE_SIMPLE = 'simple';
     const TYPE_WHITESPACE = 'whitespace';
     const TYPE_STOP = 'stop';
+    const TYPE_KEYWORD = 'keyword';
+    const TYPE_PATTERN = 'pattern';
 }

@@ -43,6 +43,16 @@ class Analysis implements Arrayable
     const STOP_WORDS_TURKISH = '_turkish_';
     const STOP_WORDS_NONE = '\_none_';
 
+    const REGEXP_FLAG_CANON_EQ = 'CANON_EQ';
+    const REGEXP_FLAG_CASE_INSENSITIVE = 'CASE_INSENSITIVE';
+    const REGEXP_FLAG_COMMENTS = 'COMMENTS';
+    const REGEXP_FLAG_DOTALL = 'DOTALL';
+    const REGEXP_FLAG_LITERAL = 'LITERAL';
+    const REGEXP_FLAG_MULTILINE = 'MULTILINE';
+    const REGEXP_FLAG_UNICODE_CASE = 'UNICODE_CASE';
+    const REGEXP_FLAG_UNICODE_CHARACTER_CLASS = 'UNICODE_CHARACTER_CLASS';
+    const REGEXP_FLAG_UNIX_LINES = 'UNIX_LINES';
+
     /**
      * @var Collection
      */

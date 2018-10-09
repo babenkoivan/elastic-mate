@@ -4,22 +4,19 @@ declare(strict_types=1);
 namespace BabenkoIvan\ElasticMate\Core\Settings\Analyzers;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Settings\Analyzer;
-use BabenkoIvan\ElasticMate\Core\Settings\Analysis;
+use BabenkoIvan\ElasticMate\Core\Settings\Traits\CanBeLowerCased;
+use BabenkoIvan\ElasticMate\Core\Settings\Traits\HasFlags;
+use BabenkoIvan\ElasticMate\Core\Settings\Traits\HasPattern;
 use BabenkoIvan\ElasticMate\Core\Settings\Traits\HasStopWords;
 use BabenkoIvan\ElasticMate\Core\Settings\Traits\HasStopWordsPath;
 
-class StopAnalyzer extends AbstractAnalyzer
+class PatternAnalyzer extends AbstractAnalyzer
 {
-    use HasStopWords, HasStopWordsPath;
-
-    /**
-     * @param string $name
-     */
-    public function __construct(string $name)
-    {
-        parent::__construct($name);
-        $this->stopWords = Analysis::STOP_WORDS_ENGLISH;
-    }
+    use HasPattern,
+        HasFlags,
+        CanBeLowerCased,
+        HasStopWords,
+        HasStopWordsPath;
 
     /**
      * @inheritdoc
@@ -27,12 +24,18 @@ class StopAnalyzer extends AbstractAnalyzer
     public function toArray(): array
     {
         $analyzer = [
-            'type' => Analyzer::TYPE_STOP,
+            'type' => Analyzer::TYPE_PATTERN,
+            'pattern' => $this->pattern,
+            'lowercase' => $this->isLowerCased,
             'stopwords' => $this->stopWords
         ];
 
         if (isset($this->stopWordsPath)) {
             $analyzer['stopwords_path'] = $this->stopWordsPath;
+        }
+
+        if (isset($this->flags)) {
+            $analyzer['flags'] = $this->flags->implode('|');
         }
 
         return $analyzer;
