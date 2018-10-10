@@ -46,4 +46,5 @@ interface Analyzer extends Arrayable, Nameable
     const TYPE_SWEDISH = 'swedish';
     const TYPE_TURKISH = 'turkish';
     const TYPE_THAI = 'thai';
+    const TYPE_FINGERPRINT = 'fingerprint';
 }
