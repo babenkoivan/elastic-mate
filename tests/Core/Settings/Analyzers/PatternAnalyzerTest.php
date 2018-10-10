@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \BabenkoIvan\ElasticMate\Core\Settings\Analyzers\PatternAnalyzer
  * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Analyzers\AbstractAnalyzer
  */
-class PatternAnalyzerTest extends TestCase
+final class PatternAnalyzerTest extends TestCase
 {
     public function test_pattern_analyzer_has_correct_default_values(): void
     {

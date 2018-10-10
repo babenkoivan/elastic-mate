@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
  * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Analyzers\StandardAnalyzer
  * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Analyzers\StopAnalyzer
  */
-class AnalysisTest extends TestCase
+final class AnalysisTest extends TestCase
 {
     public function test_analysis_can_be_converted_to_array(): void
     {

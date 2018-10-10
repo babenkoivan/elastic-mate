@@ -10,7 +10,7 @@ use BabenkoIvan\ElasticMate\Core\Contracts\EntityManagers\IndexManager as IndexM
 use BabenkoIvan\ElasticMate\Core\Entities\Index;
 use UnexpectedValueException;
 
-class IndexManager implements IndexManagerContract
+final class IndexManager implements IndexManagerContract
 {
     /**
      * @var IndicesNamespace

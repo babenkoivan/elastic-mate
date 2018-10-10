@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \BabenkoIvan\ElasticMate\Core\Mapping\Properties\TextProperty
  * @uses   \BabenkoIvan\ElasticMate\Core\Mapping\Properties\AbstractProperty
  */
-class TextPropertyTest extends TestCase
+final class TextPropertyTest extends TestCase
 {
     public function test_text_property_has_correct_default_values(): void
     {

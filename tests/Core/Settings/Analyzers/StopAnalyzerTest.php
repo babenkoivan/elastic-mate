@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \BabenkoIvan\ElasticMate\Core\Settings\Analyzers\StopAnalyzer
  * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Analyzers\AbstractAnalyzer
  */
-class StopAnalyzerTest extends TestCase
+final class StopAnalyzerTest extends TestCase
 {
     public function test_stop_analyzer_has_correct_default_values(): void
     {

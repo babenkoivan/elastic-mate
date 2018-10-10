@@ -6,7 +6,7 @@ namespace BabenkoIvan\ElasticMate\Infrastructure\Client\Namespaces;
 use BabenkoIvan\ElasticMate\Core\Contracts\Client\Namespaces\IndicesNamespace as IndicesNamespaceContract;
 use Elasticsearch\Namespaces\IndicesNamespace as AdapteeIndicesNamespace;
 
-class IndicesNamespace implements IndicesNamespaceContract
+final class IndicesNamespace implements IndicesNamespaceContract
 {
     /**
      * @var AdapteeIndicesNamespace

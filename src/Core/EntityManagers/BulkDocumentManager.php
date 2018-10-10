@@ -11,7 +11,7 @@ use BabenkoIvan\ElasticMate\Core\Search\Request;
 use BabenkoIvan\ElasticMate\Core\Search\Response;
 use Illuminate\Support\Collection;
 
-class BulkDocumentManager implements DocumentManager
+final class BulkDocumentManager implements DocumentManager
 {
     /**
      * @var Client

@@ -7,7 +7,7 @@ use BabenkoIvan\ElasticMate\Core\Contracts\Client\Client as ClientContract;
 use BabenkoIvan\ElasticMate\Core\Contracts\Client\ClientFactory as ClientFactoryContract;
 use Elasticsearch\ClientBuilder;
 
-class ClientFactory implements ClientFactoryContract
+final class ClientFactory implements ClientFactoryContract
 {
     /**
      * @inheritdoc

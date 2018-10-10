@@ -20,7 +20,7 @@ use PHPUnit\Framework\TestCase;
  * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Analyzers\StandardAnalyzer
  * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Settings
  */
-class IndexTest extends TestCase
+final class IndexTest extends TestCase
 {
     public function test_index_can_be_created_and_properties_can_be_received_via_getters(): void
     {

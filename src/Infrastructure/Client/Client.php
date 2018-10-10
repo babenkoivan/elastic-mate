@@ -8,7 +8,7 @@ use BabenkoIvan\ElasticMate\Core\Contracts\Client\Namespaces\IndicesNamespace as
 use BabenkoIvan\ElasticMate\Infrastructure\Client\Namespaces\IndicesNamespace;
 use Elasticsearch\Client as AdapteeClient;
 
-class Client implements ClientContract
+final class Client implements ClientContract
 {
     /**
      * @var AdapteeClient

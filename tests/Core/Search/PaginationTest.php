@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \BabenkoIvan\ElasticMate\Core\Search\Pagination
  */
-class PaginationTest extends TestCase
+final class PaginationTest extends TestCase
 {
     /**
      * @return array

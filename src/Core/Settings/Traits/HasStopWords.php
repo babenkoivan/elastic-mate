@@ -12,7 +12,7 @@ trait HasStopWords
     /**
      * @var Collection|string
      */
-    private $stopWords = Analysis::STOP_WORDS_NONE;
+    protected $stopWords = Analysis::STOP_WORDS_NONE;
 
     /**
      * @param Collection|string $stopWords

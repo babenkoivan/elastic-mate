@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  * @uses   \BabenkoIvan\ElasticMate\Core\Mapping\Properties\AbstractProperty
  * @uses   \BabenkoIvan\ElasticMate\Core\Mapping\Properties\TextProperty
  */
-class MappingTest extends TestCase
+final class MappingTest extends TestCase
 {
     public function test_source_can_be_disabled(): void
     {

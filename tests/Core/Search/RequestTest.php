@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
  * @uses   \BabenkoIvan\ElasticMate\Core\Search\Sort\Simple\SimpleSort
  * @uses   \BabenkoIvan\ElasticMate\Core\Search\Pagination
  */
-class RequestTest extends TestCase
+final class RequestTest extends TestCase
 {
     public function test_request_with_query_can_be_created_and_converted_to_array(): void
     {

@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \BabenkoIvan\ElasticMate\Core\Search\Sort\Simple\FieldSort
  */
-class FieldSortTest extends TestCase
+final class FieldSortTest extends TestCase
 {
     /**
      * @return array

@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \BabenkoIvan\ElasticMate\Core\Search\Response
  * @uses \BabenkoIvan\ElasticMate\Core\Entities\Document
  */
-class ResponseTest extends TestCase
+final class ResponseTest extends TestCase
 {
     public function test_response_can_be_created_and_properties_can_be_received_via_getters(): void
     {

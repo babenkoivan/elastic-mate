@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \BabenkoIvan\ElasticMate\Core\Entities\Document
  */
-class DocumentTest extends TestCase
+final class DocumentTest extends TestCase
 {
     /**
      * @return array

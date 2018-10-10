@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \BabenkoIvan\ElasticMate\Core\Search\Sort\Simple\SimpleSort
  * @uses \BabenkoIvan\ElasticMate\Core\Search\Sort\Simple\FieldSort
  */
-class SimpleSortTest extends TestCase
+final class SimpleSortTest extends TestCase
 {
     public function test_simple_sort_can_be_converted_to_array(): void
     {

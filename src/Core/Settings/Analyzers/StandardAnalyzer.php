@@ -8,7 +8,7 @@ use BabenkoIvan\ElasticMate\Core\Settings\Traits\HasMaxTokenLength;
 use BabenkoIvan\ElasticMate\Core\Settings\Traits\HasStopWords;
 use BabenkoIvan\ElasticMate\Core\Settings\Traits\HasStopWordsPath;
 
-class StandardAnalyzer extends AbstractAnalyzer
+final class StandardAnalyzer extends AbstractAnalyzer
 {
     use HasMaxTokenLength, HasStopWords, HasStopWordsPath;
 

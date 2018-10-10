@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \BabenkoIvan\ElasticMate\Core\Settings\Analyzers\StandardAnalyzer
  * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Analyzers\AbstractAnalyzer
  */
-class StandardAnalyzerTest extends TestCase
+final class StandardAnalyzerTest extends TestCase
 {
     public function test_standard_analyzer_has_correct_default_values(): void
     {

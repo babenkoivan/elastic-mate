@@ -26,7 +26,7 @@ use PHPUnit\Framework\TestCase;
  * @uses   \BabenkoIvan\ElasticMate\Infrastructure\Client\Client
  * @uses   \BabenkoIvan\ElasticMate\Infrastructure\Client\Namespaces\IndicesNamespace
  */
-class IndexManagerTest extends TestCase
+final class IndexManagerTest extends TestCase
 {
     use Client;
 

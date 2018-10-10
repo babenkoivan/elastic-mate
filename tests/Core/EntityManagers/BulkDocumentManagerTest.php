@@ -28,7 +28,7 @@ use PHPUnit\Framework\TestCase;
  * @uses   \BabenkoIvan\ElasticMate\Infrastructure\Client\Client
  * @uses   \BabenkoIvan\ElasticMate\Infrastructure\Client\Namespaces\IndicesNamespace
  */
-class BulkDocumentManagerTest extends TestCase
+final class BulkDocumentManagerTest extends TestCase
 {
     use Client;
 

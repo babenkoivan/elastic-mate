@@ -10,7 +10,7 @@ use BabenkoIvan\ElasticMate\Core\Settings\Traits\HasPattern;
 use BabenkoIvan\ElasticMate\Core\Settings\Traits\HasStopWords;
 use BabenkoIvan\ElasticMate\Core\Settings\Traits\HasStopWordsPath;
 
-class PatternAnalyzer extends AbstractAnalyzer
+final class PatternAnalyzer extends AbstractAnalyzer
 {
     use HasPattern,
         HasFlags,
