@@ -9,4 +9,7 @@ use BabenkoIvan\ElasticMate\Core\Contracts\Nameable;
 interface Tokenizer extends Arrayable, Nameable
 {
     const TYPE_STANDARD = 'standard';
+    const TYPE_LETTER = 'letter';
+    const TYPE_LOWERCASE = 'lowercase';
+    const TYPE_WHITESPACE = 'whitespace';
 }
