@@ -12,4 +12,5 @@ interface Tokenizer extends Arrayable, Nameable
     const TYPE_LETTER = 'letter';
     const TYPE_LOWERCASE = 'lowercase';
     const TYPE_WHITESPACE = 'whitespace';
+    const TYPE_UAX_URL_EMAIL = 'uax_url_email';
 }
