@@ -4,12 +4,12 @@ declare(strict_types=1);
 namespace BabenkoIvan\ElasticMate\Core\Settings\Tokenizers;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Settings\Tokenizer;
+use BabenkoIvan\ElasticMate\Core\Settings\Analysis;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \BabenkoIvan\ElasticMate\Core\Settings\Tokenizers\EdgeNgramTokenizer
  * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Tokenizers\AbstractTokenizer
- * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Tokenizers\NgramTokenizer
  */
 final class EdgeNgramTokenizerTest extends TestCase
 {
@@ -32,8 +32,8 @@ final class EdgeNgramTokenizerTest extends TestCase
         $tokenizer = (new EdgeNgramTokenizer('foo'))
             ->setMinGram(2)
             ->setMaxGram(5)
-            ->addTokenChars(EdgeNgramTokenizer::CHAR_CLASS_LETTER)
-            ->addTokenChars(EdgeNgramTokenizer::CHAR_CLASS_SYMBOL);
+            ->addTokenChars(Analysis::CHAR_CLASS_LETTER)
+            ->addTokenChars(Analysis::CHAR_CLASS_SYMBOL);
 
         $this->assertSame(
             [
@@ -41,8 +41,8 @@ final class EdgeNgramTokenizerTest extends TestCase
                 'min_gram' => 2,
                 'max_gram' => 5,
                 'token_chars' => [
-                    NgramTokenizer::CHAR_CLASS_LETTER,
-                    NgramTokenizer::CHAR_CLASS_SYMBOL
+                    Analysis::CHAR_CLASS_LETTER,
+                    Analysis::CHAR_CLASS_SYMBOL
                 ]
             ],
             $tokenizer->toArray()

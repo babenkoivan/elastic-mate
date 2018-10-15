@@ -53,6 +53,12 @@ class Analysis implements Arrayable
     const REGEXP_FLAG_UNICODE_CHARACTER_CLASS = 'UNICODE_CHARACTER_CLASS';
     const REGEXP_FLAG_UNIX_LINES = 'UNIX_LINES';
 
+    const CHAR_CLASS_LETTER = 'letter';
+    const CHAR_CLASS_DIGIT = 'digit';
+    const CHAR_CLASS_WHITESPACE = 'whitespace';
+    const CHAR_CLASS_PUNCTUATION = 'punctuation';
+    const CHAR_CLASS_SYMBOL = 'symbol';
+
     /**
      * @var Collection
      */

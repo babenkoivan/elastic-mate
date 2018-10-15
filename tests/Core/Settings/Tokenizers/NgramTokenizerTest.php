@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace BabenkoIvan\ElasticMate\Core\Settings\Tokenizers;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Settings\Tokenizer;
+use BabenkoIvan\ElasticMate\Core\Settings\Analysis;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -31,9 +32,9 @@ final class NgramTokenizerTest extends TestCase
         $tokenizer = (new NgramTokenizer('foo'))
             ->setMinGram(2)
             ->setMaxGram(5)
-            ->addTokenChars(NgramTokenizer::CHAR_CLASS_LETTER)
-            ->addTokenChars(NgramTokenizer::CHAR_CLASS_DIGIT)
-            ->addTokenChars(NgramTokenizer::CHAR_CLASS_PUNCTUATION);
+            ->addTokenChars(Analysis::CHAR_CLASS_LETTER)
+            ->addTokenChars(Analysis::CHAR_CLASS_DIGIT)
+            ->addTokenChars(Analysis::CHAR_CLASS_PUNCTUATION);
 
         $this->assertSame(
             [
@@ -41,9 +42,9 @@ final class NgramTokenizerTest extends TestCase
                 'min_gram' => 2,
                 'max_gram' => 5,
                 'token_chars' => [
-                    NgramTokenizer::CHAR_CLASS_LETTER,
-                    NgramTokenizer::CHAR_CLASS_DIGIT,
-                    NgramTokenizer::CHAR_CLASS_PUNCTUATION
+                    Analysis::CHAR_CLASS_LETTER,
+                    Analysis::CHAR_CLASS_DIGIT,
+                    Analysis::CHAR_CLASS_PUNCTUATION
                 ]
             ],
             $tokenizer->toArray()
