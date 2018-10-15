@@ -19,5 +19,6 @@ interface Tokenizer extends Arrayable, Nameable
     const TYPE_EDGE_NGRAM = 'edge_ngram';
     const TYPE_KEYWORD = 'keyword';
     const TYPE_PATTERN = 'pattern';
+    const TYPE_SIMPLE_PATTERN = 'simple_pattern';
     const TYPE_SIMPLE_PATTERN_SPLIT = 'simple_pattern_split';
 }
