@@ -3,15 +3,14 @@ declare(strict_types = 1);
 
 namespace BabenkoIvan\ElasticMate\Core\Entities;
 
+use BabenkoIvan\ElasticMate\Core\Contracts\Nameable;
 use BabenkoIvan\ElasticMate\Core\Mapping\Mapping;
 use BabenkoIvan\ElasticMate\Core\Settings\Settings;
+use BabenkoIvan\ElasticMate\Core\Traits\HasName;
 
-final class Index
+final class Index implements Nameable
 {
-    /**
-     * @var string
-     */
-    private $name;
+    use HasName;
 
     /**
      * @var Mapping
@@ -30,14 +29,6 @@ final class Index
         $this->name = $name;
         $this->mapping = new Mapping();
         $this->settings = new Settings();
-    }
-
-    /**
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->name;
     }
 
     /**

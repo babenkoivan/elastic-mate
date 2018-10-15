@@ -4,13 +4,11 @@ declare(strict_types=1);
 namespace BabenkoIvan\ElasticMate\Core\Mapping\Properties;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Mapping\Property;
+use BabenkoIvan\ElasticMate\Core\Traits\HasName;
 
 abstract class AbstractProperty implements Property
 {
-    /**
-     * @var string
-     */
-    protected $name;
+    use HasName;
 
     /**
      * @param string $name
@@ -18,14 +16,6 @@ abstract class AbstractProperty implements Property
     public function __construct(string $name)
     {
         $this->name = $name;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getName(): string
-    {
-        return $this->name;
     }
 
     /**
