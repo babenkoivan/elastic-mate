@@ -17,4 +17,5 @@ interface Tokenizer extends Arrayable, Nameable
     const TYPE_THAI = 'thai';
     const TYPE_NGRAM = 'ngram';
     const TYPE_EDGE_NGRAM = 'edge_ngram';
+    const TYPE_KEYWORD = 'keyword';
 }
