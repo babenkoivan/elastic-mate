@@ -22,4 +22,5 @@ interface Tokenizer extends Arrayable, Nameable
     const TYPE_SIMPLE_PATTERN = 'simple_pattern';
     const TYPE_SIMPLE_PATTERN_SPLIT = 'simple_pattern_split';
     const TYPE_CHAR_GROUP = 'char_group';
+    const TYPE_PATH_HIERARCHY = 'path_hierarchy';
 }
