@@ -32,8 +32,8 @@ final class EdgeNgramTokenizerTest extends TestCase
         $tokenizer = (new EdgeNgramTokenizer('foo'))
             ->setMinGram(2)
             ->setMaxGram(5)
-            ->addTokenChars(Analysis::CHAR_CLASS_LETTER)
-            ->addTokenChars(Analysis::CHAR_CLASS_SYMBOL);
+            ->addTokenChars(Analysis::CHAR_GROUP_LETTER)
+            ->addTokenChars(Analysis::CHAR_GROUP_SYMBOL);
 
         $this->assertSame(
             [
@@ -41,8 +41,8 @@ final class EdgeNgramTokenizerTest extends TestCase
                 'min_gram' => 2,
                 'max_gram' => 5,
                 'token_chars' => [
-                    Analysis::CHAR_CLASS_LETTER,
-                    Analysis::CHAR_CLASS_SYMBOL
+                    Analysis::CHAR_GROUP_LETTER,
+                    Analysis::CHAR_GROUP_SYMBOL
                 ]
             ],
             $tokenizer->toArray()

@@ -13,16 +13,16 @@ trait HasTokenChars
     private $tokenChars;
 
     /**
-     * @param string $charClass
+     * @param string $charGroup
      * @return self
      */
-    public function addTokenChars(string $charClass): self
+    public function addTokenChars(string $charGroup): self
     {
         if (!isset($this->tokenChars)) {
             $this->tokenChars = collect();
         }
 
-        $this->tokenChars->push($charClass);
+        $this->tokenChars->push($charGroup);
         return $this;
     }
 }

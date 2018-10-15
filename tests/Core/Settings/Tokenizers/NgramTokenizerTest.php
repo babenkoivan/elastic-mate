@@ -32,9 +32,9 @@ final class NgramTokenizerTest extends TestCase
         $tokenizer = (new NgramTokenizer('foo'))
             ->setMinGram(2)
             ->setMaxGram(5)
-            ->addTokenChars(Analysis::CHAR_CLASS_LETTER)
-            ->addTokenChars(Analysis::CHAR_CLASS_DIGIT)
-            ->addTokenChars(Analysis::CHAR_CLASS_PUNCTUATION);
+            ->addTokenChars(Analysis::CHAR_GROUP_LETTER)
+            ->addTokenChars(Analysis::CHAR_GROUP_DIGIT)
+            ->addTokenChars(Analysis::CHAR_GROUP_PUNCTUATION);
 
         $this->assertSame(
             [
@@ -42,9 +42,9 @@ final class NgramTokenizerTest extends TestCase
                 'min_gram' => 2,
                 'max_gram' => 5,
                 'token_chars' => [
-                    Analysis::CHAR_CLASS_LETTER,
-                    Analysis::CHAR_CLASS_DIGIT,
-                    Analysis::CHAR_CLASS_PUNCTUATION
+                    Analysis::CHAR_GROUP_LETTER,
+                    Analysis::CHAR_GROUP_DIGIT,
+                    Analysis::CHAR_GROUP_PUNCTUATION
                 ]
             ],
             $tokenizer->toArray()
