@@ -12,4 +12,7 @@ interface TokenFilter extends Nameable, Arrayable
     const TYPE_ASCII_FOLDING = 'asciifolding';
     const TYPE_FLATTEN_GRAPH = 'flatten_graph';
     const TYPE_LENGTH = 'length';
+    const TYPE_LOWER_CASE = 'lowercase';
+    const TYPE_UPPER_CASE = 'uppercase';
+    const TYPE_NGRAM = 'nGram';
 }
