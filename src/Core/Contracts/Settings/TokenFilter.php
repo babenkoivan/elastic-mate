@@ -9,4 +9,5 @@ use BabenkoIvan\ElasticMate\Core\Contracts\Nameable;
 interface TokenFilter extends Nameable, Arrayable
 {
     const TYPE_STANDARD = 'standard';
+    const TYPE_ASCII_FOLDING = 'asciifolding';
 }
