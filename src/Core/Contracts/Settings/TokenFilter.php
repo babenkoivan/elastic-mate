@@ -19,4 +19,7 @@ interface TokenFilter extends Nameable, Arrayable
     const TYPE_PORTER_STEM = 'porter_stem';
     const TYPE_SHINGLE = 'shingle';
     const TYPE_STOP = 'stop';
+    const TYPE_WORD_DELIMITER = 'word_delimiter';
+    const TYPE_WORD_DELIMITER_GRAPH = 'word_delimiter_graph';
+    const TYPE_MULTIPLEXER = 'multiplexer';
 }
