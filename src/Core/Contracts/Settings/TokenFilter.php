@@ -16,4 +16,6 @@ interface TokenFilter extends Nameable, Arrayable
     const TYPE_UPPER_CASE = 'uppercase';
     const TYPE_NGRAM = 'nGram';
     const TYPE_EDGE_NGRAM = 'edgeNGram';
+    const TYPE_PORTER_STEM = 'porter_stem';
+    const TYPE_SHINGLE = 'shingle';
 }
