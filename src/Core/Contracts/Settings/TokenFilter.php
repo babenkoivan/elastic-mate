@@ -22,4 +22,5 @@ interface TokenFilter extends Nameable, Arrayable
     const TYPE_WORD_DELIMITER = 'word_delimiter';
     const TYPE_WORD_DELIMITER_GRAPH = 'word_delimiter_graph';
     const TYPE_MULTIPLEXER = 'multiplexer';
+    const TYPE_STEMMER = 'stemmer';
 }

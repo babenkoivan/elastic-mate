@@ -59,6 +59,64 @@ class Analysis implements Arrayable
     const CHAR_GROUP_PUNCTUATION = 'punctuation';
     const CHAR_GROUP_SYMBOL = 'symbol';
 
+    const LANGUAGE_ARABIC = 'arabic';
+    const LANGUAGE_ARMENIAN = 'armenian';
+    const LANGUAGE_BASQUE = 'basque';
+    const LANGUAGE_BENGALI = 'bengali';
+    const LANGUAGE_LIGHT_BENGALI = 'light_bengali';
+    const LANGUAGE_BRAZILIAN = 'brazilian';
+    const LANGUAGE_BULGARIAN = 'bulgarian';
+    const LANGUAGE_CATALAN = 'catalan';
+    const LANGUAGE_CZECH = 'czech';
+    const LANGUAGE_DANISH = 'danish';
+    const LANGUAGE_DUTCH = 'dutch';
+    const LANGUAGE_DUTCH_KP = 'dutch_kp';
+    const LANGUAGE_ENGLISH = 'english';
+    const LANGUAGE_LIGHT_ENGLISH = 'light_english';
+    const LANGUAGE_MINIMAL_ENGLISH = 'minimal_english';
+    const LANGUAGE_POSSESSIVE_ENGLISH = 'possessive_english';
+    const LANGUAGE_PORTER2 = 'porter2';
+    const LANGUAGE_LOVINS = 'lovins';
+    const LANGUAGE_FINNISH = 'finnish';
+    const LANGUAGE_LIGHT_FINNISH = 'light_finnish';
+    const LANGUAGE_FRENCH = 'french';
+    const LANGUAGE_LIGHT_FRENCH = 'light_french';
+    const LANGUAGE_MINIMAL_FRENCH = 'minimal_french';
+    const LANGUAGE_GALICIAN = 'galician';
+    const LANGUAGE_MINIMAL_GALICIAN = 'minimal_galician';
+    const LANGUAGE_GERMAN = 'german';
+    const LANGUAGE_GERMAN2 = 'german2';
+    const LANGUAGE_LIGHT_GERMAN2 = 'light_german';
+    const LANGUAGE_MINIMAL_GERMAN2 = 'minimal_german';
+    const LANGUAGE_GREEK = 'greek';
+    const LANGUAGE_HINDI = 'hindi';
+    const LANGUAGE_HUNGARIAN = 'hungarian';
+    const LANGUAGE_LIGHT_HUNGARIAN = 'light_hungarian';
+    const LANGUAGE_INDONESIAN = 'indonesian';
+    const LANGUAGE_IRISH = 'irish';
+    const LANGUAGE_ITALIAN = 'italian';
+    const LANGUAGE_LIGHT_ITALIAN = 'light_italian';
+    const LANGUAGE_SORANI = 'sorani';
+    const LANGUAGE_LATVIAN = 'latvian';
+    const LANGUAGE_LITHUANIAN = 'lithuanian';
+    const LANGUAGE_NORWEGIAN = 'norwegian';
+    const LANGUAGE_LIGHT_NORWEGIAN = 'light_norwegian';
+    const LANGUAGE_MINIMAL_NORWEGIAN = 'minimal_norwegian';
+    const LANGUAGE_LIGHT_NYNORSK = 'light_nynorsk';
+    const LANGUAGE_MINIMAL_NYNORSK = 'minimal_nynorsk';
+    const LANGUAGE_PORTUGUESE = 'portuguese';
+    const LANGUAGE_LIGHT_PORTUGUESE = 'light_portuguese';
+    const LANGUAGE_MINIMAL_PORTUGUESE = 'minimal_portuguese';
+    const LANGUAGE_PORTUGUESE_RSLP = 'portuguese_rslp';
+    const LANGUAGE_ROMANIAN = 'romanian';
+    const LANGUAGE_RUSSIAN = 'russian';
+    const LANGUAGE_LIGHT_RUSSIAN = 'light_russian';
+    const LANGUAGE_SPANISH = 'spanish';
+    const LANGUAGE_LIGHT_SPANISH = 'light_spanish';
+    const LANGUAGE_SWEDISH = 'swedish';
+    const LANGUAGE_LIGHT_SWEDISH = 'light_swedish';
+    const LANGUAGE_TURKISH = 'turkish';
+
     /**
      * @var Collection
      */
