@@ -29,7 +29,6 @@ interface TokenFilter extends Nameable, Arrayable
     const TYPE_KSTEM = 'kstem';
     const TYPE_SNOWBALL = 'snowball';
     const TYPE_SYNONYM = 'synonym';
-    const TYPE_SYNONYM_GRAPH = 'synonym_graph';
     const TYPE_HYPHENATION_DECOMPOUNDER = 'hyphenation_decompounder';
     const TYPE_DICTIONARY_DECOMPOUNDER = 'dictionary_decompounder';
     const TYPE_REVERSE = 'reverse';
