@@ -34,4 +34,5 @@ interface TokenFilter extends Nameable, Arrayable
     const TYPE_DICTIONARY_DECOMPOUNDER = 'dictionary_decompounder';
     const TYPE_REVERSE = 'reverse';
     const TYPE_ELISION = 'elision';
+    const TYPE_TRUNCATE = 'truncate';
 }
