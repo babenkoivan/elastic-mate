@@ -5,15 +5,15 @@ namespace BabenkoIvan\ElasticMate\Core\Search\Queries;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Support\Fuzziness;
 use BabenkoIvan\ElasticMate\Core\Contracts\Search\Query;
-use BabenkoIvan\ElasticMate\Core\Support\Fuzziness\AutoFuzziness;
-use BabenkoIvan\ElasticMate\Core\Support\Fuzziness\ExactFuzziness;
+use BabenkoIvan\ElasticMate\Core\Search\Queries\Fuzziness\AutoFuzziness;
+use BabenkoIvan\ElasticMate\Core\Search\Queries\Fuzziness\ExactFuzziness;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \BabenkoIvan\ElasticMate\Core\Search\Queries\MatchQuery
- * @uses   \BabenkoIvan\ElasticMate\Core\Support\Fuzziness\AbstractFuzziness
- * @uses   \BabenkoIvan\ElasticMate\Core\Support\Fuzziness\AutoFuzziness
- * @uses   \BabenkoIvan\ElasticMate\Core\Support\Fuzziness\ExactFuzziness
+ * @uses   \BabenkoIvan\ElasticMate\Core\Search\Queries\Fuzziness\AbstractFuzziness
+ * @uses   \BabenkoIvan\ElasticMate\Core\Search\Queries\Fuzziness\AutoFuzziness
+ * @uses   \BabenkoIvan\ElasticMate\Core\Search\Queries\Fuzziness\ExactFuzziness
  */
 final class MatchQueryTest extends TestCase
 {

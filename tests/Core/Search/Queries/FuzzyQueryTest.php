@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Search\Queries;
 
-use BabenkoIvan\ElasticMate\Core\Support\Fuzziness\AutoFuzziness;
+use BabenkoIvan\ElasticMate\Core\Search\Queries\Fuzziness\AutoFuzziness;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \BabenkoIvan\ElasticMate\Core\Search\Queries\FuzzyQuery
- * @uses   \BabenkoIvan\ElasticMate\Core\Support\Fuzziness\AbstractFuzziness
- * @uses   \BabenkoIvan\ElasticMate\Core\Support\Fuzziness\AutoFuzziness
+ * @uses   \BabenkoIvan\ElasticMate\Core\Search\Queries\Fuzziness\AbstractFuzziness
+ * @uses   \BabenkoIvan\ElasticMate\Core\Search\Queries\Fuzziness\AutoFuzziness
  */
 final class FuzzyQueryTest extends TestCase
 {
