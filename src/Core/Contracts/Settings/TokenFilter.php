@@ -36,4 +36,5 @@ interface TokenFilter extends Nameable, Arrayable
     const TYPE_ELISION = 'elision';
     const TYPE_TRUNCATE = 'truncate';
     const TYPE_UNIQUE = 'unique';
+    const TYPE_PATTERN_CAPTURE = 'pattern_capture';
 }
