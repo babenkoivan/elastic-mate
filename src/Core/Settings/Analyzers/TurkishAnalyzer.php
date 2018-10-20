@@ -17,8 +17,7 @@ final class TurkishAnalyzer extends AbstractLanguageAnalyzer
     public function __construct(string $name)
     {
         parent::__construct($name);
-
         $this->type = Analyzer::TYPE_TURKISH;
-        $this->stopWords = Analysis::STOP_WORDS_TURKISH;
+        $this->setStopWords(Analysis::STOP_WORDS_TURKISH);
     }
 }

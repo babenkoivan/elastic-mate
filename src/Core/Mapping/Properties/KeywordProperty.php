@@ -38,9 +38,8 @@ final class KeywordProperty extends AbstractProperty
     public function __construct(string $name)
     {
         parent::__construct($name);
-
-        $this->norms = false;
-        $this->indexOptions = Mapping::INDEX_OPTIONS_DOCS;
+        $this->setNorms(false);
+        $this->setIndexOptions(Mapping::INDEX_OPTIONS_DOCS);
     }
 
     /**

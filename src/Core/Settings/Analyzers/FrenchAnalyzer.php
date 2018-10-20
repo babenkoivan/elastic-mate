@@ -17,8 +17,7 @@ final class FrenchAnalyzer extends AbstractLanguageAnalyzer
     public function __construct(string $name)
     {
         parent::__construct($name);
-
         $this->type = Analyzer::TYPE_FRENCH;
-        $this->stopWords = Analysis::STOP_WORDS_FRENCH;
+        $this->setStopWords(Analysis::STOP_WORDS_FRENCH);
     }
 }

@@ -17,8 +17,7 @@ final class ItalianAnalyzer extends AbstractLanguageAnalyzer
     public function __construct(string $name)
     {
         parent::__construct($name);
-
         $this->type = Analyzer::TYPE_ITALIAN;
-        $this->stopWords = Analysis::STOP_WORDS_ITALIAN;
+        $this->setStopWords(Analysis::STOP_WORDS_ITALIAN);
     }
 }

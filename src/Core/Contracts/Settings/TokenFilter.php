@@ -26,4 +26,6 @@ interface TokenFilter extends Nameable, Arrayable
     const TYPE_STEMMER_OVERRIDE = 'stemmer_override';
     const TYPE_KEYWORD_MAKER = 'keyword_marker';
     const TYPE_KEYWORD_REPEAT = 'keyword_repeat';
+    const TYPE_KSTEM = 'kstem';
+    const TYPE_SNOWBALL = 'snowball';
 }

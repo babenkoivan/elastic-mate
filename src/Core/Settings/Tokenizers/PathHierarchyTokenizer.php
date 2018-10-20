@@ -28,7 +28,7 @@ final class PathHierarchyTokenizer extends AbstractTokenizer
     public function __construct(string $name)
     {
         parent::__construct($name);
-        $this->bufferSize = 1024;
+        $this->setBufferSize(1024);
     }
 
     /**

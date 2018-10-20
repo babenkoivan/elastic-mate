@@ -17,8 +17,7 @@ final class ArabicAnalyzer extends AbstractLanguageAnalyzer
     public function __construct(string $name)
     {
         parent::__construct($name);
-
         $this->type = Analyzer::TYPE_ARABIC;
-        $this->stopWords = Analysis::STOP_WORDS_ARABIC;
+        $this->setStopWords(Analysis::STOP_WORDS_ARABIC);
     }
 }

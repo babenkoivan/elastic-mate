@@ -16,7 +16,7 @@ final class SimplePatternTokenizer extends AbstractTokenizer
     public function __construct(string $name)
     {
         parent::__construct($name);
-        $this->pattern = '';
+        $this->setPattern('');
     }
 
     /**

@@ -19,7 +19,7 @@ final class StopTokenFilter extends AbstractTokenFilter
     public function __construct(string $name)
     {
         parent::__construct($name);
-        $this->stopWords = Analysis::STOP_WORDS_ENGLISH;
+        $this->setStopWords(Analysis::STOP_WORDS_ENGLISH);
     }
 
     /**

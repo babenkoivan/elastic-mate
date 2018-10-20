@@ -17,8 +17,7 @@ final class GermanAnalyzer extends AbstractLanguageAnalyzer
     public function __construct(string $name)
     {
         parent::__construct($name);
-
         $this->type = Analyzer::TYPE_GERMAN;
-        $this->stopWords = Analysis::STOP_WORDS_GERMAN;
+        $this->setStopWords(Analysis::STOP_WORDS_GERMAN);
     }
 }

@@ -22,7 +22,7 @@ final class MultiplexerTokenFilter extends AbstractTokenFilter
     public function __construct(string $name)
     {
         parent::__construct($name);
-        $this->preserveOriginal = true;
+        $this->setPreserveOriginal(true);
         $this->filters = collect();
     }
 
