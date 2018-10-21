@@ -19,12 +19,13 @@ final class StandardAnalyzer extends AbstractAnalyzer
     {
         $analyzer = [
             'type' => Analyzer::TYPE_STANDARD,
-            'max_token_length' => $this->maxTokenLength,
-            'stopwords' => $this->stopWords
+            'max_token_length' => $this->maxTokenLength
         ];
 
         if (isset($this->stopWordsPath)) {
             $analyzer['stopwords_path'] = $this->stopWordsPath;
+        } else {
+            $analyzer['stopwords'] = $this->stopWords;
         }
 
         return $analyzer;

@@ -37,7 +37,6 @@ final class GermanAnalyzerTest extends TestCase
         $this->assertSame(
             [
                 'type' => Analyzer::TYPE_GERMAN,
-                'stopwords' => Analysis::STOP_WORDS_NONE,
                 'stopwords_path' => '/stopwords.txt',
                 'stem_exclusion' => ['beispiel']
             ],

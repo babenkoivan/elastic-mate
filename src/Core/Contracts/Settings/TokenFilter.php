@@ -38,4 +38,16 @@ interface TokenFilter extends Nameable, Arrayable
     const TYPE_PATTERN_CAPTURE = 'pattern_capture';
     const TYPE_PATTERN_REPLACE = 'pattern_replace';
     const TYPE_LIMIT = 'limit';
+    const TYPE_HUNSPELL = 'hunspell';
+    const TYPE_COMMON_GRAMS = 'common_grams';
+    const TYPE_ARABIC_NORMALIZATION = 'arabic_normalization';
+    const TYPE_GERMAN_NORMALIZATION = 'german_normalization';
+    const TYPE_HINDI_NORMALIZATION = 'hindi_normalization';
+    const TYPE_INDIC_NORMALIZATION = 'indic_normalization';
+    const TYPE_SORANI_NORMALIZATION = 'sorani_normalization';
+    const TYPE_PERSIAN_NORMALIZATION = 'persian_normalization';
+    const TYPE_SCANDINAVIAN_NORMALIZATION = 'scandinavian_normalization';
+    const TYPE_SCANDINAVIAN_FOLDING = 'scandinavian_folding';
+    const TYPE_SERBIAN_FOLDING = 'serbian_normalization';
+    const TYPE_CJK_WIDTH = 'cjk_width';
 }

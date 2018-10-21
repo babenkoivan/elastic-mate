@@ -26,12 +26,13 @@ final class PatternAnalyzer extends AbstractAnalyzer
         $analyzer = [
             'type' => Analyzer::TYPE_PATTERN,
             'pattern' => $this->pattern,
-            'lowercase' => $this->isLowerCased,
-            'stopwords' => $this->stopWords
+            'lowercase' => $this->isLowerCased
         ];
 
         if (isset($this->stopWordsPath)) {
             $analyzer['stopwords_path'] = $this->stopWordsPath;
+        } else {
+            $analyzer['stopwords'] = $this->stopWords;
         }
 
         if (isset($this->flags)) {

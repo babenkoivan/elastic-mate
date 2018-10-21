@@ -25,11 +25,12 @@ final class FingerprintAnalyzer extends AbstractAnalyzer
             'type' => Analyzer::TYPE_FINGERPRINT,
             'separator' => $this->separator,
             'max_output_size' => $this->maxOutputSize,
-            'stopwords' => $this->stopWords
         ];
 
         if (isset($this->stopWordsPath)) {
             $analyzer['stopwords_path'] = $this->stopWordsPath;
+        } else {
+            $analyzer['stopwords'] = $this->stopWords;
         }
 
         return $analyzer;

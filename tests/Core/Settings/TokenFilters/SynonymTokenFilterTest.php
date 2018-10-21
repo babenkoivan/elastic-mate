@@ -18,8 +18,7 @@ final class SynonymTokenFilterTest extends TestCase
             ->setExpand(false)
             ->setLenient(true)
             ->setSynonyms('i-pod', collect(['i pod', 'ipod']))
-            ->setSynonyms('universe', collect(['cosmos']))
-            ->setSynonymsPath('/synonyms.txt');
+            ->setSynonyms('universe', collect(['cosmos']));
 
         $this->assertSame(
             [
@@ -29,8 +28,7 @@ final class SynonymTokenFilterTest extends TestCase
                 'synonyms' => [
                     'i-pod, i pod, ipod',
                     'universe, cosmos'
-                ],
-                'synonyms_path' => '/synonyms.txt'
+                ]
             ],
             $tokenFilter->toArray()
         );

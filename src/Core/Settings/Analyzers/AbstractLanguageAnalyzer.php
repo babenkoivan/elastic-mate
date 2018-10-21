@@ -21,12 +21,13 @@ abstract class AbstractLanguageAnalyzer extends AbstractAnalyzer
     public function toArray(): array
     {
         $analyzer = [
-            'type' => $this->type,
-            'stopwords' => $this->stopWords
+            'type' => $this->type
         ];
 
         if (isset($this->stopWordsPath)) {
             $analyzer['stopwords_path'] = $this->stopWordsPath;
+        } else {
+            $analyzer['stopwords'] = $this->stopWords;
         }
 
         if (isset($this->stemExclusion)) {

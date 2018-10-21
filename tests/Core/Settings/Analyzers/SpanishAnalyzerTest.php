@@ -31,14 +31,12 @@ final class SpanishAnalyzerTest extends TestCase
     {
         $analyzer = (new SpanishAnalyzer('foo'))
             ->setStopWords(Analysis::STOP_WORDS_NONE)
-            ->addStemExclusion('ejemplo')
-            ->setStopWordsPath('/stopwords.txt');
+            ->addStemExclusion('ejemplo');
 
         $this->assertSame(
             [
                 'type' => Analyzer::TYPE_SPANISH,
                 'stopwords' => Analysis::STOP_WORDS_NONE,
-                'stopwords_path' => '/stopwords.txt',
                 'stem_exclusion' => ['ejemplo']
             ],
             $analyzer->toArray()

@@ -31,14 +31,12 @@ final class RussianAnalyzerTest extends TestCase
     {
         $analyzer = (new RussianAnalyzer('foo'))
             ->setStopWords(Analysis::STOP_WORDS_NONE)
-            ->addStemExclusion('пример')
-            ->setStopWordsPath('/stopwords.txt');
+            ->addStemExclusion('пример');
 
         $this->assertSame(
             [
                 'type' => Analyzer::TYPE_RUSSIAN,
                 'stopwords' => Analysis::STOP_WORDS_NONE,
-                'stopwords_path' => '/stopwords.txt',
                 'stem_exclusion' => ['пример']
             ],
             $analyzer->toArray()

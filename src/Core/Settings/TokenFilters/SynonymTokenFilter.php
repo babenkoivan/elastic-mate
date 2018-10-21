@@ -86,14 +86,15 @@ final class SynonymTokenFilter extends AbstractTokenFilter
         $tokenFilter = [
             'type' => TokenFilter::TYPE_SYNONYM,
             'expand' => $this->expand,
-            'lenient' => $this->isLenient,
-            'synonyms' => $this->synonyms->map(function (Collection $synonyms, string $word) {
-                return sprintf('%s, %s', $word, $synonyms->implode(', '));
-            })->values()->all()
+            'lenient' => $this->isLenient
         ];
 
         if (isset($this->synonymsPath)) {
             $tokenFilter['synonyms_path'] = $this->synonymsPath;
+        } else {
+            $tokenFilter['synonyms'] = $this->synonyms->map(function (Collection $synonyms, string $word) {
+                return sprintf('%s, %s', $word, $synonyms->implode(', '));
+            })->values()->all();
         }
 
         return $tokenFilter;

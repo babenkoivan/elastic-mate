@@ -27,12 +27,13 @@ final class StopAnalyzer extends AbstractAnalyzer
     public function toArray(): array
     {
         $analyzer = [
-            'type' => Analyzer::TYPE_STOP,
-            'stopwords' => $this->stopWords
+            'type' => Analyzer::TYPE_STOP
         ];
 
         if (isset($this->stopWordsPath)) {
             $analyzer['stopwords_path'] = $this->stopWordsPath;
+        } else {
+            $analyzer['stopwords'] = $this->stopWords;
         }
 
         return $analyzer;

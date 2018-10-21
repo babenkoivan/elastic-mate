@@ -5,24 +5,19 @@ namespace BabenkoIvan\ElasticMate\Core\Settings\TokenFilters;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Settings\TokenFilter;
 use BabenkoIvan\ElasticMate\Core\Settings\Traits\HasPattern;
+use BabenkoIvan\ElasticMate\Core\Settings\Traits\HasReplacement;
 
 final class PatternReplaceTokenFilter extends AbstractTokenFilter
 {
-    use HasPattern;
+    use HasPattern, HasReplacement;
 
     /**
-     * @var string
+     * @param string $name
      */
-    private $replacement = ' ';
-
-    /**
-     * @param string $replacement
-     * @return self
-     */
-    public function setReplacement(string $replacement): self
+    public function __construct(string $name)
     {
-        $this->replacement = $replacement;
-        return $this;
+        parent::__construct($name);
+        $this->setReplacement(' ');
     }
 
     /**

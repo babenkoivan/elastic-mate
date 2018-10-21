@@ -34,8 +34,8 @@ final class StandardAnalyzerTest extends TestCase
     public function dataProvider(): array
     {
         return [
-            ['foo', 64, Analysis::STOP_WORDS_BASQUE, '/stopwords.txt'],
-            ['bar', 128, collect(['stop1', 'stop2']), '/app/stopwords.txt'],
+            ['foo', 64, Analysis::STOP_WORDS_BASQUE],
+            ['bar', 128, collect(['stop1', 'stop2'])],
         ];
     }
 
@@ -45,25 +45,21 @@ final class StandardAnalyzerTest extends TestCase
      * @param string $name
      * @param int $maxTokenLength
      * @param Collection|string $stopWords
-     * @param string $stopWordsPath
      */
     public function test_standard_analyzer_can_be_converted_to_array(
         string $name,
         int $maxTokenLength,
-        $stopWords,
-        string $stopWordsPath
+        $stopWords
     ): void {
         $analyzer = (new StandardAnalyzer($name))
             ->setMaxTokenLength($maxTokenLength)
-            ->setStopWords($stopWords)
-            ->setStopWordsPath($stopWordsPath);
+            ->setStopWords($stopWords);
 
         $this->assertSame(
             [
                 'type' => Analyzer::TYPE_STANDARD,
                 'max_token_length' => $maxTokenLength,
-                'stopwords' => is_string($stopWords) ? $stopWords : $stopWords->values()->all(),
-                'stopwords_path' => $stopWordsPath
+                'stopwords' => is_string($stopWords) ? $stopWords : $stopWords->values()->all()
             ],
             $analyzer->toArray()
         );

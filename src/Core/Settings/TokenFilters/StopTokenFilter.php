@@ -45,12 +45,13 @@ final class StopTokenFilter extends AbstractTokenFilter
         $tokenFilter = [
             'type' => TokenFilter::TYPE_STOP,
             'ignore_case' => $this->ignoreCase,
-            'remove_trailing' => $this->removeTrailing,
-            'stopwords' => $this->stopWords
+            'remove_trailing' => $this->removeTrailing
         ];
 
         if (isset($this->stopWordsPath)) {
             $tokenFilter['stopwords_path'] = $this->stopWordsPath;
+        } else {
+            $tokenFilter['stopwords'] = $this->stopWords;
         }
 
         return $tokenFilter;

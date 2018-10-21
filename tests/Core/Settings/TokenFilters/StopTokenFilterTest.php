@@ -41,7 +41,6 @@ final class StopTokenFilterTest extends TestCase
                 'type' => TokenFilter::TYPE_STOP,
                 'ignore_case' => true,
                 'remove_trailing' => false,
-                'stopwords' => Analysis::STOP_WORDS_NONE,
                 'stopwords_path' => '/stopwords.txt'
             ],
             $tokenFilter->toArray()

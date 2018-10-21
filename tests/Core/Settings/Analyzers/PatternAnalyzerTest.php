@@ -35,8 +35,7 @@ final class PatternAnalyzerTest extends TestCase
             ->addFlag(Analysis::REGEXP_FLAG_CANON_EQ)
             ->addFlag(Analysis::REGEXP_FLAG_CASE_INSENSITIVE)
             ->setLowerCased(false)
-            ->setStopWords(collect(['stop1', 'stop2']))
-            ->setStopWordsPath('/stopwords.txt');
+            ->setStopWords(collect(['stop1', 'stop2']));
 
         $this->assertSame(
             [
@@ -44,7 +43,6 @@ final class PatternAnalyzerTest extends TestCase
                 'pattern' => '([^\p{L}\d]+)',
                 'lowercase' => false,
                 'stopwords' => ['stop1', 'stop2'],
-                'stopwords_path' => '/stopwords.txt',
                 'flags' => sprintf('%s|%s', Analysis::REGEXP_FLAG_CANON_EQ, Analysis::REGEXP_FLAG_CASE_INSENSITIVE)
             ],
             $analyzer->toArray()

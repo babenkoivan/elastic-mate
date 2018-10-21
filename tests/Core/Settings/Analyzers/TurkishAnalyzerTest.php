@@ -31,14 +31,12 @@ final class TurkishAnalyzerTest extends TestCase
     {
         $analyzer = (new TurkishAnalyzer('foo'))
             ->setStopWords(Analysis::STOP_WORDS_NONE)
-            ->addStemExclusion('örnek')
-            ->setStopWordsPath('/stopwords.txt');
+            ->addStemExclusion('örnek');
 
         $this->assertSame(
             [
                 'type' => Analyzer::TYPE_TURKISH,
                 'stopwords' => Analysis::STOP_WORDS_NONE,
-                'stopwords_path' => '/stopwords.txt',
                 'stem_exclusion' => ['örnek']
             ],
             $analyzer->toArray()

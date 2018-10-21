@@ -35,7 +35,6 @@ final class StopAnalyzerTest extends TestCase
         $this->assertSame(
             [
                 'type' => Analyzer::TYPE_STOP,
-                'stopwords' => Analysis::STOP_WORDS_BRAZILIAN,
                 'stopwords_path' => '/bar.txt'
             ],
             $analyzer->toArray()

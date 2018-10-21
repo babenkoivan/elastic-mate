@@ -41,7 +41,6 @@ final class FingerprintAnalyzerTest extends TestCase
                 'type' => Analyzer::TYPE_FINGERPRINT,
                 'separator' => '|',
                 'max_output_size' => 128,
-                'stopwords' => Analysis::STOP_WORDS_ENGLISH,
                 'stopwords_path' => '/stopwords.txt'
             ],
             $analyzer->toArray()
