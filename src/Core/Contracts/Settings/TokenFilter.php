@@ -37,4 +37,5 @@ interface TokenFilter extends Nameable, Arrayable
     const TYPE_UNIQUE = 'unique';
     const TYPE_PATTERN_CAPTURE = 'pattern_capture';
     const TYPE_PATTERN_REPLACE = 'pattern_replace';
+    const TYPE_LIMIT = 'limit';
 }
