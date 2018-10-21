@@ -4,9 +4,12 @@ declare(strict_types=1);
 namespace BabenkoIvan\ElasticMate\Core\Settings\TokenFilters;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Settings\TokenFilter;
+use BabenkoIvan\ElasticMate\Core\Settings\Traits\CanOutputUnigrams;
 
 final class ShingleTokenFilter extends AbstractTokenFilter
 {
+    use CanOutputUnigrams;
+
     /**
      * @var int
      */
@@ -16,11 +19,6 @@ final class ShingleTokenFilter extends AbstractTokenFilter
      * @var int
      */
     private $minShingleSize = 2;
-
-    /**
-     * @var bool
-     */
-    private $outputUnigrams = true;
 
     /**
      * @var bool
@@ -54,16 +52,6 @@ final class ShingleTokenFilter extends AbstractTokenFilter
     public function setMinShingleSize(int $minShingleSize): self
     {
         $this->minShingleSize = $minShingleSize;
-        return $this;
-    }
-
-    /**
-     * @param bool $outputUnigrams
-     * @return self
-     */
-    public function setOutputUnigrams(bool $outputUnigrams): self
-    {
-        $this->outputUnigrams = $outputUnigrams;
         return $this;
     }
 

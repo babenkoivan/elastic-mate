@@ -117,6 +117,11 @@ class Analysis implements Arrayable
     const LANGUAGE_LIGHT_SWEDISH = 'light_swedish';
     const LANGUAGE_TURKISH = 'turkish';
 
+    const SCRIPT_HAN = 'han';
+    const SCRIPT_HIRAGANA = 'hiragana';
+    const SCRIPT_KATAKANA = 'katakana';
+    const SCRIPT_HANGUL = 'hangul';
+
     /**
      * @var Collection
      */
