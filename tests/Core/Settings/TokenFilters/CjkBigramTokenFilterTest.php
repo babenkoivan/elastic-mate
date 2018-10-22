@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace BabenkoIvan\ElasticMate\Core\Settings\TokenFilters;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Settings\TokenFilter;
-use BabenkoIvan\ElasticMate\Core\Settings\Analysis;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -30,16 +29,16 @@ final class CjkBigramTokenFilterTest extends TestCase
     {
         $tokenFilter = (new CjkBigramTokenFilter('foo'))
             ->setOutputUnigrams(false)
-            ->addIgnoredScript(Analysis::SCRIPT_HANGUL)
-            ->addIgnoredScript(Analysis::SCRIPT_KATAKANA);
+            ->addIgnoredScript(CjkBigramTokenFilter::SCRIPT_HANGUL)
+            ->addIgnoredScript(CjkBigramTokenFilter::SCRIPT_KATAKANA);
 
         $this->assertSame(
             [
                 'type' => TokenFilter::TYPE_CJK_BIGRAM,
                 'output_unigrams' => false,
                 'ignored_scripts' => [
-                    Analysis::SCRIPT_HANGUL,
-                    Analysis::SCRIPT_KATAKANA
+                    CjkBigramTokenFilter::SCRIPT_HANGUL,
+                    CjkBigramTokenFilter::SCRIPT_KATAKANA
                 ]
             ],
             $tokenFilter->toArray()

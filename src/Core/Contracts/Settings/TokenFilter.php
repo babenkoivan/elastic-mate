@@ -52,4 +52,5 @@ interface TokenFilter extends Nameable, Arrayable
     const TYPE_CJK_WIDTH = 'cjk_width';
     const TYPE_CJK_BIGRAM = 'cjk_bigram';
     const TYPE_KEEP = 'keep';
+    const TYPE_KEEP_TYPES = 'keep_types';
 }

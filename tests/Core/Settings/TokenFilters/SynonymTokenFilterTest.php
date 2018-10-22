@@ -12,6 +12,21 @@ use PHPUnit\Framework\TestCase;
  */
 final class SynonymTokenFilterTest extends TestCase
 {
+    public function test_synonym_token_filter_has_correct_default_values(): void
+    {
+        $tokenFilter = new SynonymTokenFilter('foo');
+
+        $this->assertSame(
+            [
+                'type' => TokenFilter::TYPE_SYNONYM,
+                'expand' => true,
+                'lenient' => false,
+                'synonyms' => []
+            ],
+            $tokenFilter->toArray()
+        );
+    }
+
     public function test_synonym_token_filter_can_be_converted_to_array(): void
     {
         $tokenFilter = (new SynonymTokenFilter('foo'))

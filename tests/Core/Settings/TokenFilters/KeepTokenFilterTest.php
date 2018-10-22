@@ -12,12 +12,26 @@ use PHPUnit\Framework\TestCase;
  */
 final class KeepTokenFilterTest extends TestCase
 {
+    public function test_keep_token_filter_has_correct_default_values(): void
+    {
+        $tokenFilter = new KeepTokenFilter('foo');
+
+        $this->assertSame(
+            [
+                'type' => TokenFilter::TYPE_KEEP,
+                'keep_words_case' => false,
+                'keep_words' => []
+            ],
+            $tokenFilter->toArray()
+        );
+    }
+
     public function test_keep_token_filter_can_be_converted_to_array(): void
     {
         $tokenFilter = (new KeepTokenFilter('foo'))
             ->setKeepWordsCase(true)
-            ->addKeepWord('one')
-            ->addKeepWord('two');
+            ->keepWord('one')
+            ->keepWord('two');
 
         $this->assertSame(
             [
