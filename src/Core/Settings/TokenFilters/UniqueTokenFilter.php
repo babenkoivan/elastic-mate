@@ -4,11 +4,23 @@ declare(strict_types=1);
 namespace BabenkoIvan\ElasticMate\Core\Settings\TokenFilters;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Settings\TokenFilter;
-use BabenkoIvan\ElasticMate\Core\Settings\Traits\CanBeAppliedOnlyOnSamePosition;
 
 final class UniqueTokenFilter extends AbstractTokenFilter
 {
-    use CanBeAppliedOnlyOnSamePosition;
+    /**
+     * @var bool
+     */
+    private $onlyOnSamePosition = true;
+
+    /**
+     * @param bool $onlyOnSamePosition
+     * @return self
+     */
+    public function setOnlyOnSamePosition(bool $onlyOnSamePosition): self
+    {
+        $this->onlyOnSamePosition = $onlyOnSamePosition;
+        return $this;
+    }
 
     /**
      * @inheritdoc
