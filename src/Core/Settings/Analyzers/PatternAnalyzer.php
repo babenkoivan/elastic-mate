@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace BabenkoIvan\ElasticMate\Core\Settings\Analyzers;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Settings\Analyzer;
-use BabenkoIvan\ElasticMate\Core\Settings\Traits\CanBeLowerCased;
 use BabenkoIvan\ElasticMate\Core\Settings\Traits\HasFlags;
 use BabenkoIvan\ElasticMate\Core\Settings\Traits\HasPattern;
 use BabenkoIvan\ElasticMate\Core\Settings\Traits\HasStopWords;
@@ -14,9 +13,23 @@ final class PatternAnalyzer extends AbstractAnalyzer
 {
     use HasPattern,
         HasFlags,
-        CanBeLowerCased,
         HasStopWords,
         HasStopWordsPath;
+
+    /**
+     * @var bool
+     */
+    private $isLowerCased = true;
+
+    /**
+     * @param bool $isLowerCased
+     * @return self
+     */
+    public function setLowerCased(bool $isLowerCased): self
+    {
+        $this->isLowerCased = $isLowerCased;
+        return $this;
+    }
 
     /**
      * @inheritdoc

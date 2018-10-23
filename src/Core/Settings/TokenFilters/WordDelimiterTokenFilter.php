@@ -5,7 +5,7 @@ namespace BabenkoIvan\ElasticMate\Core\Settings\TokenFilters;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Settings\TokenFilter;
 
-final class NgramTokenFilter extends AbstractNgramTokenFilter
+final class WordDelimiterTokenFilter extends AbstractWordDelimiterTokenFilter
 {
     /**
      * @param string $name
@@ -13,6 +13,6 @@ final class NgramTokenFilter extends AbstractNgramTokenFilter
     public function __construct(string $name)
     {
         parent::__construct($name);
-        $this->type = TokenFilter::TYPE_NGRAM;
+        $this->type = TokenFilter::TYPE_WORD_DELIMITER;
     }
 }

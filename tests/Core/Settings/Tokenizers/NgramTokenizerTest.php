@@ -9,6 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \BabenkoIvan\ElasticMate\Core\Settings\Tokenizers\NgramTokenizer
+ * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Tokenizers\AbstractNgramTokenizer
  * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Tokenizers\AbstractTokenizer
  */
 final class NgramTokenizerTest extends TestCase

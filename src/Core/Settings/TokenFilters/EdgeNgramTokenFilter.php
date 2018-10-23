@@ -4,22 +4,15 @@ declare(strict_types=1);
 namespace BabenkoIvan\ElasticMate\Core\Settings\TokenFilters;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Settings\TokenFilter;
-use BabenkoIvan\ElasticMate\Core\Settings\Traits\HasMaxGram;
-use BabenkoIvan\ElasticMate\Core\Settings\Traits\HasMinGram;
 
-final class EdgeNgramTokenFilter extends AbstractTokenFilter
+final class EdgeNgramTokenFilter extends AbstractNgramTokenFilter
 {
-    use HasMinGram, HasMaxGram;
-
     /**
-     * @inheritdoc
+     * @param string $name
      */
-    public function toArray(): array
+    public function __construct(string $name)
     {
-        return [
-            'type' => TokenFilter::TYPE_EDGE_NGRAM,
-            'min_gram' => $this->minGram,
-            'max_gram' => $this->maxGram
-        ];
+        parent::__construct($name);
+        $this->type = TokenFilter::TYPE_EDGE_NGRAM;
     }
 }

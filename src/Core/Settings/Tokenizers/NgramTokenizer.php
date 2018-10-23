@@ -4,29 +4,15 @@ declare(strict_types=1);
 namespace BabenkoIvan\ElasticMate\Core\Settings\Tokenizers;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Settings\Tokenizer;
-use BabenkoIvan\ElasticMate\Core\Settings\Traits\HasMaxGram;
-use BabenkoIvan\ElasticMate\Core\Settings\Traits\HasMinGram;
-use BabenkoIvan\ElasticMate\Core\Settings\Traits\HasTokenChars;
 
-final class NgramTokenizer extends AbstractTokenizer
+final class NgramTokenizer extends AbstractNgramTokenizer
 {
-    use HasMinGram, HasMaxGram, HasTokenChars;
-
     /**
-     * @inheritdoc
+     * @param string $name
      */
-    public function toArray(): array
+    public function __construct(string $name)
     {
-        $tokenizer = [
-            'type' => Tokenizer::TYPE_NGRAM,
-            'min_gram' => $this->minGram,
-            'max_gram' => $this->maxGram
-        ];
-
-        if (isset($this->tokenChars)) {
-            $tokenizer['token_chars'] = $this->tokenChars->values()->all();
-        }
-
-        return $tokenizer;
+        parent::__construct($name);
+        $this->type = Tokenizer::TYPE_NGRAM;
     }
 }

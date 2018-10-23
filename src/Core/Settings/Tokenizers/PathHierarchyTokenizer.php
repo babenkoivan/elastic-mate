@@ -5,12 +5,16 @@ namespace BabenkoIvan\ElasticMate\Core\Settings\Tokenizers;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Settings\Tokenizer;
 use BabenkoIvan\ElasticMate\Core\Settings\Traits\HasBufferSize;
-use BabenkoIvan\ElasticMate\Core\Settings\Traits\HasDelimiter;
 use BabenkoIvan\ElasticMate\Core\Settings\Traits\HasReplacement;
 
 final class PathHierarchyTokenizer extends AbstractTokenizer
 {
-    use HasDelimiter, HasReplacement, HasBufferSize;
+    use HasReplacement, HasBufferSize;
+
+    /**
+     * @var string
+     */
+    private $delimiter = '/';
 
     /**
      * @var bool
@@ -29,6 +33,16 @@ final class PathHierarchyTokenizer extends AbstractTokenizer
     {
         parent::__construct($name);
         $this->setBufferSize(1024);
+    }
+
+    /**
+     * @param string $delimiter
+     * @return self
+     */
+    public function setDelimiter(string $delimiter): self
+    {
+        $this->delimiter = $delimiter;
+        return $this;
     }
 
     /**

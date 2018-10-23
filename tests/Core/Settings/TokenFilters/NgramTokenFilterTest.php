@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\NgramTokenFilter
+ * @uses   \BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\AbstractNgramTokenFilter
  * @uses   \BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\AbstractTokenFilter
  */
 final class NgramTokenFilterTest extends TestCase

@@ -8,7 +8,7 @@ trait HasStopWordsPath
     /**
      * @var string
      */
-    protected $stopWordsPath;
+    private $stopWordsPath;
 
     /**
      * @param string $stopWordsPath
