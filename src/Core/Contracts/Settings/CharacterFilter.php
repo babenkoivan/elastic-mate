@@ -10,4 +10,5 @@ interface CharacterFilter extends Nameable, Arrayable
 {
     const TYPE_HTML_STRIP = 'html_strip';
     const TYPE_MAPPING = 'mapping';
+    const TYPE_PATTERN_REPLACE = 'pattern_replace';
 }
