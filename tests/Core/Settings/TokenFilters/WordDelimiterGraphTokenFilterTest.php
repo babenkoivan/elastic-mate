@@ -78,8 +78,8 @@ final class WordDelimiterGraphTokenFilterTest extends TestCase
             ->setPreserveOriginal(true)
             ->setSplitOnNumerics(false)
             ->setStemEnglishPossessive(false)
-            ->addProtectedWord('protectedWord1')
-            ->addProtectedWord('protectedWord2');
+            ->protectWord('protectedWord1')
+            ->protectWord('protectedWord2');
 
         $this->assertSame(
             [

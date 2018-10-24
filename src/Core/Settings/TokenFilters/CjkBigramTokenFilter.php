@@ -34,7 +34,7 @@ final class CjkBigramTokenFilter extends AbstractTokenFilter
      * @param string $script
      * @return self
      */
-    public function addIgnoredScript(string $script): self
+    public function ignoreScript(string $script): self
     {
         $this->ignoredScripts->push($script);
         return $this;

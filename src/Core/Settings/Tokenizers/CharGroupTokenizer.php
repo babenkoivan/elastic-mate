@@ -11,7 +11,7 @@ final class CharGroupTokenizer extends AbstractTokenizer
     /**
      * @var Collection
      */
-    private $chars;
+    private $tokenizeOnChars;
 
     /**
      * @param string $name
@@ -19,16 +19,16 @@ final class CharGroupTokenizer extends AbstractTokenizer
     public function __construct(string $name)
     {
         parent::__construct($name);
-        $this->chars = collect();
+        $this->tokenizeOnChars = collect();
     }
 
     /**
      * @param string $char
      * @return self
      */
-    public function addChar(string $char): self
+    public function tokenizeOnChar(string $char): self
     {
-        $this->chars->push($char);
+        $this->tokenizeOnChars->push($char);
         return $this;
     }
     
@@ -41,8 +41,8 @@ final class CharGroupTokenizer extends AbstractTokenizer
             'type' => Tokenizer::TYPE_CHAR_GROUP
         ];
 
-        if ($this->chars->count() > 0) {
-            $tokenizer['tokenize_on_chars'] = $this->chars->values()->all();
+        if ($this->tokenizeOnChars->count() > 0) {
+            $tokenizer['tokenize_on_chars'] = $this->tokenizeOnChars->values()->all();
         }
 
         return $tokenizer;
