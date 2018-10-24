@@ -9,4 +9,5 @@ use BabenkoIvan\ElasticMate\Core\Contracts\Nameable;
 interface CharacterFilter extends Nameable, Arrayable
 {
     const TYPE_HTML_STRIP = 'html_strip';
+    const TYPE_MAPPING = 'mapping';
 }

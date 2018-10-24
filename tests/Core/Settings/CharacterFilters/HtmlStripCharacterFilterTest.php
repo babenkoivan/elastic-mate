@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \BabenkoIvan\ElasticMate\Core\Settings\CharacterFilters\HtmlStripCharacterFilter
- * @covers \BabenkoIvan\ElasticMate\Core\Settings\CharacterFilters\AbstractCharacterFilter
+ * @uses   \BabenkoIvan\ElasticMate\Core\Settings\CharacterFilters\AbstractCharacterFilter
  */
 final class HtmlStripCharacterFilterTest extends TestCase
 {
