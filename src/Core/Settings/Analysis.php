@@ -5,6 +5,9 @@ namespace BabenkoIvan\ElasticMate\Core\Settings;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Arrayable;
 use BabenkoIvan\ElasticMate\Core\Contracts\Settings\Analyzer;
+use BabenkoIvan\ElasticMate\Core\Contracts\Settings\CharacterFilter;
+use BabenkoIvan\ElasticMate\Core\Contracts\Settings\TokenFilter;
+use BabenkoIvan\ElasticMate\Core\Contracts\Settings\Tokenizer;
 use Illuminate\Support\Collection;
 
 class Analysis implements Arrayable
@@ -127,9 +130,27 @@ class Analysis implements Arrayable
      */
     private $analyzers;
 
+    /**
+     * @var Collection
+     */
+    private $tokenizers;
+
+    /**
+     * @var Collection
+     */
+    private $charFilters;
+
+    /**
+     * @var Collection
+     */
+    private $tokenFilters;
+
     public function __construct()
     {
         $this->analyzers = collect();
+        $this->tokenizers = collect();
+        $this->charFilters = collect();
+        $this->tokenFilters = collect();
     }
 
     /**
@@ -143,20 +164,64 @@ class Analysis implements Arrayable
     }
 
     /**
+     * @param Tokenizer $tokenizer
+     * @return self
+     */
+    public function addTokenizer(Tokenizer $tokenizer): self
+    {
+        $this->tokenizers->push($tokenizer);
+        return $this;
+    }
+
+    /**
+     * @param CharacterFilter $charFilter
+     * @return self
+     */
+    public function addCharFilter(CharacterFilter $charFilter): self
+    {
+        $this->charFilters->push($charFilter);
+        return $this;
+    }
+
+    /**
+     * @param TokenFilter $tokenFilter
+     * @return self
+     */
+    public function addTokenFilter(TokenFilter $tokenFilter): self
+    {
+        $this->tokenFilters->push($tokenFilter);
+        return $this;
+    }
+
+    /**
      * @inheritdoc
      */
     public function toArray(): array
     {
         $analysis = [];
 
-        $analyzers = $this->analyzers->mapWithKeys(function (Analyzer $analyzer) {
-            return [
-                $analyzer->getName() => $analyzer->toArray()
-            ];
-        });
+        if ($this->analyzers->count() > 0) {
+            $analysis['analyzer'] = $this->analyzers->mapWithKeys(function (Analyzer $analyzer) {
+                return [$analyzer->getName() => $analyzer->toArray()];
+            })->all();
+        }
 
-        if ($analyzers->count() > 0) {
-            $analysis['analyzer'] = $analyzers->all();
+        if ($this->tokenizers->count() > 0) {
+            $analysis['tokenizer'] = $this->tokenizers->mapWithKeys(function (Tokenizer $tokenizer) {
+                return [$tokenizer->getName() => $tokenizer->toArray()];
+            })->all();
+        }
+
+        if ($this->charFilters->count() > 0) {
+            $analysis['char_filter'] = $this->charFilters->mapWithKeys(function (CharacterFilter $characterFilter) {
+                return [$characterFilter->getName() => $characterFilter->toArray()];
+            })->all();
+        }
+
+        if ($this->tokenFilters->count() > 0) {
+            $analysis['filter'] = $this->tokenFilters->mapWithKeys(function (TokenFilter $tokenFilter) {
+                return [$tokenFilter->getName() => $tokenFilter->toArray()];
+            })->all();
         }
 
         return $analysis;
