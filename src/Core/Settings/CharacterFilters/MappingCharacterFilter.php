@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace BabenkoIvan\ElasticMate\Core\Settings\CharacterFilters;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Settings\CharacterFilter;
-use BabenkoIvan\ElasticMate\Core\Settings\Support\Mapping;
+use BabenkoIvan\ElasticMate\Core\Settings\Support\CharMapping;
 use Illuminate\Support\Collection;
 
 final class MappingCharacterFilter extends AbstractCharacterFilter
@@ -29,10 +29,10 @@ final class MappingCharacterFilter extends AbstractCharacterFilter
     }
 
     /**
-     * @param Mapping $mapping
+     * @param CharMapping $mapping
      * @return self
      */
-    public function addMapping(Mapping $mapping): self
+    public function addMapping(CharMapping $mapping): self
     {
         $this->mappings->push($mapping);
         return $this;
@@ -60,7 +60,7 @@ final class MappingCharacterFilter extends AbstractCharacterFilter
         if (isset($this->mappingsPath)) {
             $characterFilter['mappings_path'] = $this->mappingsPath;
         } else {
-            $characterFilter['mappings'] = $this->mappings->map(function(Mapping $mapping) {
+            $characterFilter['mappings'] = $this->mappings->map(function(CharMapping $mapping) {
                 return $mapping->toString();
             })->values()->all();
         }

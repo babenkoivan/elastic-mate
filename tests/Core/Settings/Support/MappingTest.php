@@ -6,7 +6,7 @@ namespace BabenkoIvan\ElasticMate\Core\Settings\Support;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \BabenkoIvan\ElasticMate\Core\Settings\Support\Mapping
+ * @covers \BabenkoIvan\ElasticMate\Core\Settings\Support\CharMapping
  */
 final class MappingTest extends TestCase
 {
@@ -14,7 +14,7 @@ final class MappingTest extends TestCase
     {
         $this->assertSame(
             'foo => bar',
-            (new Mapping('foo', 'bar'))->toString()
+            (new CharMapping('foo', 'bar'))->toString()
         );
     }
 }
