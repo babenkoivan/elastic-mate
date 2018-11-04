@@ -28,8 +28,8 @@ final class CharGroupTokenizerTest extends TestCase
     public function test_char_group_tokenizer_can_be_converted_to_array(): void
     {
         $tokenizer = (new CharGroupTokenizer('foo'))
-            ->tokenizeOnChar('-')
-            ->tokenizeOnChar(Analysis::CHAR_GROUP_LETTER);
+            ->addChar('-')
+            ->addChar(Analysis::CHAR_GROUP_LETTER);
 
         $this->assertSame(
             [

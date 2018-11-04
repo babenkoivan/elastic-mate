@@ -26,7 +26,7 @@ final class HtmlStripCharacterFilter extends AbstractCharacterFilter
      * @param string $escapedTag
      * @return self
      */
-    public function escapeTag(string $escapedTag): self
+    public function addEscapedTag(string $escapedTag): self
     {
         $this->escapedTags->push($escapedTag);
         return $this;

@@ -30,8 +30,8 @@ final class KeepTokenFilterTest extends TestCase
     {
         $tokenFilter = (new KeepTokenFilter('foo'))
             ->setKeepWordsCase(true)
-            ->keepWord('one')
-            ->keepWord('two');
+            ->addKeepWord('one')
+            ->addKeepWord('two');
 
         $this->assertSame(
             [

@@ -33,12 +33,12 @@ final class KeepTokenFilter extends AbstractTokenFilter
     }
 
     /**
-     * @param string $word
+     * @param string $keepWord
      * @return self
      */
-    public function keepWord(string $word): self
+    public function addKeepWord(string $keepWord): self
     {
-        $this->keepWords->push($word);
+        $this->keepWords->push($keepWord);
         return $this;
     }
 

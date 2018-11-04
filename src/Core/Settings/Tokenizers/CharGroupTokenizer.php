@@ -26,7 +26,7 @@ final class CharGroupTokenizer extends AbstractTokenizer
      * @param string $char
      * @return self
      */
-    public function tokenizeOnChar(string $char): self
+    public function addChar(string $char): self
     {
         $this->tokenizeOnChars->push($char);
         return $this;

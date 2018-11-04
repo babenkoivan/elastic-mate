@@ -29,8 +29,8 @@ final class CjkBigramTokenFilterTest extends TestCase
     {
         $tokenFilter = (new CjkBigramTokenFilter('foo'))
             ->setOutputUnigrams(false)
-            ->ignoreScript(CjkBigramTokenFilter::SCRIPT_HANGUL)
-            ->ignoreScript(CjkBigramTokenFilter::SCRIPT_KATAKANA);
+            ->addIgnoredScript(CjkBigramTokenFilter::SCRIPT_HANGUL)
+            ->addIgnoredScript(CjkBigramTokenFilter::SCRIPT_KATAKANA);
 
         $this->assertSame(
             [

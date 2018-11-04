@@ -158,7 +158,7 @@ abstract class AbstractWordDelimiterTokenFilter extends AbstractTokenFilter
      * @param string $protectedWord
      * @return self
      */
-    public function protectWord(string $protectedWord): self
+    public function addProtectedWord(string $protectedWord): self
     {
         $this->protectedWords->push($protectedWord);
         return $this;

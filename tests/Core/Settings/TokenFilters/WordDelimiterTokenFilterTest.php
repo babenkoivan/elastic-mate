@@ -78,8 +78,8 @@ final class WordDelimiterTokenFilterTest extends TestCase
             ->setPreserveOriginal(true)
             ->setSplitOnNumerics(false)
             ->setStemEnglishPossessive(false)
-            ->protectWord('protectedWord1')
-            ->protectWord('protectedWord2');
+            ->addProtectedWord('protectedWord1')
+            ->addProtectedWord('protectedWord2');
 
         $this->assertSame(
             [

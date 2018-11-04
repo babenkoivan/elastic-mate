@@ -15,8 +15,8 @@ final class HtmlStripCharacterFilterTest extends TestCase
     public function test_html_strip_character_filter_can_be_converted_to_array(): void
     {
         $characterFilter = (new HtmlStripCharacterFilter('foo'))
-            ->escapeTag('b')
-            ->escapeTag('a');
+            ->addEscapedTag('b')
+            ->addEscapedTag('a');
 
         $this->assertSame(
             [

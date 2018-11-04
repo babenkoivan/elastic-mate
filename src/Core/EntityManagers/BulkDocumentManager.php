@@ -29,7 +29,7 @@ final class BulkDocumentManager implements DocumentManager
     /**
      * @inheritdoc
      */
-    public function index(Index $index, Collection $collection, bool $force = false): DocumentManager
+    public function index(Index $index, Collection $documents, bool $force = false): DocumentManager
     {
         $payload = [
             'index' => $index->getName(),
@@ -37,7 +37,7 @@ final class BulkDocumentManager implements DocumentManager
             'body' => []
         ];
 
-        $collection->each(function (Document $document) use (&$payload) {
+        $documents->each(function (Document $document) use (&$payload) {
             $payload['body'][] = [
                 'index' => [
                     '_id' => $document->getId()
@@ -60,7 +60,7 @@ final class BulkDocumentManager implements DocumentManager
     /**
      * @inheritdoc
      */
-    public function delete(Index $index, Collection $collection, bool $force = false): DocumentManager
+    public function delete(Index $index, Collection $documents, bool $force = false): DocumentManager
     {
         $payload = [
             'index' => $index->getName(),
@@ -68,7 +68,7 @@ final class BulkDocumentManager implements DocumentManager
             'body' => []
         ];
 
-        $collection->each(function (Document $document) use (&$payload) {
+        $documents->each(function (Document $document) use (&$payload) {
             $payload['body'][] = [
                 'delete' => [
                     '_id' => $document->getId()
