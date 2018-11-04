@@ -7,30 +7,39 @@ use BabenkoIvan\ElasticMate\Core\Mapping\Mapping;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanEagerGlobalOrdinals;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanBeIndexed;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanBeStored;
-use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanSplitQueriesOnWhitespace;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasBoost;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanUseDocValues;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasIndexOptions;
-use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasNormalizer;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanUseNorms;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasNullValue;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasSimilarity;
-use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\IgnoresAbove;
 
 final class KeywordProperty extends AbstractProperty
 {
     use HasBoost,
         CanUseDocValues,
         CanEagerGlobalOrdinals,
-        IgnoresAbove,
         CanBeIndexed,
         HasIndexOptions,
         CanUseNorms,
         HasNullValue,
         CanBeStored,
-        HasSimilarity,
-        HasNormalizer,
-        CanSplitQueriesOnWhitespace;
+        HasSimilarity;
+
+    /**
+     * @var int
+     */
+    private $ignoreAbove = 2147483647;
+
+    /**
+     * @var string|null
+     */
+    private $normalizer = null;
+
+    /**
+     * @var bool
+     */
+    private $splitQueriesOnWhitespace = false;
 
     /**
      * @param string $name
@@ -40,6 +49,36 @@ final class KeywordProperty extends AbstractProperty
         parent::__construct($name);
         $this->setNorms(false);
         $this->setIndexOptions(Mapping::INDEX_OPTIONS_DOCS);
+    }
+
+    /**
+     * @param int $ignoreAbove
+     * @return self
+     */
+    public function setIgnoreAbove(int $ignoreAbove): self
+    {
+        $this->ignoreAbove = $ignoreAbove;
+        return $this;
+    }
+
+    /**
+     * @param string $normalizer
+     * @return self
+     */
+    public function setNormalizer(string $normalizer): self
+    {
+        $this->normalizer = $normalizer;
+        return $this;
+    }
+
+    /**
+     * @param bool $splitQueriesOnWhitespace
+     * @return self
+     */
+    public function setSplitQueriesOnWhitespace(bool $splitQueriesOnWhitespace): self
+    {
+        $this->splitQueriesOnWhitespace = $splitQueriesOnWhitespace;
+        return $this;
     }
 
     /**

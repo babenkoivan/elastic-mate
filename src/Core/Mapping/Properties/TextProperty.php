@@ -3,33 +3,99 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Mapping\Properties;
 
+use BabenkoIvan\ElasticMate\Core\Mapping\Mapping;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanEagerGlobalOrdinals;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanBeIndexed;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanBeStored;
-use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasAnalyzer;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasBoost;
-use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanUseFieldData;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasIndexOptions;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanUseNorms;
-use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasSearchQuoteAnalyzer;
-use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasSearchAnalyzer;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasSimilarity;
-use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasTermVector;
 
 final class TextProperty extends AbstractProperty
 {
-    use HasAnalyzer,
-        HasBoost,
+    use HasBoost,
         CanEagerGlobalOrdinals,
-        CanUseFieldData,
         CanBeIndexed,
         HasIndexOptions,
         CanUseNorms,
         CanBeStored,
-        HasSearchAnalyzer,
-        HasSearchQuoteAnalyzer,
-        HasSimilarity,
-        HasTermVector;
+        HasSimilarity;
+
+    /**
+     * @var bool
+     */
+    private $fieldData = false;
+
+    /**
+     * @var string
+     */
+    private $termVector = Mapping::TERM_VECTOR_NO;
+
+    /**
+     * @var string|null
+     */
+    private $analyzer;
+
+    /**
+     * @var string|null
+     */
+    private $searchAnalyzer;
+
+    /**
+     * @var string|null
+     */
+    private $searchQuoteAnalyzer;
+
+    /**
+     * @param bool $fieldData
+     * @return self
+     */
+    public function setFieldData(bool $fieldData): self
+    {
+        $this->fieldData = $fieldData;
+        return $this;
+    }
+
+    /**
+     * @param string $termVector
+     * @return self
+     */
+    public function setTermVector(string $termVector): self
+    {
+        $this->termVector = $termVector;
+        return $this;
+    }
+
+    /**
+     * @param string $analyzer
+     * @return self
+     */
+    public function setAnalyzer(string $analyzer): self
+    {
+        $this->analyzer = $analyzer;
+        return $this;
+    }
+
+    /**
+     * @param string $searchAnalyzer
+     * @return self
+     */
+    public function setSearchAnalyzer(string $searchAnalyzer): self
+    {
+        $this->searchAnalyzer = $searchAnalyzer;
+        return $this;
+    }
+
+    /**
+     * @param string $searchQuoteAnalyzer
+     * @return self
+     */
+    public function setSearchQuoteAnalyzer(string $searchQuoteAnalyzer): self
+    {
+        $this->searchQuoteAnalyzer = $searchQuoteAnalyzer;
+        return $this;
+    }
 
     /**
      * @inheritdoc
