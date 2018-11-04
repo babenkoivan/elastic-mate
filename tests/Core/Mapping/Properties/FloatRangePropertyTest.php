@@ -31,10 +31,10 @@ final class FloatRangePropertyTest extends TestCase
     public function test_float_range_property_can_be_converted_to_array(): void
     {
         $property = (new FloatRangeProperty('foo'))
-            ->setCoerced(false)
+            ->setCoerce(false)
             ->setBoost(1.2)
-            ->setIndexed(false)
-            ->setStored(true);
+            ->setIndex(false)
+            ->setStore(true);
 
         $this->assertSame(
             [

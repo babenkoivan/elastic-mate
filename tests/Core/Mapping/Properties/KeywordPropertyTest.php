@@ -40,8 +40,8 @@ final class KeywordPropertyTest extends TestCase
     {
         $keywordProperty = (new KeywordProperty('foo'))
             ->setDocValues(false)
-            ->setStored(true)
-            ->setIndexed(false)
+            ->setStore(true)
+            ->setIndex(false)
             ->setNormalizer('bar')
             ->setEagerGlobalOrdinals(true)
             ->setIgnoreAbove(1028)

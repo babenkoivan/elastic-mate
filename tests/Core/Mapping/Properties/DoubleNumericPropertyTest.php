@@ -34,13 +34,13 @@ final class DoubleNumericPropertyTest extends TestCase
     public function test_double_numeric_property_can_be_converted_to_array(): void
     {
         $property = (new DoubleNumericProperty('foo'))
-            ->setCoerced(false)
+            ->setCoerce(false)
             ->setBoost(1.7)
             ->setDocValues(false)
             ->setIgnoreMalformed(true)
-            ->setIndexed(false)
+            ->setIndex(false)
             ->setNullValue('NULL')
-            ->setStored(true);
+            ->setStore(true);
 
         $this->assertSame(
             [

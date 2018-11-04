@@ -27,10 +27,10 @@ abstract class AbstractRangeProperty extends AbstractProperty
     {
         return [
             'type' => $this->type,
-            'coerce' => $this->isCoerced,
+            'coerce' => $this->coerce,
             'boost' => $this->boost,
-            'index' => $this->isIndexed,
-            'store' => $this->isStored
+            'index' => $this->index,
+            'store' => $this->store
         ];
     }
 }

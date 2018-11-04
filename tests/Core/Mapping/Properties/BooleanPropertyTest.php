@@ -32,8 +32,8 @@ final class BooleanPropertyTest extends TestCase
     {
         $booleanProperty = (new BooleanProperty('foo'))
             ->setDocValues(true)
-            ->setStored(true)
-            ->setIndexed(false)
+            ->setStore(true)
+            ->setIndex(false)
             ->setNullValue('NULL')
             ->setBoost(1.1);
 

@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits;
 
-trait CanBeCoerced
+trait CanUseDocValues
 {
     /**
      * @var bool
      */
-    private $coerce = true;
+    private $docValues = true;
 
     /**
-     * @param bool $coerce
+     * @param bool $docValues
      * @return self
      */
-    public function setCoerce(bool $coerce): self
+    public function setDocValues(bool $docValues): self
     {
-        $this->coerce = $coerce;
+        $this->docValues = $docValues;
         return $this;
     }
 }

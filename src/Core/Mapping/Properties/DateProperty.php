@@ -7,7 +7,7 @@ use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanBeIndexed;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanBeStored;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanIgnoreMalformed;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasBoost;
-use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasDocValues;
+use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanUseDocValues;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasFormat;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasLocale;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasNullValue;
@@ -15,7 +15,7 @@ use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasNullValue;
 final class DateProperty extends AbstractProperty
 {
     use HasBoost,
-        HasDocValues,
+        CanUseDocValues,
         HasFormat,
         HasLocale,
         CanIgnoreMalformed,
@@ -35,9 +35,9 @@ final class DateProperty extends AbstractProperty
             'format' => $this->format,
             'locale' => $this->locale,
             'ignore_malformed' => $this->ignoreMalformed,
-            'index' => $this->isIndexed,
+            'index' => $this->index,
             'null_value' => $this->nullValue,
-            'store' => $this->isStored
+            'store' => $this->store
         ];
     }
 }

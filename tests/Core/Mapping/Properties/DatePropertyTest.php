@@ -40,9 +40,9 @@ final class DatePropertyTest extends TestCase
             ->setFormat('yyyy-MM-dd HH:mm:ss')
             ->setLocale('ENGLISH')
             ->setIgnoreMalformed(true)
-            ->setIndexed(false)
+            ->setIndex(false)
             ->setNullValue('NULL')
-            ->setStored(true);
+            ->setStore(true);
 
         $this->assertSame(
             [

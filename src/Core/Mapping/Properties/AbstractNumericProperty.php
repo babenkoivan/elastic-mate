@@ -8,14 +8,14 @@ use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanBeIndexed;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanBeStored;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanIgnoreMalformed;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasBoost;
-use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasDocValues;
+use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanUseDocValues;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasNullValue;
 
 abstract class AbstractNumericProperty extends AbstractProperty
 {
     use CanBeCoerced,
         HasBoost,
-        HasDocValues,
+        CanUseDocValues,
         CanIgnoreMalformed,
         CanBeIndexed,
         HasNullValue,
@@ -33,13 +33,13 @@ abstract class AbstractNumericProperty extends AbstractProperty
     {
         return [
             'type' => $this->type,
-            'coerce' => $this->isCoerced,
+            'coerce' => $this->coerce,
             'boost' => $this->boost,
             'doc_values' => $this->docValues,
             'ignore_malformed' => $this->ignoreMalformed,
-            'index' => $this->isIndexed,
+            'index' => $this->index,
             'null_value' => $this->nullValue,
-            'store' => $this->isStored
+            'store' => $this->store
         ];
     }
 }

@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Mapping\Properties;
 
-use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasDocValues;
+use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanUseDocValues;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanBeStored;
 
 final class BinaryProperty extends AbstractProperty
 {
-    use HasDocValues, CanBeStored;
+    use CanUseDocValues, CanBeStored;
 
     /**
      * @param string $name
@@ -26,7 +26,7 @@ final class BinaryProperty extends AbstractProperty
         return [
             'type' => 'binary',
             'doc_values' => $this->docValues,
-            'store' => $this->isStored
+            'store' => $this->store
         ];
     }
 }

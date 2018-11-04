@@ -8,15 +8,15 @@ trait CanBeLenient
     /**
      * @var bool
      */
-    private $isLenient = false;
+    private $lenient = false;
 
     /**
-     * @param bool $isLenient
+     * @param bool $lenient
      * @return self
      */
-    public function setLenient(bool $isLenient): self
+    public function setLenient(bool $lenient): self
     {
-        $this->isLenient = $isLenient;
+        $this->lenient = $lenient;
         return $this;
     }
 }

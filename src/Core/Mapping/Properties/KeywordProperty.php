@@ -4,15 +4,15 @@ declare(strict_types=1);
 namespace BabenkoIvan\ElasticMate\Core\Mapping\Properties;
 
 use BabenkoIvan\ElasticMate\Core\Mapping\Mapping;
-use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanBeEagerGlobalOrdinals;
+use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanEagerGlobalOrdinals;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanBeIndexed;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanBeStored;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanSplitQueriesOnWhitespace;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasBoost;
-use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasDocValues;
+use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanUseDocValues;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasIndexOptions;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasNormalizer;
-use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasNorms;
+use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanUseNorms;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasNullValue;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasSimilarity;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\IgnoresAbove;
@@ -20,12 +20,12 @@ use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\IgnoresAbove;
 final class KeywordProperty extends AbstractProperty
 {
     use HasBoost,
-        HasDocValues,
-        CanBeEagerGlobalOrdinals,
+        CanUseDocValues,
+        CanEagerGlobalOrdinals,
         IgnoresAbove,
         CanBeIndexed,
         HasIndexOptions,
-        HasNorms,
+        CanUseNorms,
         HasNullValue,
         CanBeStored,
         HasSimilarity,
@@ -53,11 +53,11 @@ final class KeywordProperty extends AbstractProperty
             'doc_values' => $this->docValues,
             'eager_global_ordinals' => $this->eagerGlobalOrdinals,
             'ignore_above' => $this->ignoreAbove,
-            'index' => $this->isIndexed,
+            'index' => $this->index,
             'index_options' => $this->indexOptions,
             'norms' => $this->norms,
             'null_value' => $this->nullValue,
-            'store' => $this->isStored,
+            'store' => $this->store,
             'similarity' => $this->similarity,
             'normalizer' => $this->normalizer,
             'split_queries_on_whitespace' => $this->splitQueriesOnWhitespace

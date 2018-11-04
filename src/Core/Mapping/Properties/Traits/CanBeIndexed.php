@@ -8,15 +8,15 @@ trait CanBeIndexed
     /**
      * @var bool
      */
-    private $isIndexed = true;
+    private $index = true;
 
     /**
-     * @param bool $isIndexed
+     * @param bool $index
      * @return self
      */
-    public function setIndexed(bool $isIndexed): self
+    public function setIndex(bool $index): self
     {
-        $this->isIndexed = $isIndexed;
+        $this->index = $index;
         return $this;
     }
 }

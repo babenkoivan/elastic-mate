@@ -8,15 +8,15 @@ trait CanBeStored
     /**
      * @var bool
      */
-    private $isStored = false;
+    private $store = false;
 
     /**
-     * @param bool $isStored
+     * @param bool $store
      * @return self
      */
-    public function setStored(bool $isStored): self
+    public function setStore(bool $store): self
     {
-        $this->isStored = $isStored;
+        $this->store = $store;
         return $this;
     }
 }

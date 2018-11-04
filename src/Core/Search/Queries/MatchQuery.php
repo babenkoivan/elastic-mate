@@ -50,7 +50,7 @@ class MatchQuery implements Query
         $query = [
             'query' => $this->query,
             'operator' => $this->operator,
-            'lenient' => $this->isLenient,
+            'lenient' => $this->lenient,
             'prefix_length' => $this->prefixLength,
             'max_expansions' => $this->maxExpansions
         ];

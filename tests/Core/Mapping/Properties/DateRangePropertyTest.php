@@ -37,10 +37,10 @@ final class DateRangePropertyTest extends TestCase
     public function test_date_range_property_can_be_converted_to_array(): void
     {
         $property = (new DateRangeProperty('foo'))
-            ->setCoerced(false)
+            ->setCoerce(false)
             ->setBoost(1.2)
-            ->setIndexed(false)
-            ->setStored(true)
+            ->setIndex(false)
+            ->setStore(true)
             ->setDocValues(false)
             ->setFormat('yyyy-MM-dd HH:mm:ss')
             ->setLocale('ENGLISH')

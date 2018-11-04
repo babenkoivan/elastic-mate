@@ -32,8 +32,8 @@ final class IpPropertyTest extends TestCase
     {
         $ipProperty = (new IpProperty('foo'))
             ->setDocValues(false)
-            ->setStored(false)
-            ->setIndexed(true)
+            ->setStore(false)
+            ->setIndex(true)
             ->setNullValue('NULL')
             ->setBoost(1.2);
 

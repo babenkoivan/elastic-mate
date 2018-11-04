@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits;
 
-trait HasDocValues
+trait CanIgnoreZValue
 {
     /**
      * @var bool
      */
-    private $docValues = true;
+    private $ignoreZValue = true;
 
     /**
-     * @param bool $docValues
+     * @param bool $ignoreZValue
      * @return self
      */
-    public function setDocValues(bool $docValues): self
+    public function setIgnoreZValue(bool $ignoreZValue): self
     {
-        $this->docValues = $docValues;
+        $this->ignoreZValue = $ignoreZValue;
         return $this;
     }
 }

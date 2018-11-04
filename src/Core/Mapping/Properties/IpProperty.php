@@ -6,13 +6,13 @@ namespace BabenkoIvan\ElasticMate\Core\Mapping\Properties;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanBeIndexed;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanBeStored;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasBoost;
-use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasDocValues;
+use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanUseDocValues;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasNullValue;
 
 final class IpProperty extends AbstractProperty
 {
     use HasBoost,
-        HasDocValues,
+        CanUseDocValues,
         CanBeIndexed,
         HasNullValue,
         CanBeStored;
@@ -26,9 +26,9 @@ final class IpProperty extends AbstractProperty
             'type' => 'ip',
             'boost' => $this->boost,
             'doc_values' => $this->docValues,
-            'index' => $this->isIndexed,
+            'index' => $this->index,
             'null_value' => $this->nullValue,
-            'store' => $this->isStored
+            'store' => $this->store
         ];
     }
 }

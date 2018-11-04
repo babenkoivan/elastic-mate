@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Mapping\Properties;
 
-use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanBeEagerGlobalOrdinals;
+use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanEagerGlobalOrdinals;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanBeIndexed;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanBeStored;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasAnalyzer;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasBoost;
-use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasFieldData;
+use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanUseFieldData;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasIndexOptions;
-use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasNorms;
+use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanUseNorms;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasSearchQuoteAnalyzer;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasSearchAnalyzer;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasSimilarity;
@@ -20,11 +20,11 @@ final class TextProperty extends AbstractProperty
 {
     use HasAnalyzer,
         HasBoost,
-        CanBeEagerGlobalOrdinals,
-        HasFieldData,
+        CanEagerGlobalOrdinals,
+        CanUseFieldData,
         CanBeIndexed,
         HasIndexOptions,
-        HasNorms,
+        CanUseNorms,
         CanBeStored,
         HasSearchAnalyzer,
         HasSearchQuoteAnalyzer,
@@ -41,10 +41,10 @@ final class TextProperty extends AbstractProperty
             'boost' => $this->boost,
             'eager_global_ordinals' => $this->eagerGlobalOrdinals,
             'fielddata' => $this->fieldData,
-            'index' => $this->isIndexed,
+            'index' => $this->index,
             'index_options' => $this->indexOptions,
             'norms' => $this->norms,
-            'store' => $this->isStored,
+            'store' => $this->store,
             'similarity' => $this->similarity,
             'term_vector' => $this->termVector
         ];
