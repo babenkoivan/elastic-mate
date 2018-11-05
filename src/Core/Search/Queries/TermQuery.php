@@ -16,15 +16,15 @@ final class TermQuery implements Query
     private $field;
 
     /**
-     * @var string
+     * @var mixed
      */
     private $value;
 
     /**
      * @param string $field
-     * @param string $value
+     * @param mixed $value
      */
-    public function __construct(string $field, string $value)
+    public function __construct(string $field, $value)
     {
         $this->field = $field;
         $this->value = $value;

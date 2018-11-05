@@ -17,31 +17,39 @@ final class BoolQueryTest extends TestCase
 {
     public function test_bool_query_can_be_converted_to_array(): void
     {
-        $must = new TermQuery('field1', 'foo');
-        $filter = (new BoolQuery())->setMustNot(new ExistsQuery('field2'));
-        $mustNot = new TermQuery('field3', 'bar');
-        $should = collect([new RegexpQuery('field4', 't.*t'), new WildcardQuery('field4', 't***t')]);
+        $mustQuery = new TermQuery('field1', 'foo');
+        $mustNotQuery = new TermQuery('field3', 'bar');
+        $firstShouldQuery = new RegexpQuery('field4', 't.*t');
+        $secondShouldQuery = new WildcardQuery('field4', 't***t');
+        $filterQuery = (new BoolQuery())->addMustNot(new ExistsQuery('field2'));
         $minimumShouldMatch = 2;
         $boost = 1.9;
 
         $boolQuery = (new BoolQuery())
-            ->setMust($must)
-            ->setFilter($filter)
-            ->setMustNot($mustNot)
-            ->addShould($should->get(0))
-            ->addShould($should->get(1))
+            ->addMust($mustQuery)
+            ->addMustNot($mustNotQuery)
+            ->addShould($firstShouldQuery)
+            ->addShould($secondShouldQuery)
+            ->addFilter($filterQuery)
             ->setMinimumShouldMatch($minimumShouldMatch)
             ->setBoost($boost);
 
         $this->assertSame(
             [
                 'bool' => [
-                    'must' => $must->toArray(),
-                    'filter' => $filter->toArray(),
-                    'must_not' => $mustNot->toArray(),
-                    'should' => $should->map(function (Query $query) {
-                        return $query->toArray();
-                    })->all(),
+                    'must' => [
+                        $mustQuery->toArray()
+                    ],
+                    'must_not' => [
+                        $mustNotQuery->toArray()
+                    ],
+                    'should' => [
+                        $firstShouldQuery->toArray(),
+                        $secondShouldQuery->toArray()
+                    ],
+                    'filter' => [
+                        $filterQuery->toArray()
+                    ],
                     'minimum_should_match' => $minimumShouldMatch,
                     'boost' => $boost
                 ]

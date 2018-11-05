@@ -12,17 +12,12 @@ final class BoolQuery implements Query
     use HasBoost;
 
     /**
-     * @var Query|null
+     * @var Collection
      */
     private $must;
 
     /**
-     * @var Query|null
-     */
-    private $filter;
-
-    /**
-     * @var Query|null
+     * @var Collection
      */
     private $mustNot;
 
@@ -36,44 +31,42 @@ final class BoolQuery implements Query
      */
     private $minimumShouldMatch;
 
+    /**
+     * @var Collection
+     */
+    private $filter;
+
     public function __construct()
     {
+        $this->must = collect();
+        $this->mustNot = collect();
         $this->should = collect();
+        $this->filter = collect();
     }
 
     /**
      * @param Query $must
      * @return self
      */
-    public function setMust(Query $must): self
+    public function addMust(Query $must): self
     {
-        $this->must = $must;
-        return $this;
-    }
-
-    /**
-     * @param Query $filter
-     * @return BoolQuery
-     */
-    public function setFilter(Query $filter): self
-    {
-        $this->filter = $filter;
+        $this->must->push($must);
         return $this;
     }
 
     /**
      * @param Query $mustNot
-     * @return BoolQuery
+     * @return self
      */
-    public function setMustNot(Query $mustNot): self
+    public function addMustNot(Query $mustNot): self
     {
-        $this->mustNot = $mustNot;
+        $this->mustNot->push($mustNot);
         return $this;
     }
 
     /**
      * @param Query $should
-     * @return BoolQuery
+     * @return self
      */
     public function addShould(Query $should): self
     {
@@ -83,11 +76,21 @@ final class BoolQuery implements Query
 
     /**
      * @param int $minimumShouldMatch
-     * @return BoolQuery
+     * @return self
      */
     public function setMinimumShouldMatch(int $minimumShouldMatch): self
     {
         $this->minimumShouldMatch = $minimumShouldMatch;
+        return $this;
+    }
+
+    /**
+     * @param Query $filter
+     * @return self
+     */
+    public function addFilter(Query $filter): self
+    {
+        $this->filter->push($filter);
         return $this;
     }
 
@@ -98,23 +101,20 @@ final class BoolQuery implements Query
     {
         $query = [];
 
-        if (isset($this->must)) {
-            $query['must'] = $this->must->toArray();
-        }
+        $clauseFieldMapping = collect([
+            'must' => 'must',
+            'mustNot' => 'must_not',
+            'should' => 'should',
+            'filter' => 'filter'
+        ]);
 
-        if (isset($this->filter)) {
-            $query['filter'] = $this->filter->toArray();
-        }
-
-        if (isset($this->mustNot)) {
-            $query['must_not'] = $this->mustNot->toArray();
-        }
-
-        if ($this->should->count() > 0) {
-            $query['should'] = $this->should->map(function (Query $query) {
-                return $query->toArray();
-            })->values()->all();
-        }
+        $clauseFieldMapping->each(function (string $field, string $property) use (&$query) {
+            if (isset($this->{$property})) {
+                $query[$field] = $this->{$property}->map(function (Query $query) {
+                    return $query->toArray();
+                })->values()->all();
+            }
+        });
 
         if (isset($this->minimumShouldMatch)) {
             $query['minimum_should_match'] = $this->minimumShouldMatch;

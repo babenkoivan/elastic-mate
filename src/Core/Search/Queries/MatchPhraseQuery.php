@@ -25,7 +25,8 @@ final class MatchPhraseQuery implements Query
      * @param string $field
      * @param string $query
      */
-    public function __construct(string $field, string $query) {
+    public function __construct(string $field, string $query)
+    {
         $this->field = $field;
         $this->query = $query;
     }
