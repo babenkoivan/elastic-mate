@@ -12,14 +12,6 @@ final class RegexpQuery implements Query
 {
     use HasMaxDeterminizedStates, HasBoost;
 
-    const FLAG_ALL = 'ALL';
-    const FLAG_ANYSTRING = 'ANYSTRING';
-    const FLAG_COMPLEMENT = 'COMPLEMENT';
-    const FLAG_EMPTY = 'EMPTY';
-    const FLAG_INTERSECTION = 'INTERSECTION';
-    const FLAG_INTERVAL = 'INTERVAL';
-    const FLAG_NONE = 'NONE';
-
     /**
      * @var string
      */

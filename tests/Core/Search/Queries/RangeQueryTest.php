@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace BabenkoIvan\ElasticMate\Core\Search\Queries;
 
 use BabenkoIvan\ElasticMate\Core\Content\Types\Range;
+use BabenkoIvan\ElasticMate\Core\Contracts\Search\Query;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -23,7 +24,7 @@ final class RangeQueryTest extends TestCase
             ->setFormat('dd/MM/yyyy')
             ->setTimezone('+01:00')
             ->setBoost(1.9)
-            ->setRelation(RangeQuery::RELATION_WITHIN);
+            ->setRelation(Query::RELATION_WITHIN);
 
         $this->assertSame(
             [
@@ -33,7 +34,7 @@ final class RangeQueryTest extends TestCase
                         'lt' => '01/01/2015',
                         'format' => 'dd/MM/yyyy',
                         'time_zone' => '+01:00',
-                        'relation' => RangeQuery::RELATION_WITHIN,
+                        'relation' => Query::RELATION_WITHIN,
                         'boost' => 1.9,
                     ]
                 ]

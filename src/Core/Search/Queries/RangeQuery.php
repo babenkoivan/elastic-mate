@@ -14,10 +14,6 @@ final class RangeQuery implements Query
 {
     use HasFormat, HasTimezone, HasBoost;
 
-    const RELATION_WITHIN = 'WITHIN';
-    const RELATION_CONTAINS = 'CONTAINS';
-    const RELATION_INTERSECTS = 'INTERSECTS';
-
     /**
      * @var string
      */

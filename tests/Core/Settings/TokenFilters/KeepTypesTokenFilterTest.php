@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace BabenkoIvan\ElasticMate\Core\Settings\TokenFilters;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Settings\TokenFilter;
+use BabenkoIvan\ElasticMate\Core\Settings\Analysis;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -19,7 +20,7 @@ final class KeepTypesTokenFilterTest extends TestCase
         $this->assertSame(
             [
                 'type' => TokenFilter::TYPE_KEEP_TYPES,
-                'mode' => KeepTypesTokenFilter::MODE_INCLUDE,
+                'mode' => Analysis::MODE_INCLUDE,
                 'types' => []
             ],
             $tokenFilter->toArray()
@@ -29,13 +30,13 @@ final class KeepTypesTokenFilterTest extends TestCase
     public function test_keep_types_token_filter_can_be_converted_to_array(): void
     {
         $tokenFilter = (new KeepTypesTokenFilter('foo'))
-            ->setMode(KeepTypesTokenFilter::MODE_EXCLUDE)
+            ->setMode(Analysis::MODE_EXCLUDE)
             ->addType('<NUM>');
 
         $this->assertSame(
             [
                 'type' => TokenFilter::TYPE_KEEP_TYPES,
-                'mode' => KeepTypesTokenFilter::MODE_EXCLUDE,
+                'mode' => Analysis::MODE_EXCLUDE,
                 'types' => [
                     '<NUM>'
                 ]

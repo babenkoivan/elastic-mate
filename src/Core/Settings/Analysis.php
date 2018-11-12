@@ -125,6 +125,9 @@ class Analysis implements Arrayable
     const SCRIPT_KATAKANA = 'katakana';
     const SCRIPT_HANGUL = 'hangul';
 
+    const MODE_INCLUDE = 'include';
+    const MODE_EXCLUDE = 'exclude';
+
     /**
      * @var Collection
      */

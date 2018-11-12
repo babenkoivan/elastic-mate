@@ -4,13 +4,11 @@ declare(strict_types=1);
 namespace BabenkoIvan\ElasticMate\Core\Settings\TokenFilters;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Settings\TokenFilter;
+use BabenkoIvan\ElasticMate\Core\Settings\Analysis;
 use Illuminate\Support\Collection;
 
 final class KeepTypesTokenFilter extends AbstractTokenFilter
 {
-    const MODE_INCLUDE = 'include';
-    const MODE_EXCLUDE = 'exclude';
-
     /**
      * @var Collection
      */
@@ -19,7 +17,7 @@ final class KeepTypesTokenFilter extends AbstractTokenFilter
     /**
      * @var string
      */
-    private $mode;
+    private $mode = Analysis::MODE_INCLUDE;
 
     /**
      * @param string $name
@@ -28,7 +26,6 @@ final class KeepTypesTokenFilter extends AbstractTokenFilter
     {
         parent::__construct($name);
         $this->types = collect();
-        $this->mode = static::MODE_INCLUDE;
     }
 
     /**

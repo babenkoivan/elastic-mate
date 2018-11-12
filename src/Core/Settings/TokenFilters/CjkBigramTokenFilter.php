@@ -11,11 +11,6 @@ final class CjkBigramTokenFilter extends AbstractTokenFilter
 {
     use CanOutputUnigrams;
 
-    const SCRIPT_HAN = 'han';
-    const SCRIPT_HIRAGANA = 'hiragana';
-    const SCRIPT_KATAKANA = 'katakana';
-    const SCRIPT_HANGUL = 'hangul';
-
     /**
      * @var Collection
      */
