@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace BabenkoIvan\ElasticMate\Core\Support;
+namespace BabenkoIvan\ElasticMate\Core\Content\Types;
 
 final class Range
 {

@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Search\Queries;
 
-use BabenkoIvan\ElasticMate\Core\Support\Range;
+use BabenkoIvan\ElasticMate\Core\Content\Types\Range;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \BabenkoIvan\ElasticMate\Core\Search\Queries\RangeQuery
- * @uses   \BabenkoIvan\ElasticMate\Core\Support\Range
+ * @uses   \BabenkoIvan\ElasticMate\Core\Content\Types\Range
  */
 final class RangeQueryTest extends TestCase
 {
@@ -22,7 +22,8 @@ final class RangeQueryTest extends TestCase
         $rangeQuery = (new RangeQuery('foo', $range))
             ->setFormat('dd/MM/yyyy')
             ->setTimezone('+01:00')
-            ->setBoost(1.9);
+            ->setBoost(1.9)
+            ->setRelation(RangeQuery::RELATION_WITHIN);
 
         $this->assertSame(
             [
@@ -32,6 +33,7 @@ final class RangeQueryTest extends TestCase
                         'lt' => '01/01/2015',
                         'format' => 'dd/MM/yyyy',
                         'time_zone' => '+01:00',
+                        'relation' => RangeQuery::RELATION_WITHIN,
                         'boost' => 1.9,
                     ]
                 ]

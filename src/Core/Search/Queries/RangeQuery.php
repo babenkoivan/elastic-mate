@@ -7,12 +7,16 @@ use BabenkoIvan\ElasticMate\Core\Contracts\Search\Query;
 use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasBoost;
 use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasFormat;
 use BabenkoIvan\ElasticMate\Core\Search\Queries\Traits\HasTimezone;
-use BabenkoIvan\ElasticMate\Core\Support\Range;
+use BabenkoIvan\ElasticMate\Core\Content\Types\Range;
 use Illuminate\Support\Collection;
 
 final class RangeQuery implements Query
 {
     use HasFormat, HasTimezone, HasBoost;
+
+    const RELATION_WITHIN = 'WITHIN';
+    const RELATION_CONTAINS = 'CONTAINS';
+    const RELATION_INTERSECTS = 'INTERSECTS';
 
     /**
      * @var string
@@ -25,6 +29,11 @@ final class RangeQuery implements Query
     private $range;
 
     /**
+     * @var string|null
+     */
+    private $relation;
+
+    /**
      * @param string $field
      * @param Collection $range
      */
@@ -32,6 +41,16 @@ final class RangeQuery implements Query
     {
         $this->field = $field;
         $this->range = $range;
+    }
+
+    /**
+     * @param string $relation
+     * @return self
+     */
+    public function setRelation(string $relation): self
+    {
+        $this->relation = $relation;
+        return $this;
     }
 
     /**
@@ -49,6 +68,10 @@ final class RangeQuery implements Query
 
         if (isset($this->timezone)) {
             $query['time_zone'] = $this->timezone;
+        }
+
+        if (isset($this->relation)) {
+            $query['relation'] = $this->relation;
         }
 
         if (isset($this->boost)) {

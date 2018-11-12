@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace BabenkoIvan\ElasticMate\Core\Support;
+namespace BabenkoIvan\ElasticMate\Core\Content\Types;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \BabenkoIvan\ElasticMate\Core\Support\Range
+ * @covers \BabenkoIvan\ElasticMate\Core\Content\Types\Range
  */
 final class RangeTest extends TestCase
 {
