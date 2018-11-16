@@ -15,7 +15,10 @@ final class GeoBoundingBoxQueryTest extends TestCase
 {
     public function test_geo_bounding_box_query_can_be_converted_to_array(): void
     {
-        $query = (new GeoBoundingBoxQuery('foo', new GeoPoint(40.73, -74.1), new GeoPoint(40.10, -71.12)))
+        $topLeftPoint = new GeoPoint(40.73, -74.1);
+        $bottomRightPoint = new GeoPoint(40.10, -71.12);
+
+        $query = (new GeoBoundingBoxQuery('foo', $topLeftPoint, $bottomRightPoint))
             ->setValidationMethod(Query::VALIDATION_METHOD_COERCE)
             ->setType(Query::EXECUTION_TYPE_INDEXED);
 
@@ -24,12 +27,12 @@ final class GeoBoundingBoxQueryTest extends TestCase
                 'geo_bounding_box' => [
                     'foo' => [
                         'top_left' => [
-                            'lat' => 40.73,
-                            'lon' => -74.1
+                            'lat' => $topLeftPoint->getLatitude(),
+                            'lon' => $topLeftPoint->getLongitude()
                         ],
                         'bottom_right' => [
-                            'lat' => 40.10,
-                            'lon' => -71.12
+                            'lat' => $bottomRightPoint->getLatitude(),
+                            'lon' => $bottomRightPoint->getLongitude()
                         ]
                     ],
                     'validation_method' => Query::VALIDATION_METHOD_COERCE,

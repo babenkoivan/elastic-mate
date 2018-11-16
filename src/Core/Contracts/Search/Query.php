@@ -28,4 +28,7 @@ interface Query extends Arrayable
 
     const EXECUTION_TYPE_MEMORY = 'memory';
     const EXECUTION_TYPE_INDEXED = 'indexed';
+
+    const DISTANCE_TYPE_ARC = 'arc';
+    const DISTANCE_TYPE_PLANE = 'plane';
 }

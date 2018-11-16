@@ -19,12 +19,12 @@ final class GeoBoundingBoxQuery implements Query
     /**
      * @var GeoPoint
      */
-    private $topLeft;
+    private $topLeftPoint;
 
     /**
      * @var GeoPoint
      */
-    private $bottomRight;
+    private $bottomRightPoint;
 
     /**
      * @var string
@@ -33,14 +33,14 @@ final class GeoBoundingBoxQuery implements Query
 
     /**
      * @param string $field
-     * @param GeoPoint $topLeft
-     * @param GeoPoint $bottomRight
+     * @param GeoPoint $topLeftPoint
+     * @param GeoPoint $bottomRightPoint
      */
-    public function __construct(string $field, GeoPoint $topLeft, GeoPoint $bottomRight)
+    public function __construct(string $field, GeoPoint $topLeftPoint, GeoPoint $bottomRightPoint)
     {
         $this->field = $field;
-        $this->topLeft = $topLeft;
-        $this->bottomRight = $bottomRight;
+        $this->topLeftPoint = $topLeftPoint;
+        $this->bottomRightPoint = $bottomRightPoint;
     }
 
     /**
@@ -62,12 +62,12 @@ final class GeoBoundingBoxQuery implements Query
             'geo_bounding_box' => [
                 $this->field => [
                     'top_left' => [
-                        'lat' => $this->topLeft->getLatitude(),
-                        'lon' => $this->topLeft->getLongitude()
+                        'lat' => $this->topLeftPoint->getLatitude(),
+                        'lon' => $this->topLeftPoint->getLongitude()
                     ],
                     'bottom_right' => [
-                        'lat' => $this->bottomRight->getLatitude(),
-                        'lon' => $this->bottomRight->getLongitude()
+                        'lat' => $this->bottomRightPoint->getLatitude(),
+                        'lon' => $this->bottomRightPoint->getLongitude()
                     ]
                 ],
                 'validation_method' => $this->validationMethod,

@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace BabenkoIvan\ElasticMate\Dependencies;
+namespace BabenkoIvan\ElasticMate\Traits;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Client\Client as ClientContract;
 use BabenkoIvan\ElasticMate\Core\Contracts\EntityManagers\DocumentManager;
 use BabenkoIvan\ElasticMate\Infrastructure\Client\ClientFactory;
 use stdClass;
 
-trait Client
+trait HasClient
 {
     /**
      * @var ClientContract

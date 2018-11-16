@@ -10,7 +10,7 @@ use BabenkoIvan\ElasticMate\Core\Search\Queries\MatchAllQuery;
 use BabenkoIvan\ElasticMate\Core\Search\Request;
 use BabenkoIvan\ElasticMate\Core\Search\Sort\Simple\FieldSort;
 use BabenkoIvan\ElasticMate\Core\Search\Sort\Simple\SimpleSort;
-use BabenkoIvan\ElasticMate\Dependencies\Client;
+use BabenkoIvan\ElasticMate\Traits\HasClient;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -30,7 +30,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class BulkDocumentManagerTest extends TestCase
 {
-    use Client;
+    use HasClient;
 
     /**
      * @var Index

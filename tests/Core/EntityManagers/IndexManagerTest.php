@@ -9,7 +9,7 @@ use BabenkoIvan\ElasticMate\Core\Mapping\Properties\TextProperty;
 use BabenkoIvan\ElasticMate\Core\Settings\Analysis;
 use BabenkoIvan\ElasticMate\Core\Settings\Analyzers\StandardAnalyzer;
 use BabenkoIvan\ElasticMate\Core\Settings\Settings;
-use BabenkoIvan\ElasticMate\Dependencies\Client;
+use BabenkoIvan\ElasticMate\Traits\HasClient;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -28,7 +28,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class IndexManagerTest extends TestCase
 {
-    use Client;
+    use HasClient;
 
     /**
      * @var Index
