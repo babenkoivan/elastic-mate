@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\EntityManagers;
 
+use BabenkoIvan\ElasticMate\Core\Content\Content;
 use BabenkoIvan\ElasticMate\Core\Contracts\EntityManagers\DocumentManager;
 use BabenkoIvan\ElasticMate\Core\Entities\Document;
 use BabenkoIvan\ElasticMate\Core\Entities\Index;
@@ -15,6 +16,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \BabenkoIvan\ElasticMate\Core\EntityManagers\BulkDocumentManager
+ * @uses   \BabenkoIvan\ElasticMate\Core\Content\Content
  * @uses   \BabenkoIvan\ElasticMate\Core\Entities\Document
  * @uses   \BabenkoIvan\ElasticMate\Core\Entities\Index
  * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Settings
@@ -45,8 +47,8 @@ final class BulkDocumentManagerTest extends TestCase
     public function test_documents_can_be_indexed_with_force(): void
     {
         $documents = collect([
-            new Document('1', collect(['name' => 'foo'])),
-            new Document('2', collect(['name' => 'bar']))
+            new Document('1', new Content(['name' => 'foo'])),
+            new Document('2', new Content(['name' => 'bar']))
         ]);
 
         $this->documentManager
@@ -77,7 +79,7 @@ final class BulkDocumentManagerTest extends TestCase
         ]);
 
         $documents = collect([
-            new Document('1', collect(['name' => 'foo']))
+            new Document('1', new Content(['name' => 'foo']))
         ]);
 
         $this->documentManager

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\EntityManagers;
 
+use BabenkoIvan\ElasticMate\Core\Content\Content;
 use BabenkoIvan\ElasticMate\Core\Contracts\Client\Client;
 use BabenkoIvan\ElasticMate\Core\Contracts\EntityManagers\DocumentManager;
 use BabenkoIvan\ElasticMate\Core\Entities\Document;
@@ -102,7 +103,7 @@ final class BulkDocumentManager implements DocumentManager
 
         $documents = collect($response['hits']['hits'])->map(function (array $hit) {
             $id = $hit['_id'];
-            $content = collect($hit['_source']);
+            $content = new Content($hit['_source']);
 
             return new Document($id, $content);
         });

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Entities;
 
-use Illuminate\Support\Collection;
+use BabenkoIvan\ElasticMate\Core\Content\Content;
 
 final class Document
 {
@@ -13,15 +13,15 @@ final class Document
     private $id;
 
     /**
-     * @var Collection
+     * @var Content
      */
     private $content;
 
     /**
      * @param string $id
-     * @param Collection $content
+     * @param Content $content
      */
-    public function __construct(string $id, Collection $content)
+    public function __construct(string $id, Content $content)
     {
         $this->id = $id;
         $this->content = $content;
@@ -36,9 +36,9 @@ final class Document
     }
 
     /**
-     * @return Collection
+     * @return Content
      */
-    public function getContent(): Collection
+    public function getContent(): Content
     {
         return $this->content;
     }
