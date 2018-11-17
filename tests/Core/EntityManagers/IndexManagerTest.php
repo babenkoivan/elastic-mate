@@ -10,6 +10,8 @@ use BabenkoIvan\ElasticMate\Core\Settings\Analysis;
 use BabenkoIvan\ElasticMate\Core\Settings\Analyzers\StandardAnalyzer;
 use BabenkoIvan\ElasticMate\Core\Settings\Settings;
 use BabenkoIvan\ElasticMate\Traits\HasClient;
+use BabenkoIvan\ElasticMate\Traits\HasMappingAssertions;
+use BabenkoIvan\ElasticMate\Traits\HasSettingsAssertions;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -28,7 +30,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class IndexManagerTest extends TestCase
 {
-    use HasClient;
+    use HasClient, HasSettingsAssertions, HasMappingAssertions;
 
     /**
      * @var Index
@@ -53,37 +55,15 @@ final class IndexManagerTest extends TestCase
 
         $this->assertTrue($this->isIndexExists($this->index->getName()));
 
-        $expectedSettings = $this->index
-            ->getSettings()
-            ->toArray();
-
-        $actualSettings = $this->getIndexSettings($this->index->getName());
-
-        $this->assertEquals(
-            $expectedSettings,
-            array_only(
-                $actualSettings,
-                array_keys($expectedSettings)
-            )
+        $this->assertSettingsMatch(
+            $this->index->getSettings()->toArray(),
+            $this->getIndexSettings($this->index->getName())
         );
 
-        $expectedMapping = $this->index
-            ->getMapping()
-            ->toArray();
-
-        $actualMapping = $this->getIndexMapping($this->index->getName());
-
-        foreach ($expectedMapping['properties'] as $field => $expectedOptions) {
-            $actualOptions = $actualMapping['properties'][$field];
-
-            $this->assertEquals(
-                array_only(
-                    $expectedOptions,
-                    array_keys($actualOptions)
-                ),
-                $actualOptions
-            );
-        }
+        $this->assertMappingMatch(
+            $this->index->getMapping()->toArray(),
+            $this->getIndexMapping($this->index->getName())
+        );
     }
 
     public function test_index_can_be_deleted(): void
@@ -113,26 +93,9 @@ final class IndexManagerTest extends TestCase
         $this->indexManager
             ->updateSettings($this->index, true);
 
-        $expectedSettings = $this->index
-            ->getSettings()
-            ->toArray();
-
-        $actualSettings = $this->getIndexSettings($this->index->getName());
-
-        $mutableOptions = array_keys(array_except(
-            $expectedSettings,
-            Settings::IMMUTABLE_OPTIONS
-        ));
-
-        $this->assertEquals(
-            array_only(
-                $expectedSettings,
-                $mutableOptions
-            ),
-            array_only(
-                $actualSettings,
-                $mutableOptions
-            )
+        $this->assertSettingsMatch(
+            array_except($this->index->getSettings()->toArray(), Settings::IMMUTABLE_OPTIONS),
+            $this->getIndexSettings($this->index->getName())
         );
     }
 
@@ -147,23 +110,10 @@ final class IndexManagerTest extends TestCase
         $this->indexManager
             ->updateMapping($this->index);
 
-        $expectedMapping = $this->index
-            ->getMapping()
-            ->toArray();
-
-        $actualMapping = $this->getIndexMapping($this->index->getName());
-
-        foreach ($expectedMapping['properties'] as $field => $expectedOptions) {
-            $actualOptions = $actualMapping['properties'][$field];
-
-            $this->assertEquals(
-                array_only(
-                    $expectedOptions,
-                    array_keys($actualOptions)
-                ),
-                $actualOptions
-            );
-        }
+        $this->assertMappingMatch(
+            $this->index->getMapping()->toArray(),
+            $this->getIndexMapping($this->index->getName())
+        );
     }
 
     /**

@@ -7,6 +7,7 @@ use BabenkoIvan\ElasticMate\Core\Entities\Index;
 use BabenkoIvan\ElasticMate\Core\EntityManagers\IndexManager;
 use BabenkoIvan\ElasticMate\Core\Mapping\Mapping;
 use BabenkoIvan\ElasticMate\Traits\HasClient;
+use BabenkoIvan\ElasticMate\Traits\HasMappingAssertions;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -23,7 +24,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class AliasPropertyTest extends TestCase
 {
-    use HasClient;
+    use HasClient, HasMappingAssertions;
 
     public function test_alias_property_can_be_converted_to_array(): void
     {
@@ -50,19 +51,6 @@ final class AliasPropertyTest extends TestCase
         $indexManager = new IndexManager($this->client);
         $indexManager->create($index);
 
-        $expectedMapping = $mapping->toArray();
-        $actualMapping = $this->getIndexMapping($index->getName());
-
-        foreach ($expectedMapping['properties'] as $field => $expectedOptions) {
-            $actualOptions = $actualMapping['properties'][$field];
-
-            $this->assertEquals(
-                array_only(
-                    $expectedOptions,
-                    array_keys($actualOptions)
-                ),
-                $actualOptions
-            );
-        }
+        $this->assertMappingMatch($mapping->toArray(), $this->getIndexMapping($index->getName()));
     }
 }
