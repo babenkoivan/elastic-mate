@@ -27,7 +27,6 @@ final class IpProperty extends AbstractProperty
             'boost' => $this->boost,
             'doc_values' => $this->docValues,
             'index' => $this->index,
-            'null_value' => $this->nullValue,
             'store' => $this->store
         ];
 
