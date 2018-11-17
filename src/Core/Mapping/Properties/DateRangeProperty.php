@@ -3,19 +3,13 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Mapping\Properties;
 
-use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanIgnoreMalformed;
-use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\CanUseDocValues;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasFormat;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasLocale;
-use BabenkoIvan\ElasticMate\Core\Mapping\Properties\Traits\HasNullValue;
 
 final class DateRangeProperty extends AbstractRangeProperty
 {
-    use CanUseDocValues,
-        HasFormat,
-        HasLocale,
-        CanIgnoreMalformed,
-        HasNullValue;
+    use HasFormat,
+        HasLocale;
 
     /**
      * @param string $name
@@ -33,14 +27,8 @@ final class DateRangeProperty extends AbstractRangeProperty
     {
         $property = parent::toArray();
 
-        $property['doc_values'] = $this->docValues;
         $property['format'] = $this->format;
         $property['locale'] = $this->locale;
-        $property['ignore_malformed'] = $this->ignoreMalformed;
-
-        if (isset($this->nullValue)) {
-            $property['null_value'] = $this->nullValue;
-        }
 
         return $property;
     }

@@ -37,7 +37,7 @@ final class DatePropertyTest extends TestCase
             ->setBoost(1.2)
             ->setDocValues(false)
             ->setFormat('yyyy-MM-dd HH:mm:ss')
-            ->setLocale('ENGLISH')
+            ->setLocale('en')
             ->setIgnoreMalformed(true)
             ->setIndex(false)
             ->setNullValue('NULL')
@@ -49,7 +49,7 @@ final class DatePropertyTest extends TestCase
                 'boost' => 1.2,
                 'doc_values' => false,
                 'format' => 'yyyy-MM-dd HH:mm:ss',
-                'locale' => 'ENGLISH',
+                'locale' => 'en',
                 'ignore_malformed' => true,
                 'index' => false,
                 'store' => true,
