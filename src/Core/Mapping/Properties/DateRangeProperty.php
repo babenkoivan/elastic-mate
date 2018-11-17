@@ -37,7 +37,10 @@ final class DateRangeProperty extends AbstractRangeProperty
         $property['format'] = $this->format;
         $property['locale'] = $this->locale;
         $property['ignore_malformed'] = $this->ignoreMalformed;
-        $property['null_value'] = $this->nullValue;
+
+        if (isset($this->nullValue)) {
+            $property['null_value'] = $this->nullValue;
+        }
 
         return $property;
     }

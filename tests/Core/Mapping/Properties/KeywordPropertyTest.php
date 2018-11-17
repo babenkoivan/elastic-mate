@@ -26,10 +26,8 @@ final class KeywordPropertyTest extends TestCase
                 'index' => true,
                 'index_options' => Mapping::INDEX_OPTIONS_DOCS,
                 'norms' => false,
-                'null_value' => null,
                 'store' => false,
                 'similarity' => Mapping::SIMILARITY_BM25,
-                'normalizer' => null,
                 'split_queries_on_whitespace' => false
             ],
             $keywordProperty->toArray()
@@ -62,11 +60,11 @@ final class KeywordPropertyTest extends TestCase
                 'index' => false,
                 'index_options' => Mapping::INDEX_OPTIONS_DOCS,
                 'norms' => false,
-                'null_value' => 'NULL',
                 'store' => true,
                 'similarity' => Mapping::SIMILARITY_CLASSIC,
+                'split_queries_on_whitespace' => false,
                 'normalizer' => 'bar',
-                'split_queries_on_whitespace' => false
+                'null_value' => 'NULL'
             ],
             $keywordProperty->toArray()
         );

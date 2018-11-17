@@ -24,7 +24,6 @@ final class IntegerNumericPropertyTest extends TestCase
                 'doc_values' => true,
                 'ignore_malformed' => false,
                 'index' => true,
-                'null_value' => null,
                 'store' => false
             ],
             $property->toArray()
@@ -50,8 +49,8 @@ final class IntegerNumericPropertyTest extends TestCase
                 'doc_values' => false,
                 'ignore_malformed' => true,
                 'index' => false,
-                'null_value' => 'NULL',
-                'store' => true
+                'store' => true,
+                'null_value' => 'NULL'
             ],
             $property->toArray()
         );

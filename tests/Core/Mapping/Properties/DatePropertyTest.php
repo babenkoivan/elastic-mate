@@ -25,7 +25,6 @@ final class DatePropertyTest extends TestCase
                 'locale' => Mapping::LOCALE_ROOT,
                 'ignore_malformed' => false,
                 'index' => true,
-                'null_value' => null,
                 'store' => false
             ],
             $dateProperty->toArray()
@@ -53,8 +52,8 @@ final class DatePropertyTest extends TestCase
                 'locale' => 'ENGLISH',
                 'ignore_malformed' => true,
                 'index' => false,
-                'null_value' => 'NULL',
-                'store' => true
+                'store' => true,
+                'null_value' => 'NULL'
             ],
             $dateProperty->toArray()
         );

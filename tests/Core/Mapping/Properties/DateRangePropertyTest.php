@@ -27,8 +27,7 @@ final class DateRangePropertyTest extends TestCase
                 'doc_values' => true,
                 'format' => 'strict_date_optional_time||epoch_millis',
                 'locale' => Mapping::LOCALE_ROOT,
-                'ignore_malformed' => false,
-                'null_value' => null
+                'ignore_malformed' => false
             ],
             $property->toArray()
         );

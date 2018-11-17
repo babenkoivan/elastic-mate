@@ -22,13 +22,18 @@ final class BooleanProperty extends AbstractProperty
      */
     public function toArray(): array
     {
-        return [
+        $property = [
             'type' => 'boolean',
             'boost' => $this->boost,
             'doc_values' => $this->docValues,
             'index' => $this->index,
-            'null_value' => $this->nullValue,
             'store' => $this->store
         ];
+
+        if (isset($this->nullValue)) {
+            $property['null_value'] = $this->nullValue;
+        }
+
+        return $property;
     }
 }

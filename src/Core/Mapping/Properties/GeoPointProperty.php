@@ -16,11 +16,16 @@ final class GeoPointProperty extends AbstractProperty
      */
     public function toArray(): array
     {
-        return [
+        $property = [
             'type' => 'geo_point',
             'ignore_malformed' => $this->ignoreMalformed,
-            'ignore_z_value' => $this->ignoreZValue,
-            'null_value' => $this->nullValue
+            'ignore_z_value' => $this->ignoreZValue
         ];
+
+        if (isset($this->nullValue)) {
+            $property['null_value'] = $this->nullValue;
+        }
+
+        return $property;
     }
 }

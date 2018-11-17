@@ -21,7 +21,6 @@ final class BooleanPropertyTest extends TestCase
                 'boost' => 1,
                 'doc_values' => true,
                 'index' => true,
-                'null_value' => null,
                 'store' => false
             ],
             $booleanProperty->toArray()
@@ -43,8 +42,8 @@ final class BooleanPropertyTest extends TestCase
                 'boost' => 1.1,
                 'doc_values' => true,
                 'index' => false,
-                'null_value' => 'NULL',
-                'store' => true
+                'store' => true,
+                'null_value' => 'NULL'
             ],
             $booleanProperty->toArray()
         );

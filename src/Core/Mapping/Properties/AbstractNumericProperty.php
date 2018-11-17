@@ -31,15 +31,20 @@ abstract class AbstractNumericProperty extends AbstractProperty
      */
     public function toArray(): array
     {
-        return [
+        $property = [
             'type' => $this->type,
             'coerce' => $this->coerce,
             'boost' => $this->boost,
             'doc_values' => $this->docValues,
             'ignore_malformed' => $this->ignoreMalformed,
             'index' => $this->index,
-            'null_value' => $this->nullValue,
             'store' => $this->store
         ];
+
+        if (isset($this->nullValue)) {
+            $property['null_value'] = $this->nullValue;
+        }
+
+        return $property;
     }
 }

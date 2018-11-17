@@ -22,7 +22,7 @@ final class IpProperty extends AbstractProperty
      */
     public function toArray(): array
     {
-        return [
+        $property = [
             'type' => 'ip',
             'boost' => $this->boost,
             'doc_values' => $this->docValues,
@@ -30,5 +30,11 @@ final class IpProperty extends AbstractProperty
             'null_value' => $this->nullValue,
             'store' => $this->store
         ];
+
+        if (isset($this->nullValue)) {
+            $property['null_value'] = $this->nullValue;
+        }
+
+        return $property;
     }
 }

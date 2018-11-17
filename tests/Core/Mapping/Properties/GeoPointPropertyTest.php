@@ -19,8 +19,7 @@ final class GeoPointPropertyTest extends TestCase
             [
                 'type' => 'geo_point',
                 'ignore_malformed' => false,
-                'ignore_z_value' => true,
-                'null_value' => null
+                'ignore_z_value' => true
             ],
             $property->toArray()
         );

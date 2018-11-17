@@ -34,7 +34,7 @@ final class KeywordProperty extends AbstractProperty
     /**
      * @var string|null
      */
-    private $normalizer = null;
+    private $normalizer;
 
     /**
      * @var bool
@@ -86,7 +86,7 @@ final class KeywordProperty extends AbstractProperty
      */
     public function toArray(): array
     {
-        return [
+        $property = [
             'type' => 'keyword',
             'boost' => $this->boost,
             'doc_values' => $this->docValues,
@@ -95,11 +95,19 @@ final class KeywordProperty extends AbstractProperty
             'index' => $this->index,
             'index_options' => $this->indexOptions,
             'norms' => $this->norms,
-            'null_value' => $this->nullValue,
             'store' => $this->store,
             'similarity' => $this->similarity,
-            'normalizer' => $this->normalizer,
             'split_queries_on_whitespace' => $this->splitQueriesOnWhitespace
         ];
+
+        if (isset($this->normalizer)) {
+            $property['normalizer'] = $this->normalizer;
+        }
+
+        if (isset($this->nullValue)) {
+            $property['null_value'] = $this->nullValue;
+        }
+
+        return $property;
     }
 }

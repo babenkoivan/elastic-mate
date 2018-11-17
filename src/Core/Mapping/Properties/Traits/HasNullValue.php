@@ -8,7 +8,7 @@ trait HasNullValue
     /**
      * @var mixed
      */
-    private $nullValue = null;
+    private $nullValue;
 
     /**
      * @param mixed $nullValue
