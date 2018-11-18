@@ -3,15 +3,29 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Mapping\Properties;
 
+use BabenkoIvan\ElasticMate\Core\Entities\Index;
+use BabenkoIvan\ElasticMate\Core\EntityManagers\IndexManager;
 use BabenkoIvan\ElasticMate\Core\Mapping\Mapping;
+use BabenkoIvan\ElasticMate\Core\Settings\Analysis;
+use BabenkoIvan\ElasticMate\Traits\HasClient;
+use BabenkoIvan\ElasticMate\Traits\HasMappingAssertions;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \BabenkoIvan\ElasticMate\Core\Mapping\Properties\KeywordProperty
  * @uses   \BabenkoIvan\ElasticMate\Core\Mapping\Properties\AbstractProperty
+ * @uses   \BabenkoIvan\ElasticMate\Infrastructure\Client\Client
+ * @uses   \BabenkoIvan\ElasticMate\Infrastructure\Client\ClientFactory
+ * @uses   \BabenkoIvan\ElasticMate\Infrastructure\Client\Namespaces\IndicesNamespace
+ * @uses   \BabenkoIvan\ElasticMate\Core\EntityManagers\IndexManager
+ * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Settings
+ * @uses   \BabenkoIvan\ElasticMate\Core\Mapping\Mapping
+ * @uses   \BabenkoIvan\ElasticMate\Core\Entities\Index
  */
 final class KeywordPropertyTest extends TestCase
 {
+    use HasClient, HasMappingAssertions;
+
     public function test_keyword_property_has_correct_default_values(): void
     {
         $keywordProperty = new KeywordProperty('foo');
@@ -40,7 +54,6 @@ final class KeywordPropertyTest extends TestCase
             ->setDocValues(false)
             ->setStore(true)
             ->setIndex(false)
-            ->setNormalizer('bar')
             ->setEagerGlobalOrdinals(true)
             ->setIgnoreAbove(1028)
             ->setIndexOptions(Mapping::INDEX_OPTIONS_DOCS)
@@ -63,10 +76,39 @@ final class KeywordPropertyTest extends TestCase
                 'store' => true,
                 'similarity' => Mapping::SIMILARITY_CLASSIC,
                 'split_queries_on_whitespace' => false,
-                'normalizer' => 'bar',
                 'null_value' => 'NULL'
             ],
             $keywordProperty->toArray()
         );
+    }
+
+    public function test_keyword_property_can_be_created(): void
+    {
+        $mapping = (new Mapping())
+            ->addProperty(
+                new KeywordProperty('foo')
+            )
+            ->addProperty(
+                (new KeywordProperty('bar'))
+                    ->setDocValues(false)
+                    ->setStore(true)
+                    ->setIndex(false)
+                    ->setEagerGlobalOrdinals(true)
+                    ->setIgnoreAbove(1028)
+                    ->setIndexOptions(Mapping::INDEX_OPTIONS_DOCS)
+                    ->setSimilarity(Mapping::SIMILARITY_CLASSIC)
+                    ->setNorms(false)
+                    ->setSplitQueriesOnWhitespace(false)
+                    ->setNullValue('NULL')
+                    ->setBoost(1.6)
+            );
+
+        $index = (new Index('test'))
+            ->setMapping($mapping);
+
+        $indexManager = new IndexManager($this->client);
+        $indexManager->create($index);
+
+        $this->assertMappingMatch($mapping->toArray(), $this->getIndexMapping($index->getName()));
     }
 }

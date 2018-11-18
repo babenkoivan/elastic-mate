@@ -32,11 +32,6 @@ final class KeywordProperty extends AbstractProperty
     private $ignoreAbove = 2147483647;
 
     /**
-     * @var string|null
-     */
-    private $normalizer;
-
-    /**
      * @var bool
      */
     private $splitQueriesOnWhitespace = false;
@@ -58,16 +53,6 @@ final class KeywordProperty extends AbstractProperty
     public function setIgnoreAbove(int $ignoreAbove): self
     {
         $this->ignoreAbove = $ignoreAbove;
-        return $this;
-    }
-
-    /**
-     * @param string $normalizer
-     * @return self
-     */
-    public function setNormalizer(string $normalizer): self
-    {
-        $this->normalizer = $normalizer;
         return $this;
     }
 
@@ -99,10 +84,6 @@ final class KeywordProperty extends AbstractProperty
             'similarity' => $this->similarity,
             'split_queries_on_whitespace' => $this->splitQueriesOnWhitespace
         ];
-
-        if (isset($this->normalizer)) {
-            $property['normalizer'] = $this->normalizer;
-        }
 
         if (isset($this->nullValue)) {
             $property['null_value'] = $this->nullValue;
