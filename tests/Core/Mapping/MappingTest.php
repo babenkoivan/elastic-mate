@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Mapping;
 
+use BabenkoIvan\ElasticMate\Core\Contracts\Content\Mutator;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\TextProperty;
 use PHPUnit\Framework\TestCase;
 
@@ -15,7 +16,7 @@ final class MappingTest extends TestCase
 {
     public function test_source_can_be_disabled(): void
     {
-        $mapping = (new Mapping())->disableSource();
+        $mapping = (new Mapping())->setSourceEnabled(false);
 
         $this->assertEquals(
             [
@@ -66,6 +67,31 @@ final class MappingTest extends TestCase
                 ]
             ],
             $mapping->toArray()
+        );
+    }
+
+    public function test_mapping_can_return_mutators(): void
+    {
+        $mutator = new class implements Mutator
+        {
+            public function toPrimitive($value)
+            {
+
+            }
+
+            public function fromPrimitive($value)
+            {
+
+            }
+        };
+
+        $mapping = (new Mapping())
+            ->addProperty(new TextProperty('foo'))
+            ->addProperty((new TextProperty('bar'))->setMutator($mutator));
+
+        $this->assertEquals(
+            collect([$mutator]),
+            $mapping->getMutators()
         );
     }
 }

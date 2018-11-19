@@ -73,7 +73,7 @@ final class GeoDistanceQuery implements Query
                     'lat' => $this->point->getLatitude(),
                     'lon' => $this->point->getLongitude()
                 ],
-                'distance' => $this->distance->getDistance() . $this->distance->getUnit(),
+                'distance' => $this->distance->getValue() . $this->distance->getUnit(),
                 'distance_type' => $this->distanceType,
                 'validation_method' => $this->validationMethod
             ]

@@ -18,7 +18,7 @@ final class GeoDistance
     /**
      * @var float
      */
-    private $distance;
+    private $value;
 
     /**
      * @var string
@@ -26,21 +26,21 @@ final class GeoDistance
     private $unit;
 
     /**
-     * @param float $distance
+     * @param float $value
      * @param string $unit
      */
-    public function __construct(float $distance, string $unit)
+    public function __construct(float $value, string $unit)
     {
-        $this->distance = $distance;
+        $this->value = $value;
         $this->unit = $unit;
     }
 
     /**
      * @return float
      */
-    public function getDistance(): float
+    public function getValue(): float
     {
-        return $this->distance;
+        return $this->value;
     }
 
     /**

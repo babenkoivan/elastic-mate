@@ -42,22 +42,33 @@ class Mapping implements Arrayable
     }
 
     /**
+     * @param bool $isSourceEnabled
      * @return self
      */
-    public function disableSource(): self
+    public function setSourceEnabled(bool $isSourceEnabled): self
     {
-        $this->isSourceEnabled = false;
+        $this->isSourceEnabled = $isSourceEnabled;
         return $this;
     }
 
     /**
      * @param Property $property
-     * @return Mapping
+     * @return self
      */
     public function addProperty(Property $property): self
     {
         $this->properties->push($property);
         return $this;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getMutators(): Collection
+    {
+        return $this->properties->map(function (Property $property) {
+            return $property->getMutator();
+        })->filter()->values();
     }
 
     /**

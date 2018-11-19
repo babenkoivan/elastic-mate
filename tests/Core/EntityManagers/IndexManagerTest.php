@@ -136,7 +136,7 @@ final class IndexManagerTest extends TestCase
             ->setAnalysis($analysis);
 
         $mapping = (new Mapping())
-            ->disableSource()
+            ->setSourceEnabled(false)
             ->addProperty($contentProperty);
 
         $this->index = (new Index('test'))

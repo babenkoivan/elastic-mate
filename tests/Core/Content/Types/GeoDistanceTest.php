@@ -14,7 +14,7 @@ final class GeoDistanceTest extends TestCase
     {
         $geoDistance = new GeoDistance(100.70, GeoDistance::UNIT_KILOMETER);
 
-        $this->assertSame(100.70, $geoDistance->getDistance());
+        $this->assertSame(100.70, $geoDistance->getValue());
         $this->assertSame(GeoDistance::UNIT_KILOMETER, $geoDistance->getUnit());
     }
 }

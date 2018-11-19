@@ -34,9 +34,9 @@ abstract class AbstractProperty implements Property
 
     /**
      * @param Mutator|null $mutator
-     * @return self
+     * @return Property
      */
-    public function setMutator(Mutator $mutator): self
+    public function setMutator(Mutator $mutator): Property
     {
         $this->mutator = $mutator;
         return $this;

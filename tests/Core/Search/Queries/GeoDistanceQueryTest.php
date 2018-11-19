@@ -31,7 +31,7 @@ final class GeoDistanceQueryTest extends TestCase
                         'lat' => $point->getLatitude(),
                         'lon' => $point->getLongitude()
                     ],
-                    'distance' => $distance->getDistance() . $distance->getUnit(),
+                    'distance' => $distance->getValue() . $distance->getUnit(),
                     'distance_type' => Query::DISTANCE_TYPE_PLANE,
                     'validation_method' => Query::VALIDATION_METHOD_IGNORE_MALFORMED
                 ]
