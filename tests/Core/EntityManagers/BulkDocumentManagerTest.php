@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \BabenkoIvan\ElasticMate\Core\EntityManagers\BulkDocumentManager
- * @uses   \BabenkoIvan\ElasticMate\Core\Content\Content
+ * @uses   \BabenkoIvan\ElasticMate\Core\Content\Mutators\ContentMutator
  * @uses   \BabenkoIvan\ElasticMate\Core\Entities\Document
  * @uses   \BabenkoIvan\ElasticMate\Core\Entities\Index
  * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Settings

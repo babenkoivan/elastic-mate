@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\EntityManagers;
 
-use BabenkoIvan\ElasticMate\Core\Content\Content;
+use BabenkoIvan\ElasticMate\Core\Content\Mutators\ContentMutator;
 use BabenkoIvan\ElasticMate\Core\Contracts\Client\Client;
 use BabenkoIvan\ElasticMate\Core\Contracts\EntityManagers\DocumentManager;
 use BabenkoIvan\ElasticMate\Core\Entities\Document;
@@ -32,20 +32,22 @@ final class BulkDocumentManager implements DocumentManager
      */
     public function index(Index $index, Collection $documents, bool $force = false): DocumentManager
     {
+        $contentMutator = new ContentMutator($index->getMapping());
+
         $payload = [
             'index' => $index->getName(),
             'type' => DocumentManager::DEFAULT_TYPE,
             'body' => []
         ];
 
-        $documents->each(function (Document $document) use (&$payload) {
+        $documents->each(function (Document $document) use (&$payload, $contentMutator) {
             $payload['body'][] = [
                 'index' => [
                     '_id' => $document->getId()
                 ]
             ];
 
-            $payload['body'][] = $document->getContent()->all();
+            $payload['body'][] = $contentMutator->toPrimitive($document->getContent());
         });
 
         if ($force) {
@@ -92,6 +94,8 @@ final class BulkDocumentManager implements DocumentManager
      */
     public function search(Index $index, Request $request): Response
     {
+        $contentMutator = new ContentMutator($index->getMapping());
+
         $payload = [
             'index' => $index->getName(),
             'type' => DocumentManager::DEFAULT_TYPE,
@@ -101,9 +105,9 @@ final class BulkDocumentManager implements DocumentManager
         $response = $this->client
             ->search($payload);
 
-        $documents = collect($response['hits']['hits'])->map(function (array $hit) {
+        $documents = collect($response['hits']['hits'])->map(function (array $hit) use ($contentMutator) {
             $id = $hit['_id'];
-            $content = new Content($hit['_source']);
+            $content = $contentMutator->fromPrimitive($hit['_source']);
 
             return new Document($id, $content);
         });

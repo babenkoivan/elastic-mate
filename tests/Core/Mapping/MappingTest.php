@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace BabenkoIvan\ElasticMate\Core\Mapping;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Content\Mutator;
+use BabenkoIvan\ElasticMate\Core\Contracts\Mapping\Property;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\TextProperty;
 use PHPUnit\Framework\TestCase;
 
@@ -70,28 +71,19 @@ final class MappingTest extends TestCase
         );
     }
 
-    public function test_mapping_can_return_mutators(): void
+    public function test_mapping_can_return_properties(): void
     {
-        $mutator = new class implements Mutator
-        {
-            public function toPrimitive($value)
-            {
+        $mapping = new Mapping();
 
-            }
+        $properties = collect([
+            new TextProperty('foo'),
+            new TextProperty('bar')
+        ]);
 
-            public function fromPrimitive($value)
-            {
+        $properties->each(function (Property $property) use ($mapping) {
+            $mapping->addProperty($property);
+        });
 
-            }
-        };
-
-        $mapping = (new Mapping())
-            ->addProperty(new TextProperty('foo'))
-            ->addProperty((new TextProperty('bar'))->setMutator($mutator));
-
-        $this->assertEquals(
-            collect([$mutator]),
-            $mapping->getMutators()
-        );
+        $this->assertEquals($properties, $mapping->getProperties());
     }
 }

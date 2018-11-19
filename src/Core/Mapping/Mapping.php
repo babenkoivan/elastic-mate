@@ -64,11 +64,9 @@ class Mapping implements Arrayable
     /**
      * @return Collection
      */
-    public function getMutators(): Collection
+    public function getProperties(): Collection
     {
-        return $this->properties->map(function (Property $property) {
-            return $property->getMutator();
-        })->filter()->values();
+        return $this->properties;
     }
 
     /**
