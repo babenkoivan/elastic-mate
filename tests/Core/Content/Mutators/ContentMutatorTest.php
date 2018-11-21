@@ -12,6 +12,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \BabenkoIvan\ElasticMate\Core\Content\Mutators\ContentMutator
  * @uses   \BabenkoIvan\ElasticMate\Core\Mapping\Mapping
+ * @uses   \BabenkoIvan\ElasticMate\Core\Mapping\Properties\AbstractProperty
  * @uses   \BabenkoIvan\ElasticMate\Core\Mapping\Properties\TextProperty
  */
 final class ContentMutatorTest extends TestCase
