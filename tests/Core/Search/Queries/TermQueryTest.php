@@ -12,6 +12,8 @@ use BabenkoIvan\ElasticMate\Core\Mapping\Mapping;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\IntegerNumericProperty;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\KeywordProperty;
 use BabenkoIvan\ElasticMate\Core\Search\Request;
+use BabenkoIvan\ElasticMate\Core\Search\Sort\Simple\FieldSort;
+use BabenkoIvan\ElasticMate\Core\Search\Sort\Simple\SimpleSort;
 use BabenkoIvan\ElasticMate\Traits\HasClient;
 use Illuminate\Support\Collection;
 use PHPUnit\Framework\TestCase;
@@ -33,6 +35,8 @@ use PHPUnit\Framework\TestCase;
  * @uses   \BabenkoIvan\ElasticMate\Core\Mapping\Properties\AbstractNumericProperty
  * @uses   \BabenkoIvan\ElasticMate\Core\Mapping\Properties\IntegerNumericProperty
  * @uses   \BabenkoIvan\ElasticMate\Core\Mapping\Properties\KeywordProperty
+ * @uses   \BabenkoIvan\ElasticMate\Core\Search\Sort\Simple\FieldSort
+ * @uses   \BabenkoIvan\ElasticMate\Core\Search\Sort\Simple\SimpleSort
  * @uses   \BabenkoIvan\ElasticMate\Core\Search\Request
  * @uses   \BabenkoIvan\ElasticMate\Core\Search\Response
  * @uses   \Illuminate\Support\Collection
@@ -120,7 +124,11 @@ final class TermQueryTest extends TestCase
         $documentManager->index($index, $documents, true);
 
         $query = new TermQuery($field, $value);
-        $request = new Request($query);
+        $sort = new SimpleSort(collect([new FieldSort('_id', FieldSort::ORDER_ASC)]));
+
+        $request = (new Request($query))
+            ->setSort($sort);
+
         $response = $documentManager->search($index, $request);
 
         $this->assertEquals(
