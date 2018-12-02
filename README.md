@@ -152,7 +152,7 @@ $indexManager->delete($index);
 
 ## Document actions
 
-## Index
+### Index
 
 Learn more about document index API in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html).
 
@@ -185,7 +185,7 @@ $documentManager->index($index, $documents);
 $documentManager->index($index, $documents, true);
 ```
 
-## Delete
+### Delete
 
 Learn more about document delete API in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete.html).
 
@@ -210,7 +210,7 @@ $documentManager->delete($index, $documents);
 $documentManager->delete($index, $documents, true);
 ```
 
-## Search
+### Search
 
 Learn more about search API in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html).
 
