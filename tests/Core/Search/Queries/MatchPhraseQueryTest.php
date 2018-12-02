@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace BabenkoIvan\ElasticMate\Core\Search\Queries;
 
 use BabenkoIvan\ElasticMate\Core\Content\Content;
+use BabenkoIvan\ElasticMate\Core\Contracts\Settings\Analyzer;
 use BabenkoIvan\ElasticMate\Core\Entities\Document;
 use BabenkoIvan\ElasticMate\Core\Entities\Index;
 use BabenkoIvan\ElasticMate\Core\EntityManagers\BulkDocumentManager;
@@ -23,6 +24,7 @@ use PHPUnit\Framework\TestCase;
  * @uses   \BabenkoIvan\ElasticMate\Infrastructure\Client\ClientFactory
  * @uses   \BabenkoIvan\ElasticMate\Infrastructure\Client\Namespaces\IndicesNamespace
  * @uses   \BabenkoIvan\ElasticMate\Core\Content\Content
+ * @uses   \BabenkoIvan\ElasticMate\Core\Contracts\Settings\Analyzer
  * @uses   \BabenkoIvan\ElasticMate\Core\Content\Mutators\ContentMutator
  * @uses   \BabenkoIvan\ElasticMate\Core\Entities\Document
  * @uses   \BabenkoIvan\ElasticMate\Core\Entities\Index
@@ -45,7 +47,7 @@ final class MatchPhraseQueryTest extends TestCase
     public function test_match_phrase_query_can_be_converted_to_array(): void
     {
         $matchPhraseQuery = (new MatchPhraseQuery('foo', 'bar'))
-            ->setAnalyzer('whitespace')
+            ->setAnalyzer(Analyzer::TYPE_WHITESPACE)
             ->setSlop(2);
 
         $this->assertSame(

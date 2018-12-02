@@ -7,6 +7,7 @@ use BabenkoIvan\ElasticMate\Core\Content\Content;
 use BabenkoIvan\ElasticMate\Core\Contracts\EntityManagers\DocumentManager;
 use BabenkoIvan\ElasticMate\Core\Entities\Document;
 use BabenkoIvan\ElasticMate\Core\Entities\Index;
+use BabenkoIvan\ElasticMate\Core\Search\Pagination;
 use BabenkoIvan\ElasticMate\Core\Search\Queries\MatchAllQuery;
 use BabenkoIvan\ElasticMate\Core\Search\Request;
 use BabenkoIvan\ElasticMate\Core\Search\Sort\Simple\FieldSort;
@@ -19,6 +20,7 @@ use PHPUnit\Framework\TestCase;
  * @uses   \BabenkoIvan\ElasticMate\Core\Content\Mutators\ContentMutator
  * @uses   \BabenkoIvan\ElasticMate\Core\Entities\Document
  * @uses   \BabenkoIvan\ElasticMate\Core\Entities\Index
+ * @uses   \BabenkoIvan\ElasticMate\Core\Search\Pagination
  * @uses   \BabenkoIvan\ElasticMate\Core\Settings\Settings
  * @uses   \BabenkoIvan\ElasticMate\Core\Mapping\Mapping
  * @uses   \BabenkoIvan\ElasticMate\Core\Search\Queries\MatchAllQuery
@@ -108,7 +110,11 @@ final class BulkDocumentManagerTest extends TestCase
 
         $query = new MatchAllQuery();
         $sort = new SimpleSort(collect([new FieldSort('_id', 'asc')]));
-        $request = (new Request($query))->setSort($sort);
+        $pagination = new Pagination(1, 1);
+
+        $request = (new Request($query))
+            ->setSort($sort)
+            ->setPagination($pagination);
 
         $response = $this->documentManager
             ->search($this->index, $request);
@@ -117,10 +123,8 @@ final class BulkDocumentManagerTest extends TestCase
         $total = $response->getTotal();
 
         $this->assertSame(2, $total);
-        $this->assertSame('1', $documents->get(0)->getId());
-        $this->assertSame(['name' => 'foo'], $documents->get(0)->getContent()->all());
-        $this->assertSame('2', $documents->get(1)->getId());
-        $this->assertSame(['name' => 'bar'], $documents->get(1)->getContent()->all());
+        $this->assertSame('2', $documents->get(0)->getId());
+        $this->assertSame(['name' => 'bar'], $documents->get(0)->getContent()->all());
     }
 
     /**

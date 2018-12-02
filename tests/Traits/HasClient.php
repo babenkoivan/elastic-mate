@@ -22,7 +22,7 @@ trait HasClient
     {
         $this->client = ClientFactory::fromConfig([
             'hosts' => [
-                getenv('SCOUT_ELASTIC_HOST')
+                getenv('ELASTIC_HOST')
             ]
         ]);
     }
