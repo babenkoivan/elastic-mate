@@ -27,7 +27,7 @@ final class BooleanPropertyTest extends TestCase
 
     public function test_boolean_property_has_correct_default_values(): void
     {
-        $booleanProperty = new BooleanProperty('foo');
+        $property = new BooleanProperty('foo');
 
         $this->assertSame(
             [
@@ -37,13 +37,13 @@ final class BooleanPropertyTest extends TestCase
                 'index' => true,
                 'store' => false
             ],
-            $booleanProperty->toArray()
+            $property->toArray()
         );
     }
 
     public function test_boolean_property_can_be_converted_to_array(): void
     {
-        $booleanProperty = (new BooleanProperty('foo'))
+        $property = (new BooleanProperty('foo'))
             ->setDocValues(true)
             ->setStore(true)
             ->setIndex(false)
@@ -59,7 +59,7 @@ final class BooleanPropertyTest extends TestCase
                 'store' => true,
                 'null_value' => false
             ],
-            $booleanProperty->toArray()
+            $property->toArray()
         );
     }
 

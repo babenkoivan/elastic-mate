@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace BabenkoIvan\ElasticMate\Core\Mapping;
+namespace BabenkoIvan\ElasticMate\Core\Mapping\Properties;
 
 use BabenkoIvan\ElasticMate\Core\Entities\Index;
 use BabenkoIvan\ElasticMate\Core\EntityManagers\IndexManager;
-use BabenkoIvan\ElasticMate\Core\Mapping\Properties\TextProperty;
+use BabenkoIvan\ElasticMate\Core\Mapping\Mapping;
 use BabenkoIvan\ElasticMate\Traits\HasClient;
 use BabenkoIvan\ElasticMate\Traits\HasMappingAssertions;
 use PHPUnit\Framework\TestCase;
@@ -27,7 +27,7 @@ final class TextPropertyTest extends TestCase
 
     public function test_text_property_has_correct_default_values(): void
     {
-        $textProperty = new TextProperty('foo');
+        $property = new TextProperty('foo');
 
         $this->assertSame(
             [
@@ -42,13 +42,13 @@ final class TextPropertyTest extends TestCase
                 'similarity' => Mapping::SIMILARITY_BM25,
                 'term_vector' => Mapping::TERM_VECTOR_NO
             ],
-            $textProperty->toArray()
+            $property->toArray()
         );
     }
 
     public function test_text_property_can_be_converted_to_array(): void
     {
-        $textProperty = (new TextProperty('foo'))
+        $property = (new TextProperty('foo'))
             ->setBoost(1.7)
             ->setEagerGlobalOrdinals(false)
             ->setFieldData(true)
@@ -78,7 +78,7 @@ final class TextPropertyTest extends TestCase
                 'search_analyzer' => 'standard',
                 'search_quote_analyzer' => 'simple'
             ],
-            $textProperty->toArray()
+            $property->toArray()
         );
     }
 

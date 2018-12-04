@@ -27,7 +27,7 @@ final class DatePropertyTest extends TestCase
 
     public function test_date_property_has_correct_default_values(): void
     {
-        $dateProperty = new DateProperty('foo');
+        $property = new DateProperty('foo');
 
         $this->assertSame(
             [
@@ -40,20 +40,20 @@ final class DatePropertyTest extends TestCase
                 'index' => true,
                 'store' => false
             ],
-            $dateProperty->toArray()
+            $property->toArray()
         );
     }
 
     public function test_date_property_can_be_converted_to_array(): void
     {
-        $dateProperty = (new DateProperty('foo'))
+        $property = (new DateProperty('foo'))
             ->setBoost(1.2)
             ->setDocValues(false)
             ->setFormat('yyyy-MM-dd HH:mm:ss')
             ->setLocale('en')
             ->setIgnoreMalformed(true)
             ->setIndex(false)
-            ->setNullValue('NULL')
+            ->setNullValue('2000-01-01 00:00:00')
             ->setStore(true);
 
         $this->assertSame(
@@ -66,9 +66,9 @@ final class DatePropertyTest extends TestCase
                 'ignore_malformed' => true,
                 'index' => false,
                 'store' => true,
-                'null_value' => 'NULL'
+                'null_value' => '2000-01-01 00:00:00'
             ],
-            $dateProperty->toArray()
+            $property->toArray()
         );
     }
 
@@ -86,7 +86,7 @@ final class DatePropertyTest extends TestCase
                     ->setLocale('en')
                     ->setIgnoreMalformed(true)
                     ->setIndex(false)
-                    ->setNullValue('NULL')
+                    ->setNullValue('2000-01-01 00:00:00')
                     ->setStore(true)
             );
 

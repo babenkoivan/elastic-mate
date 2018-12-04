@@ -6,7 +6,6 @@ namespace BabenkoIvan\ElasticMate\Core\Mapping\Properties;
 use BabenkoIvan\ElasticMate\Core\Entities\Index;
 use BabenkoIvan\ElasticMate\Core\EntityManagers\IndexManager;
 use BabenkoIvan\ElasticMate\Core\Mapping\Mapping;
-use BabenkoIvan\ElasticMate\Core\Settings\Analysis;
 use BabenkoIvan\ElasticMate\Traits\HasClient;
 use BabenkoIvan\ElasticMate\Traits\HasMappingAssertions;
 use PHPUnit\Framework\TestCase;
@@ -28,7 +27,7 @@ final class KeywordPropertyTest extends TestCase
 
     public function test_keyword_property_has_correct_default_values(): void
     {
-        $keywordProperty = new KeywordProperty('foo');
+        $property = new KeywordProperty('foo');
 
         $this->assertSame(
             [
@@ -44,13 +43,13 @@ final class KeywordPropertyTest extends TestCase
                 'similarity' => Mapping::SIMILARITY_BM25,
                 'split_queries_on_whitespace' => false
             ],
-            $keywordProperty->toArray()
+            $property->toArray()
         );
     }
 
     public function test_keyword_property_can_be_converted_to_array(): void
     {
-        $keywordProperty = (new KeywordProperty('foo'))
+        $property = (new KeywordProperty('foo'))
             ->setDocValues(false)
             ->setStore(true)
             ->setIndex(false)
@@ -78,7 +77,7 @@ final class KeywordPropertyTest extends TestCase
                 'split_queries_on_whitespace' => false,
                 'null_value' => 'NULL'
             ],
-            $keywordProperty->toArray()
+            $property->toArray()
         );
     }
 

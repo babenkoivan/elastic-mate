@@ -27,7 +27,7 @@ final class IpPropertyTest extends TestCase
 
     public function test_ip_property_has_correct_default_values(): void
     {
-        $ipProperty = new IpProperty('foo');
+        $property = new IpProperty('foo');
 
         $this->assertSame(
             [
@@ -37,13 +37,13 @@ final class IpPropertyTest extends TestCase
                 'index' => true,
                 'store' => false
             ],
-            $ipProperty->toArray()
+            $property->toArray()
         );
     }
 
     public function test_ip_property_can_be_converted_to_array(): void
     {
-        $ipProperty = (new IpProperty('foo'))
+        $property = (new IpProperty('foo'))
             ->setDocValues(false)
             ->setStore(false)
             ->setIndex(true)
@@ -59,7 +59,7 @@ final class IpPropertyTest extends TestCase
                 'store' => false,
                 'null_value' => '0.0.0.0'
             ],
-            $ipProperty->toArray()
+            $property->toArray()
         );
     }
 

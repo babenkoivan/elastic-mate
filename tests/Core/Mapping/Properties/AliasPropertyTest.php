@@ -28,14 +28,14 @@ final class AliasPropertyTest extends TestCase
 
     public function test_alias_property_can_be_converted_to_array(): void
     {
-        $aliasProperty = new AliasProperty('foo', 'bar');
+        $property = new AliasProperty('foo', 'bar');
 
         $this->assertSame(
             [
                 'type' => 'alias',
                 'path' => 'bar'
             ],
-            $aliasProperty->toArray()
+            $property->toArray()
         );
     }
 

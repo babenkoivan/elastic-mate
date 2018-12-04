@@ -27,7 +27,7 @@ final class BinaryPropertyTest extends TestCase
 
     public function test_binary_property_has_correct_default_values(): void
     {
-        $binaryProperty = new BinaryProperty('foo');
+        $property = new BinaryProperty('foo');
 
         $this->assertSame(
             [
@@ -35,13 +35,13 @@ final class BinaryPropertyTest extends TestCase
                 'doc_values' => false,
                 'store' => false
             ],
-            $binaryProperty->toArray()
+            $property->toArray()
         );
     }
 
     public function test_binary_property_can_be_converted_to_array(): void
     {
-        $binaryProperty = (new BinaryProperty('foo'))
+        $property = (new BinaryProperty('foo'))
             ->setDocValues(true)
             ->setStore(true);
 
@@ -51,7 +51,7 @@ final class BinaryPropertyTest extends TestCase
                 'doc_values' => true,
                 'store' => true
             ],
-            $binaryProperty->toArray()
+            $property->toArray()
         );
     }
 

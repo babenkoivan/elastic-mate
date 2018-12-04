@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Mapping;
 
-use BabenkoIvan\ElasticMate\Core\Contracts\Content\Mutator;
 use BabenkoIvan\ElasticMate\Core\Contracts\Mapping\Property;
 use BabenkoIvan\ElasticMate\Core\Mapping\Properties\TextProperty;
 use PHPUnit\Framework\TestCase;
