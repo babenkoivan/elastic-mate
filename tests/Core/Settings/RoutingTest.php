@@ -30,8 +30,8 @@ final class RoutingTest extends TestCase
     public function test_routing_can_be_converted_to_array(): void
     {
         $routing = (new Routing())
-            ->enableAllocation(Routing::ENABLE_ALLOCATION_NEW_PRIMARIES)
-            ->enableRebalance(Routing::ENABLE_REBALANCE_REPLICAS);
+            ->setEnableAllocation(Routing::ENABLE_ALLOCATION_NEW_PRIMARIES)
+            ->setEnableRebalance(Routing::ENABLE_REBALANCE_REPLICAS);
 
         $this->assertSame(
             [

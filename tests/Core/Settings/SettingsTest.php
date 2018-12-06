@@ -64,8 +64,8 @@ final class SettingsTest extends TestCase
             ->setMaxAnalyzedOffset(10);
 
         $routing = (new Routing())
-            ->enableAllocation(Routing::ENABLE_ALLOCATION_NONE)
-            ->enableRebalance(Routing::ENABLE_REBALANCE_PRIMARIES);
+            ->setEnableAllocation(Routing::ENABLE_ALLOCATION_NONE)
+            ->setEnableRebalance(Routing::ENABLE_REBALANCE_PRIMARIES);
 
         $analysis = (new Analysis())
             ->addAnalyzer(new StandardAnalyzer('standard_analyzer'))
@@ -77,7 +77,7 @@ final class SettingsTest extends TestCase
             ->setRoutingPartitionSize(2)
             ->setNumberOfReplicas(2)
             ->setAutoExpandReplicas(Settings::AUTO_EXPAND_REPLICAS_ALL)
-            ->setRefreshInterval('10s')
+            ->setRefreshInterval(10)
             ->setMaxResultWindow(999)
             ->setMaxInnerResultWindow(99)
             ->setMaxRescoreWindow(888)
@@ -86,7 +86,7 @@ final class SettingsTest extends TestCase
             ->setMaxNgramDiff(2)
             ->setMaxShingleDiff(1)
             ->setMaxTermsCount(1024)
-            ->setGcDeletes('11s')
+            ->setGcDeletes(11)
             ->setMaxRegexLength(777)
             ->setShard($shard)
             ->setBlocks($blocks)

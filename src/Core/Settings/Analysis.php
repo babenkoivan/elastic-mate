@@ -141,7 +141,7 @@ class Analysis implements Arrayable
     /**
      * @var Collection
      */
-    private $charFilters;
+    private $characterFilters;
 
     /**
      * @var Collection
@@ -152,7 +152,7 @@ class Analysis implements Arrayable
     {
         $this->analyzers = collect();
         $this->tokenizers = collect();
-        $this->charFilters = collect();
+        $this->characterFilters = collect();
         $this->tokenFilters = collect();
     }
 
@@ -177,12 +177,12 @@ class Analysis implements Arrayable
     }
 
     /**
-     * @param CharacterFilter $charFilter
+     * @param CharacterFilter $characterFilter
      * @return self
      */
-    public function addCharFilter(CharacterFilter $charFilter): self
+    public function addCharacterFilter(CharacterFilter $characterFilter): self
     {
-        $this->charFilters->push($charFilter);
+        $this->characterFilters->push($characterFilter);
         return $this;
     }
 
@@ -215,8 +215,8 @@ class Analysis implements Arrayable
             })->all();
         }
 
-        if ($this->charFilters->count() > 0) {
-            $analysis['char_filter'] = $this->charFilters->mapWithKeys(function (CharacterFilter $characterFilter) {
+        if ($this->characterFilters->count() > 0) {
+            $analysis['char_filter'] = $this->characterFilters->mapWithKeys(function (CharacterFilter $characterFilter) {
                 return [$characterFilter->getName() => $characterFilter->toArray()];
             })->all();
         }

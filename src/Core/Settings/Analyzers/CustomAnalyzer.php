@@ -17,7 +17,7 @@ final class CustomAnalyzer extends AbstractAnalyzer
     /**
      * @var Collection
      */
-    private $charFilters;
+    private $characterFilters;
 
     /**
      * @var Collection
@@ -35,7 +35,7 @@ final class CustomAnalyzer extends AbstractAnalyzer
     public function __construct(string $name)
     {
         parent::__construct($name);
-        $this->charFilters = collect();
+        $this->characterFilters = collect();
         $this->tokenFilters = collect();
     }
 
@@ -50,12 +50,12 @@ final class CustomAnalyzer extends AbstractAnalyzer
     }
 
     /**
-     * @param string $charFilter
+     * @param string $characterFilter
      * @return self
      */
-    public function addCharFilter(string $charFilter): self
+    public function addCharacterFilter(string $characterFilter): self
     {
-        $this->charFilters->push($charFilter);
+        $this->characterFilters->push($characterFilter);
         return $this;
     }
 
@@ -90,8 +90,8 @@ final class CustomAnalyzer extends AbstractAnalyzer
             'tokenizer' => $this->tokenizer
         ];
 
-        if ($this->charFilters->count() > 0) {
-            $analyzer['char_filter'] = $this->charFilters->values()->all();
+        if ($this->characterFilters->count() > 0) {
+            $analyzer['char_filter'] = $this->characterFilters->values()->all();
         }
 
         if ($this->tokenFilters->count() > 0) {

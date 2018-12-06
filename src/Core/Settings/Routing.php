@@ -31,7 +31,7 @@ final class Routing implements Arrayable
      * @param string $enableAllocation
      * @return self
      */
-    public function enableAllocation(string $enableAllocation): self
+    public function setEnableAllocation(string $enableAllocation): self
     {
         $this->enableAllocation = $enableAllocation;
         return $this;
@@ -41,7 +41,7 @@ final class Routing implements Arrayable
      * @param string $enableRebalance
      * @return self
      */
-    public function enableRebalance(string $enableRebalance): self
+    public function setEnableRebalance(string $enableRebalance): self
     {
         $this->enableRebalance = $enableRebalance;
         return $this;

@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Settings;
 
-use BabenkoIvan\ElasticMate\Core\Contracts\Settings\Analyzer;
 use BabenkoIvan\ElasticMate\Core\Settings\Analyzers\StandardAnalyzer;
 use BabenkoIvan\ElasticMate\Core\Settings\Analyzers\StopAnalyzer;
 use BabenkoIvan\ElasticMate\Core\Settings\CharacterFilters\HtmlStripCharacterFilter;
@@ -45,7 +44,7 @@ final class AnalysisTest extends TestCase
             ->addAnalyzer($stopAnalyzer)
             ->addTokenizer($patternTokenizer)
             ->addTokenizer($classicTokenizer)
-            ->addCharFilter($htmlStripCharFilter)
+            ->addCharacterFilter($htmlStripCharFilter)
             ->addTokenFilter($lengthTokenFilter)
             ->addTokenFilter($edgeNgramTokenFilter);
 

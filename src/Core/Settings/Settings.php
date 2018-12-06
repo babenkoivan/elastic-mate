@@ -55,9 +55,9 @@ class Settings implements Arrayable
     private $autoExpandReplicas = self::AUTO_EXPAND_REPLICAS_FALSE;
 
     /**
-     * @var string
+     * @var int
      */
-    private $refreshInterval = '1s';
+    private $refreshInterval = 1;
 
     /**
      * @var int
@@ -120,9 +120,9 @@ class Settings implements Arrayable
     private $routing;
 
     /**
-     * @var string
+     * @var int
      */
-    private $gcDeletes = '60s';
+    private $gcDeletes = 60;
 
     /**
      * @var int
@@ -200,10 +200,10 @@ class Settings implements Arrayable
     }
 
     /**
-     * @param string $refreshInterval
+     * @param int $refreshInterval
      * @return self
      */
-    public function setRefreshInterval(string $refreshInterval): self
+    public function setRefreshInterval(int $refreshInterval): self
     {
         $this->refreshInterval = $refreshInterval;
         return $this;
@@ -330,10 +330,10 @@ class Settings implements Arrayable
     }
 
     /**
-     * @param string $gcDeletes
+     * @param int $gcDeletes
      * @return Settings
      */
-    public function setGcDeletes(string $gcDeletes): Settings
+    public function setGcDeletes(int $gcDeletes): Settings
     {
         $this->gcDeletes = $gcDeletes;
         return $this;
@@ -360,7 +360,7 @@ class Settings implements Arrayable
             'routing_partition_size' => $this->routingPartitionSize,
             'number_of_replicas' => $this->numberOfReplicas,
             'auto_expand_replicas' => $this->autoExpandReplicas,
-            'refresh_interval' => $this->refreshInterval,
+            'refresh_interval' => $this->refreshInterval . 's',
             'max_result_window' => $this->maxResultWindow,
             'max_inner_result_window' => $this->maxInnerResultWindow,
             'max_rescore_window' => $this->maxRescoreWindow,
@@ -369,7 +369,7 @@ class Settings implements Arrayable
             'max_ngram_diff' => $this->maxNgramDiff,
             'max_shingle_diff' => $this->maxShingleDiff,
             'max_terms_count' => $this->maxTermsCount,
-            'gc_deletes' => $this->gcDeletes,
+            'gc_deletes' => $this->gcDeletes . 's',
             'max_regex_length' => $this->maxRegexLength
         ];
 
