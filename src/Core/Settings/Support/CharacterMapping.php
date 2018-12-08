@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace BabenkoIvan\ElasticMate\Core\Settings\Support;
 
-final class CharMapping
+final class CharacterMapping
 {
     /**
      * @var string

@@ -6,15 +6,15 @@ namespace BabenkoIvan\ElasticMate\Core\Settings\Support;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \BabenkoIvan\ElasticMate\Core\Settings\Support\CharMapping
+ * @covers \BabenkoIvan\ElasticMate\Core\Settings\Support\CharacterMapping
  */
-final class MappingTest extends TestCase
+final class CharacterMappingTest extends TestCase
 {
     public function test_mapping_can_be_converted_to_string(): void
     {
         $this->assertSame(
             'foo => bar',
-            (new CharMapping('foo', 'bar'))->toString()
+            (new CharacterMapping('foo', 'bar'))->toString()
         );
     }
 }

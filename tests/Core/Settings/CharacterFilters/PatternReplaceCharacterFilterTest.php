@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace BabenkoIvan\ElasticMate\Core\Settings\CharacterFilters;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Settings\CharacterFilter;
+use BabenkoIvan\ElasticMate\Core\Settings\Analysis;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -31,15 +32,18 @@ final class PatternReplaceCharacterFilterTest extends TestCase
         $characterFilter = (new PatternReplaceCharacterFilter('foo'))
             ->setPattern('(\\d+)-(?=\\d)')
             ->setReplacement('$1_')
-            ->addFlag('CASE_INSENSITIVE')
-            ->addFlag('COMMENTS');
+            ->addFlag(Analysis::REGEXP_FLAG_CASE_INSENSITIVE)
+            ->addFlag(Analysis::REGEXP_FLAG_COMMENTS);
 
         $this->assertSame(
             [
                 'type' => CharacterFilter::TYPE_PATTERN_REPLACE,
                 'pattern' => '(\\d+)-(?=\\d)',
                 'replacement' => '$1_',
-                'flags' => 'CASE_INSENSITIVE|COMMENTS'
+                'flags' => implode('|', [
+                    Analysis::REGEXP_FLAG_CASE_INSENSITIVE,
+                    Analysis::REGEXP_FLAG_COMMENTS
+                ])
             ],
             $characterFilter->toArray()
         );

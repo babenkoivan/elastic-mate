@@ -308,3 +308,51 @@ $analyzer = (new TurkishAnalyzer('my_analyzer'))
 // also you can set stop words from a file 
 $analyzer->setStopWordsPath('/stopwords.txt');           
 ```
+
+## Supported character filters
+
+* [Html strip character filter](#html-strip-character-filter)
+* [Mapping character filter](#mapping-character-filter)
+* [Pattern replace character filter](#pattern-replace-character-filter)
+
+### Html strip character filter
+
+Learn more about html strip character filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-htmlstrip-charfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\CharacterFilters\HtmlStripCharacterFilter;
+
+$characterFilter = (new HtmlStripCharacterFilter('my_char_filter'))
+    ->addEscapedTag('b')
+    ->addEscapedTag('a');
+```
+
+### Mapping character filter
+
+Learn more about mapping character filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-mapping-charfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\CharacterFilters\MappingCharacterFilter;
+use BabenkoIvan\ElasticMate\Core\Settings\Support\CharacterMapping;
+
+$characterFilter = (new MappingCharacterFilter('my_char_filter'))
+    ->addMapping(new CharacterMapping('٠', '0'))
+    ->addMapping(new CharacterMapping('١', '1'))
+    ->addMapping(new CharacterMapping('٢', '2'));
+```
+
+### Pattern replace character filter
+
+Learn more about pattern replace character filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-pattern-replace-charfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\CharacterFilters\PatternReplaceCharacterFilter;
+use BabenkoIvan\ElasticMate\Core\Settings\Analysis;
+
+$characterFilter = (new PatternReplaceCharacterFilter('my_char_filter'))
+    ->setPattern('(\\d+)-(?=\\d)')
+    ->setReplacement('$1_')
+    ->addFlag(Analysis::REGEXP_FLAG_CASE_INSENSITIVE);
+```
+
+
