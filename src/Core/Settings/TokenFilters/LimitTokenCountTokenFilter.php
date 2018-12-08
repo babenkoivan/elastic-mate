@@ -5,7 +5,7 @@ namespace BabenkoIvan\ElasticMate\Core\Settings\TokenFilters;
 
 use BabenkoIvan\ElasticMate\Core\Contracts\Settings\TokenFilter;
 
-final class LimitTokenFilter extends AbstractTokenFilter
+final class LimitTokenCountTokenFilter extends AbstractTokenFilter
 {
     /**
      * @var int
@@ -43,7 +43,7 @@ final class LimitTokenFilter extends AbstractTokenFilter
     public function toArray(): array
     {
         return [
-            'type' => TokenFilter::TYPE_LIMIT,
+            'type' => TokenFilter::TYPE_LIMIT_TOKEN_COUNT,
             'max_token_count' => $this->maxTokenCount,
             'consume_all_tokens' => $this->consumeAllTokens
         ];

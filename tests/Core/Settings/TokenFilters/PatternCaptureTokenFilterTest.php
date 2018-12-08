@@ -30,16 +30,16 @@ final class PatternCaptureTokenFilterTest extends TestCase
     {
         $tokenFilter = (new PatternCaptureTokenFilter('foo'))
             ->setPreserveOriginal(true)
-            ->addPattern('(\\p{Ll}+|\\p{Lu}\\p{Ll}+|\\p{Lu}+)')
-            ->addPattern('(\\d+)');
+            ->addPattern('(\p{Ll}+|\p{Lu}\p{Ll}+|\p{Lu}+)')
+            ->addPattern('(\d+)');
 
         $this->assertSame(
             [
                 'type' => TokenFilter::TYPE_PATTERN_CAPTURE,
                 'preserve_original' => true,
                 'patterns' => [
-                    '(\\p{Ll}+|\\p{Lu}\\p{Ll}+|\\p{Lu}+)',
-                    '(\\d+)'
+                    '(\p{Ll}+|\p{Lu}\p{Ll}+|\p{Lu}+)',
+                    '(\d+)'
                 ]
             ],
             $tokenFilter->toArray()

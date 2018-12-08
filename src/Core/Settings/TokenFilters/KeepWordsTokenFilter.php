@@ -6,7 +6,7 @@ namespace BabenkoIvan\ElasticMate\Core\Settings\TokenFilters;
 use BabenkoIvan\ElasticMate\Core\Contracts\Settings\TokenFilter;
 use Illuminate\Support\Collection;
 
-final class KeepTokenFilter extends AbstractTokenFilter
+final class KeepWordsTokenFilter extends AbstractTokenFilter
 {
     /**
      * @var Collection
@@ -68,7 +68,7 @@ final class KeepTokenFilter extends AbstractTokenFilter
     public function toArray(): array
     {
         $tokenFilter = [
-            'type' => TokenFilter::TYPE_KEEP,
+            'type' => TokenFilter::TYPE_KEEP_WORDS,
             'keep_words_case' => $this->keepWordsCase
         ];
 

@@ -355,4 +355,391 @@ $characterFilter = (new PatternReplaceCharacterFilter('my_char_filter'))
     ->addFlag(Analysis::REGEXP_FLAG_CASE_INSENSITIVE);
 ```
 
+## Supported token filters
 
+* [Ascii folding token filter](#ascii-folding-token-filter)
+* [Cjk bigram token filter](#cjk-bigram-token-filter)
+* [Common grams token filter](#common-grams-token-filter)
+* [Edge ngram token filter](#edge-ngram-token-filter)
+* [Elision token filter](#elision-token-filter)
+* [Fingerprint token filter](#fingerprint-token-filter)
+* [Keep types token filter](#keep-types-token-filter)
+* [Keep words token filter](#keep-words-token-filter)
+* [Keyword maker token filter](#keyword-maker-token-filter)
+* [Length token filter](#length-token-filter)
+* [Limit token count token filter](#limit-token-filter)
+* [Min hash token filter](#min-hash-token-filter)
+* [Multiplexer token filter](#multiplexer-token-filter)
+* [Ngram token filter](#ngram-token-filter)
+* [Pattern capture token filter](#pattern-capture-token-filter)
+* [Pattern replace token filter](#pattern-replace-token-filter)
+* [Shingle token filter](#shingle-token-filter)
+* [Snow ball token filter](#snow-ball-token-filter)
+* [Stemmer override token filter](#stemmer-override-token-filter)
+* [Stemmer token filter](#stemmer-token-filter)
+* [Stop token filter](#stop-token-filter)
+* [Synonym token filter](#synonym-token-filter)
+* [Truncate token filter](#truncate-token-filter)
+* [Unique token filter](#unique-token-filter)
+* [Word delimiter graph token filter](#word-delimiter-graph-token-filter)
+* [Word delimiter token filter](#word-delimiter-token-filter)
+
+### Ascii folding token filter
+
+Learn more about ascii folding token filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-asciifolding-tokenfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\AsciiFoldingTokenFilter;
+
+$tokenFilter = (new AsciiFoldingTokenFilter('my_token_filter'))
+    ->setPreserveOriginal(true);
+```
+
+### Cjk bigram token filter
+
+Learn more about cjk bigram token filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-cjk-bigram-tokenfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\CjkBigramTokenFilter;
+use BabenkoIvan\ElasticMate\Core\Settings\Analysis;
+
+$tokenFilter = (new CjkBigramTokenFilter('my_token_filter'))
+    ->setOutputUnigrams(false)
+    ->addIgnoredScript(Analysis::SCRIPT_HANGUL)
+    ->addIgnoredScript(Analysis::SCRIPT_KATAKANA);
+```
+
+### Common grams token filter
+
+Learn more about common grams token filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-common-grams-tokenfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\CommonGramsTokenFilter;
+
+$tokenFilter = (new CommonGramsTokenFilter('my_token_filter'))
+    ->addCommonWord('a')
+    ->addCommonWord('an')
+    ->setIgnoreCase(true)
+    ->setQueryMode(true);
+    
+// also you can set common words from a file
+$tokenFilter->setCommonWordsPath('/common_words.txt');
+```
+
+### Edge ngram token filter
+
+Learn more about edge ngram token filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-edgengram-tokenfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\EdgeNgramTokenFilter;
+
+$tokenFilter = (new EdgeNgramTokenFilter('my_token_filter'))
+    ->setMinGram(3)
+    ->setMaxGram(8);
+```
+
+### Elision token filter
+
+Learn more about elision token filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-elision-tokenfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\ElisionTokenFilter;
+
+$tokenFilter = (new ElisionTokenFilter('my_token_filter'))
+    ->addArticle('l')
+    ->addArticle('m');
+```
+
+### Fingerprint token filter
+
+Learn more about fingerprint token filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-fingerprint-tokenfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\FingerprintTokenFilter;
+
+$tokenFilter = (new FingerprintTokenFilter('my_token_filter'))
+    ->setSeparator(' ')
+    ->setMaxOutputSize(255);
+```
+
+### Keep types token filter
+
+Learn more about keep types token filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-keep-types-tokenfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\KeepTypesTokenFilter;
+use BabenkoIvan\ElasticMate\Core\Settings\Analysis;
+
+$tokenFilter = (new KeepTypesTokenFilter('my_token_filter'))
+    ->setMode(Analysis::MODE_EXCLUDE)
+    ->addType('<NUM>');
+```
+
+### Keep words token filter
+
+Learn more about keep words token filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-keep-words-tokenfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\KeepWordsTokenFilter;
+
+$tokenFilter = (new KeepWordsTokenFilter('my_token_filter'))
+    ->setKeepWordsCase(true)
+    ->addKeepWord('one')
+    ->addKeepWord('two');
+    
+// also you can set words from a file
+$tokenFilter->setKeepWordsPath('/keep_words.txt');
+```
+
+### Keyword maker token filter
+
+Learn more about keyword maker token filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-keyword-marker-tokenfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\KeywordMakerTokenFilter;
+
+$tokenFilter = (new KeywordMakerTokenFilter('my_token_filter'))
+    ->setIgnoreCase(true)
+    ->setKeywordsPattern('\w+');
+```
+
+### Length token filter
+
+Learn more about length token filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-length-tokenfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\LengthTokenFilter;
+
+$tokenFilter = (new LengthTokenFilter('my_token_filter'))
+    ->setMin(0)
+    ->setMax(2147483647);
+```
+
+### Limit token count token filter
+
+Learn more about limit token count token filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-limit-token-count-tokenfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\LimitTokenCountTokenFilter;
+
+$tokenFilter = (new LimitTokenCountTokenFilter('my_token_filter'))
+    ->setMaxTokenCount(5)
+    ->setConsumeAllTokens(true);
+```
+
+### Min hash token filter
+
+Learn more about min hash token filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-minhash-tokenfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\MinHashTokenFilter;
+
+$tokenFilter = (new MinHashTokenFilter('my_token_filter'))
+    ->setHashCount(10)
+    ->setBucketCount(1024)
+    ->setHashSetSize(5)
+    ->setWithRotation(false);
+```
+
+### Multiplexer token filter
+
+Learn more about multiplexer token filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-multiplexer-tokenfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\MultiplexerTokenFilter;
+
+$tokenFilter = (new MultiplexerTokenFilter('my_token_filter'))
+    ->setPreserveOriginal(false)
+    ->addFilter(TokenFilter::TYPE_LOWER_CASE)
+    ->addFilter(TokenFilter::TYPE_PORTER_STEM);
+```
+
+### Ngram token filter
+
+Learn more about ngram token filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-ngram-tokenfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\NgramTokenFilter;
+
+$tokenFilter = (new NgramTokenFilter('my_token_filter'))
+    ->setMinGram(1)
+    ->setMaxGram(2);
+```
+
+### Pattern capture token filter
+
+Learn more about pattern capture token filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-pattern-capture-tokenfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\PatternCaptureTokenFilter;
+
+$tokenFilter = (new PatternCaptureTokenFilter('my_token_filter'))
+    ->setPreserveOriginal(true)
+    ->addPattern('(\p{Ll}+|\p{Lu}\p{Ll}+|\p{Lu}+)')
+    ->addPattern('(\d+)');
+```
+
+### Pattern replace token filter
+
+Learn more about pattern replace token filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-pattern_replace-tokenfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\PatternReplaceTokenFilter;
+
+$tokenFilter = (new PatternReplaceTokenFilter('my_token_filter'))
+    ->setPattern('\n')
+    ->setReplacement('\t')
+```
+
+### Shingle token filter
+
+Learn more about shingle token filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-shingle-tokenfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\ShingleTokenFilter;
+
+$tokenFilter = (new ShingleTokenFilter('my_token_filter'))
+    ->setMinShingleSize(2)
+    ->setMaxShingleSize(3)
+    ->setOutputUnigrams(false)
+    ->setOutputUnigramsIfNoShingles(true)
+    ->setTokenSeparator(' ')
+    ->setFillerToken('_');
+```
+
+### Snow ball token filter
+
+Learn more about snow ball token filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-snowball-tokenfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\SnowBallTokenFilter;
+
+$tokenFilter = (new SnowBallTokenFilter('my_token_filter'))
+    ->setLanguage(Analysis::LANGUAGE_GERMAN);
+```
+
+### Stemmer override token filter
+
+Learn more about stemmer override token filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-stemmer-override-tokenfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\StemmerOverrideTokenFilter;
+use BabenkoIvan\ElasticMate\Core\Settings\Support\StemmingRule;
+
+$tokenFilter = (new StemmerOverrideTokenFilter('my_token_filter'))
+    ->addRule(new StemmingRule('running', 'run'))
+    ->addRule(new StemmingRule('stemmer', 'stemmer'));
+    
+// also you can set rules from a file
+$tokenFilter->setRulesPath('/rules.txt');    
+```
+
+### Stemmer token filter
+
+Learn more about stemmer token filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-stemmer-tokenfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\StemmerTokenFilter;
+use BabenkoIvan\ElasticMate\Core\Settings\Analysis;
+
+$tokenFilter = (new StemmerTokenFilter('my_token_filter'))
+    ->setLanguage(Analysis::LANGUAGE_LIGHT_ENGLISH);
+```
+
+### Stop token filter
+
+Learn more about stop token filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-stop-tokenfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\StopTokenFilter;
+use BabenkoIvan\ElasticMate\Core\Settings\Analysis;
+
+$tokenFilter = (new StopTokenFilter('my_token_filter'))
+    ->setIgnoreCase(true)
+    ->setRemoveTrailing(false)
+    ->setStopWords(Analysis::STOP_WORDS_ENGLISH);
+    
+// also you can set stop words from a file
+$tokenFilter->setStopWordsPath('/stopwords.txt')    
+```
+
+### Synonym token filter
+
+Learn more about synonym token filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-synonym-tokenfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\SynonymTokenFilter;
+
+$tokenFilter = (new SynonymTokenFilter('my_token_filter'))
+    ->setExpand(false)
+    ->setLenient(true)
+    ->setSynonyms('i-pod', collect(['i pod', 'ipod']))
+    ->setSynonyms('universe', collect(['cosmos']));
+```
+
+### Truncate token filter
+
+Learn more about truncate token filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-truncate-tokenfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\TruncateTokenFilter;
+
+$tokenFilter = (new TruncateTokenFilter('my_token_filter'))
+    ->setLength(10);
+```
+
+### Unique token filter
+
+Learn more about unique token filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-unique-tokenfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\UniqueTokenFilter;
+
+$tokenFilter = (new UniqueTokenFilter('my_token_filter'))
+    ->setOnlyOnSamePosition(false);
+```
+
+### Word delimiter graph token filter
+
+Learn more about word delimiter graph token filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-word-delimiter-graph-tokenfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\WordDelimiterGraphTokenFilter;
+
+$tokenFilter = (new WordDelimiterGraphTokenFilter('my_token_filter'))
+    ->setGenerateWordParts(false)
+    ->setGenerateNumberParts(false)
+    ->setCatenateWords(true)
+    ->setCatenateNumbers(true)
+    ->setCatenateAll(true)
+    ->setSplitOnCaseChange(false)
+    ->setPreserveOriginal(true)
+    ->setSplitOnNumerics(false)
+    ->setStemEnglishPossessive(false)
+    ->addProtectedWord('one')
+    ->addProtectedWord('two');
+    
+// also you can set protected words from a file
+$tokenFilter->setProtectedWordsPath('/protected_words.txt');
+```
+
+### Word delimiter token filter
+
+Learn more about word delimiter token filter in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-word-delimiter-tokenfilter.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\WordDelimiterTokenFilter;
+
+$tokenFilter = (new WordDelimiterTokenFilter('my_token_filter'))
+    ->setGenerateWordParts(false)
+    ->setGenerateNumberParts(false)
+    ->setCatenateWords(true)
+    ->setCatenateNumbers(true)
+    ->setCatenateAll(true)
+    ->setSplitOnCaseChange(false)
+    ->setPreserveOriginal(true)
+    ->setSplitOnNumerics(false)
+    ->setStemEnglishPossessive(false)
+    ->addProtectedWord('one')
+    ->addProtectedWord('two');
+```

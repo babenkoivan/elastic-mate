@@ -37,7 +37,7 @@ interface TokenFilter extends Nameable, Arrayable
     const TYPE_UNIQUE = 'unique';
     const TYPE_PATTERN_CAPTURE = 'pattern_capture';
     const TYPE_PATTERN_REPLACE = 'pattern_replace';
-    const TYPE_LIMIT = 'limit';
+    const TYPE_LIMIT_TOKEN_COUNT = 'limit';
     const TYPE_HUNSPELL = 'hunspell';
     const TYPE_COMMON_GRAMS = 'common_grams';
     const TYPE_ARABIC_NORMALIZATION = 'arabic_normalization';
@@ -51,7 +51,7 @@ interface TokenFilter extends Nameable, Arrayable
     const TYPE_SERBIAN_FOLDING = 'serbian_normalization';
     const TYPE_CJK_WIDTH = 'cjk_width';
     const TYPE_CJK_BIGRAM = 'cjk_bigram';
-    const TYPE_KEEP = 'keep';
+    const TYPE_KEEP_WORDS = 'keep';
     const TYPE_KEEP_TYPES = 'keep_types';
     const TYPE_CLASSIC = 'classic';
     const TYPE_APOSTROPHE = 'apostrophe';

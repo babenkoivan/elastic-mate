@@ -7,18 +7,18 @@ use BabenkoIvan\ElasticMate\Core\Contracts\Settings\TokenFilter;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\LimitTokenFilter
+ * @covers \BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\LimitTokenCountTokenFilter
  * @uses   \BabenkoIvan\ElasticMate\Core\Settings\TokenFilters\AbstractTokenFilter
  */
-final class LimitTokenFilterTest extends TestCase
+final class LimitTokenCountTokenFilterTest extends TestCase
 {
     public function test_limit_token_filter_has_correct_default_values(): void
     {
-        $tokenFilter = new LimitTokenFilter('foo');
+        $tokenFilter = new LimitTokenCountTokenFilter('foo');
 
         $this->assertSame(
             [
-                'type' => TokenFilter::TYPE_LIMIT,
+                'type' => TokenFilter::TYPE_LIMIT_TOKEN_COUNT,
                 'max_token_count' => 1,
                 'consume_all_tokens' => false
             ],
@@ -28,13 +28,13 @@ final class LimitTokenFilterTest extends TestCase
 
     public function test_limit_token_filter_can_be_converted_to_array(): void
     {
-        $tokenFilter = (new LimitTokenFilter('foo'))
+        $tokenFilter = (new LimitTokenCountTokenFilter('foo'))
             ->setMaxTokenCount(5)
             ->setConsumeAllTokens(true);
 
         $this->assertSame(
             [
-                'type' => TokenFilter::TYPE_LIMIT,
+                'type' => TokenFilter::TYPE_LIMIT_TOKEN_COUNT,
                 'max_token_count' => 5,
                 'consume_all_tokens' => true
             ],
