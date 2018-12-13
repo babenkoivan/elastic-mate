@@ -6,10 +6,18 @@
 
 ## Contents
 
+### Basic usage
+
 * [Installation](#installation)
 * [Configuration](#configuration)
 * [Index actions](#index-actions)
 * [Document actions](#document-actions)
+
+### Quick links
+* [Analysis](docs/analysis.md)
+* [Mapping](docs/mapping.md)
+* [Search queries](docs/search-queries.md)
+* [Settings](docs/settings.md)
     
 ## Installation
 
