@@ -21,7 +21,34 @@
     
 ## Installation
 
+Use composer to install the package:
+
+```bash
+composer require babenkoivan/elastic-mate
+```
+
 ## Configuration
+
+You only need to configure client to start using the package:
+
+```php
+use BabenkoIvan\ElasticMate\Infrastructure\Client\ClientFactory;
+use BabenkoIvan\ElasticMate\Core\EntityManagers\IndexManager;
+use BabenkoIvan\ElasticMate\Core\EntityManagers\BulkDocumentManager;
+
+// create Elastic Search client instance
+$client = ClientFactory::fromConfig([
+  'hosts' => [
+      'localhost:9200'
+  ]
+]);
+
+// pass client to managers
+$indexManager = new IndexManager($client);
+$documentManager = new BulkDocumentManager($client);
+```
+
+Read more about possible configuration options [here](https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/_configuration.html#_building_the_client_from_a_configuration_hash).
 
 ## Index actions
 
