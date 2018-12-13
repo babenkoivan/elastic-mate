@@ -743,3 +743,167 @@ $tokenFilter = (new WordDelimiterTokenFilter('my_token_filter'))
     ->addProtectedWord('one')
     ->addProtectedWord('two');
 ```
+
+## Supported tokenizers
+
+* [Char group tokenizer](#char-group-tokenizer)
+* [Classic tokenizer](#classic-tokenizer)
+* [Edge ngram tokenizer](#edge-ngram-tokenizer)
+* [Keyword tokenizer](#keyword-tokenizer)
+* [Ngram tokenizer](#ngram-tokenizer)
+* [Path hierarchy tokenizer](#path-hierarchy-tokenizer)
+* [Pattern tokenizer](#pattern-tokenizer)
+* [Simple pattern split tokenizer](#simple-pattern-split-tokenizer)
+* [Simple pattern tokenizer](#simple-pattern-tokenizer)
+* [Standard tokenizer](#standard-tokenizer)
+* [Uax url email tokenizer](#uax-url-email-tokenizer)
+* [Whitespace tokenizer](#whitespace-tokenizer)
+
+### Char group tokenizer
+
+Learn more about char group tokenizer in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-chargroup-tokenizer.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\Tokenizers\CharGroupTokenizer;
+use BabenkoIvan\ElasticMate\Core\Settings\Analysis;
+
+$tokenizer = (new CharGroupTokenizer('my_tokenizer'))
+    ->addChar('-')
+    ->addChar(Analysis::CHAR_GROUP_WHITESPACE);
+```
+
+### Classic tokenizer
+
+Learn more about classic tokenizer in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-classic-tokenizer.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\Tokenizers\ClassicTokenizer;
+
+$tokenizer = (new ClassicTokenizer('my_tokenizer'))
+    ->setMaxTokenLength(255);
+```
+
+### Edge ngram tokenizer
+
+Learn more about edge ngram tokenizer in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-edgengram-tokenizer.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\Tokenizers\EdgeNgramTokenizer;
+use BabenkoIvan\ElasticMate\Core\Settings\Analysis;
+
+$tokenizer = (new EdgeNgramTokenizer('my_tokenizer'))
+    ->setMinGram(1)
+    ->setMaxGram(2)
+    ->addTokenChars(Analysis::CHAR_GROUP_LETTER)
+    ->addTokenChars(Analysis::CHAR_GROUP_SYMBOL);
+```
+
+### Keyword tokenizer
+
+Learn more about keyword tokenizer in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-keyword-tokenizer.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\Tokenizers\KeywordTokenizer;
+
+$tokenizer = (new KeywordTokenizer('my_tokenizer'))
+    ->setBufferSize(256);
+```
+
+### Ngram tokenizer
+
+Learn more about ngram tokenizer in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-ngram-tokenizer.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\Tokenizers\NgramTokenizer;
+use BabenkoIvan\ElasticMate\Core\Settings\Analysis;
+
+$tokenizer = (new NgramTokenizer('my_tokenizer'))
+    ->setMinGram(1)
+    ->setMaxGram(2)
+    ->addTokenChars(Analysis::CHAR_GROUP_LETTER)
+    ->addTokenChars(Analysis::CHAR_GROUP_DIGIT);
+```
+
+### Path hierarchy tokenizer
+
+Learn more about path hierarchy tokenizer in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-pathhierarchy-tokenizer.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\Tokenizers\PathHierarchyTokenizer;
+
+$tokenizer = (new PathHierarchyTokenizer('my_tokenizer'))
+    ->setDelimiter('/')
+    ->setReplacement('-')
+    ->setBufferSize(1024)
+    ->setReversed(false)
+    ->setSkip(0);
+```
+
+### Pattern tokenizer
+
+Learn more about pattern tokenizer in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-pattern-tokenizer.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\Tokenizers\PatternTokenizer;
+use BabenkoIvan\ElasticMate\Core\Settings\Analysis;
+
+$tokenizer = (new PatternTokenizer('my_tokenizer'))
+    ->setPattern(',')
+    ->addFlag(Analysis::REGEXP_FLAG_MULTILINE)
+    ->setGroup(1);
+```
+
+### Simple pattern split tokenizer
+
+Learn more about simple pattern split tokenizer in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-simplepatternsplit-tokenizer.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\Tokenizers\SimplePatternSplitTokenizer;
+
+$tokenizer = (new SimplePatternSplitTokenizer('my_tokenizer'))
+    ->setPattern('_');
+```
+
+### Simple pattern tokenizer
+
+Learn more about simple pattern tokenizer in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-simplepattern-tokenizer.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\Tokenizers\SimplePatternTokenizer;
+
+$tokenizer = (new SimplePatternTokenizer('my_tokenizer'))
+    ->setPattern('[0123456789]{3}');
+```
+
+### Standard tokenizer
+
+Learn more about standard tokenizer in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-standard-tokenizer.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\Tokenizers\StandardTokenizer;
+
+$tokenizer = (new StandardTokenizer('my_tokenizer'))
+    ->setMaxTokenLength(255);
+```
+
+### Uax url email tokenizer
+
+Learn more about uax url email tokenizer in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-uaxurlemail-tokenizer.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\Tokenizers\UaxUrlEmailTokenizer;
+
+$tokenizer = (new UaxUrlEmailTokenizer('my_tokenizer'))
+    ->setMaxTokenLength(255);
+```
+
+### Whitespace tokenizer
+
+Learn more about whitespace tokenizer in [the official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-whitespace-tokenizer.html).
+
+```php
+use BabenkoIvan\ElasticMate\Core\Settings\Tokenizers\WhitespaceTokenizer;
+
+$tokenizer = (new WhitespaceTokenizer('my_tokenizer'))
+    ->setMaxTokenLength(255);
+```
