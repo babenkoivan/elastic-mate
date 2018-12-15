@@ -6,14 +6,15 @@ namespace BabenkoIvan\ElasticMate\Core\Content\Mutators;
 use BabenkoIvan\ElasticMate\Core\Content\Content;
 use BabenkoIvan\ElasticMate\Core\Contracts\Content\Mutator;
 use BabenkoIvan\ElasticMate\Core\Mapping\Mapping;
-use BabenkoIvan\ElasticMate\Core\Mapping\Properties\TextProperty;
+use BabenkoIvan\ElasticMate\Core\Mapping\Properties\DateProperty;
+use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \BabenkoIvan\ElasticMate\Core\Content\Mutators\ContentMutator
  * @uses   \BabenkoIvan\ElasticMate\Core\Mapping\Mapping
  * @uses   \BabenkoIvan\ElasticMate\Core\Mapping\Properties\AbstractProperty
- * @uses   \BabenkoIvan\ElasticMate\Core\Mapping\Properties\TextProperty
+ * @uses   \BabenkoIvan\ElasticMate\Core\Mapping\Properties\DateProperty
  */
 final class ContentMutatorTest extends TestCase
 {
@@ -27,14 +28,14 @@ final class ContentMutatorTest extends TestCase
         $mutator = new ContentMutator($this->mapping);
 
         $content = new Content([
-            'foo' => '#foo_text#',
-            'bar' => '#bar_text#'
+            'foo' => '2018-12-15 10:50:00',
+            'bar' => DateTimeImmutable::createFromFormat('Y-m-d H:i:s', '2018-12-15 10:50:00')
         ]);
 
         $this->assertSame(
             [
-                'foo' => '#foo_text#',
-                'bar' => 'bar_text'
+                'foo' => '2018-12-15 10:50:00',
+                'bar' => '2018-12-15 10:50:00'
             ],
             $mutator->toPrimitive($content)
         );
@@ -45,14 +46,14 @@ final class ContentMutatorTest extends TestCase
         $mutator = new ContentMutator($this->mapping);
 
         $content = $mutator->fromPrimitive([
-            'foo' => 'foo_text',
-            'bar' => 'bar_text'
+            'foo' => '2018-12-15 10:50:00',
+            'bar' => '2018-12-15 10:50:00'
         ]);
 
         $this->assertEquals(
             new Content([
-                'foo' => 'foo_text',
-                'bar' => '#bar_text#'
+                'foo' => '2018-12-15 10:50:00',
+                'bar' => DateTimeImmutable::createFromFormat('Y-m-d H:i:s', '2018-12-15 10:50:00')
             ]),
             $content
         );
@@ -60,21 +61,49 @@ final class ContentMutatorTest extends TestCase
 
     protected function setUp()
     {
-        $textMutator = new class implements Mutator
+        $dateTimeMutator = new class ('Y-m-d H:i:s') implements Mutator
         {
-            public function toPrimitive($value)
+            /**
+             * @var string
+             */
+            private $format;
+
+            /**
+             * @param string $format
+             */
+            public function __construct(string $format)
             {
-                return trim($value, '#');
+                $this->format = $format;
             }
 
+            /**
+             * @param DateTimeImmutable $value
+             * @return string
+             */
+            public function toPrimitive($value)
+            {
+                return $value->format($this->format);
+            }
+
+            /**
+             * @param string $value
+             * @return DateTimeImmutable
+             */
             public function fromPrimitive($value)
             {
-                return sprintf('#%s#', $value);
+                return DateTimeImmutable::createFromFormat($this->format, $value);
             }
         };
 
         $this->mapping = (new Mapping())
-            ->addProperty(new TextProperty('foo'))
-            ->addProperty((new TextProperty('bar'))->setMutator($textMutator));
+            ->addProperty(
+                (new DateProperty('foo'))
+                    ->setFormat('yyyy-MM-dd HH:mm:ss')
+            )
+            ->addProperty(
+                (new DateProperty('bar'))
+                    ->setFormat('yyyy-MM-dd HH:mm:ss')
+                    ->setMutator($dateTimeMutator)
+            );
     }
 }

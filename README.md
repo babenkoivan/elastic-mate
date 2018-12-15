@@ -12,6 +12,7 @@
 * [Configuration](#configuration)
 * [Index actions](#index-actions)
 * [Document actions](#document-actions)
+* [Content mutators](#content-mutators)
 
 ### Quick links
 * [Analysis](docs/analysis.md)
@@ -295,3 +296,68 @@ $response->getTotal();
 ```
 
 Read more about supported [search queries](docs/search-queries.md). 
+
+## Content mutators
+
+When you deal with a document content, usually you operate with primitive types. If you want to use custom type as a property
+value, configure mutator for that property as shown below.
+
+```php
+use BabenkoIvan\ElasticMate\Core\Contracts\Content\Mutator;
+use DateTimeImmutable;
+use BabenkoIvan\ElasticMate\Core\Mapping\Properties\DateProperty;
+use BabenkoIvan\ElasticMate\Core\Mapping\Mapping;
+use BabenkoIvan\ElasticMate\Core\Entities\Document;
+use BabenkoIvan\ElasticMate\Core\Content\Content;
+
+// declare mutator
+class MyDateTimeMutator implements Mutator
+{
+    /**
+     * @var string
+     */
+    private $format;
+
+    /**
+     * @param string $format
+     */
+    public function __construct(string $format)
+    {
+        $this->format = $format;
+    }
+
+    /**
+     * @param DateTimeImmutable $value
+     * @return string
+     */
+    public function toPrimitive($value)
+    {
+        return $value->format($this->format);
+    }
+
+    /**
+     * @param string $value
+     * @return DateTimeImmutable
+     */
+    public function fromPrimitive($value)
+    {
+        return DateTimeImmutable::createFromFormat($this->format, $value);
+    }
+}
+
+// set mutator in your property
+$dateTimeProperty = (new DateProperty('my_datetime_property'))
+    ->setFormat('yyyy-MM-dd HH:mm:ss')
+    ->setMutator(new MyDateTimeMutator('Y-m-d H:i:s'));
+    
+$mapping = (new Mapping())
+   ->addProperty($dateTimeProperty);
+
+// create an index
+// ...   
+
+// now you can use DateTimeImmutable in document content, whenever you define a new document or retrieve one from search results
+$document = new Document('1', new Content([
+  'my_datetime_property' => new DateTimeImmutable()
+]));     
+```  
