@@ -1,8 +1,12 @@
 # Elastic Mate
 
 [![Build Status](https://travis-ci.com/babenkoivan/elastic-mate.svg?branch=dev)](https://travis-ci.com/babenkoivan/elastic-mate)
+[![Donate](https://img.shields.io/badge/donate-PayPal-blue.svg)](https://www.paypal.me/ivanbabenko)
 
 ---
+
+Elastic mate is a tool, that simplifies document and index management. It's just an early version of the package, that's why
+some functionality might not work as expected or you can find some inaccuracies in the documentation.  
 
 ## Contents
 
