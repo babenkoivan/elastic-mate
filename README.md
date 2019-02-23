@@ -2,7 +2,7 @@
 
 [![Packagist](https://img.shields.io/packagist/v/babenkoivan/elastic-mate.svg)](https://packagist.org/packages/babenkoivan/elastic-mate)
 [![Packagist](https://img.shields.io/packagist/dt/babenkoivan/elastic-mate.svg)](https://packagist.org/packages/babenkoivan/elastic-mate)
-[![Build Status](https://travis-ci.com/babenkoivan/elastic-mate.svg?branch=dev)](https://travis-ci.com/babenkoivan/elastic-mate)
+[![Build Status](https://travis-ci.com/babenkoivan/elastic-mate.svg?branch=master)](https://travis-ci.com/babenkoivan/elastic-mate)
 [![Donate](https://img.shields.io/badge/donate-PayPal-blue.svg)](https://www.paypal.me/ivanbabenko)
 
 ---
